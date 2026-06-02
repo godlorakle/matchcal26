@@ -185,6 +185,7 @@ body{
   </div>
   <div class="chips">
     <div class="chip solid" id="teamChip">
+      <span id="teamLabel" style="font-weight:600">Your team</span>
       <img class="chip-flag" id="chipFlag" src="" alt="">
       <span id="chipTeamText">All teams</span>
       <svg class="caret" width="9" height="6" viewBox="0 0 9 6"><path d="M1 1l3.5 3.5L8 1" stroke="#06231B" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -501,8 +502,9 @@ function onTeamChange(){
   pt.textContent=team||'All teams';
   // chip is solid only when a team is chosen
   chip.classList.toggle('solid', !!team);
-  // recolor caret
+  // recolor caret + label to match chip state
   chip.querySelector('.caret path').setAttribute('stroke', team ? '#06231B' : '#EAF6F0');
+  document.getElementById('teamLabel').style.color = team ? 'rgba(6,35,27,.55)' : 'var(--faint)';
   render();
 }
 
