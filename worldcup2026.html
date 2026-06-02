@@ -460,6 +460,7 @@ function downloadICS(id){
 }
 function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2800);}
 
+let activeGroup = null;
 const teams=[...new Set(MATCHES.flatMap(m=>[m.home,m.away]).filter(t=>t!=='TBD'))].sort();
 const tSel=document.getElementById('teamFilter');
 teams.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;tSel.appendChild(o);});
@@ -631,8 +632,6 @@ MATCHES.forEach(m => {
   if (m.home !== 'TBD') groupTeams[m.group].add(m.home);
   if (m.away !== 'TBD') groupTeams[m.group].add(m.away);
 });
-
-let activeGroup = null;
 
 function buildGroupsGrid() {
   const grid = document.getElementById('groupsGrid');
