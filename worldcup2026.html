@@ -512,6 +512,8 @@ function tickCountdown(){
 function render(){
   updateHero();
   const teamF=tSel.value;
+  // Groups overview only shows in the unfiltered browse state
+  document.getElementById('groupsSection').style.display = teamF ? 'none' : 'block';
   let matches=MATCHES;
   if(teamF)matches=matches.filter(m=>m.home===teamF||m.away===teamF);
   if(activeGroup)matches=matches.filter(m=>m.group===activeGroup);
