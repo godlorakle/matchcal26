@@ -56,8 +56,8 @@ body{
 .nm-teams{display:flex;align-items:center;justify-content:space-around;margin-bottom:1rem}
 .nm-team{display:flex;flex-direction:column;align-items:center;gap:.5rem;flex:1}
 .nm-flag{width:64px;height:auto;border-radius:5px;box-shadow:0 2px 12px rgba(0,0,0,.5)}
-.nm-name{font-weight:700;font-size:.92rem;letter-spacing:.04em;color:var(--text);text-align:center}
-.nm-vs{color:var(--muted);font-size:.82rem;font-weight:300;flex-shrink:0;padding:0 .3rem}
+.nm-name{font-weight:700;font-size:.92rem;letter-spacing:.04em;color:var(--text);text-align:center;text-transform:uppercase}
+.nm-vs{font-size:1.4rem;flex-shrink:0;padding:0 .3rem;margin-bottom:.5rem}
 
 .nm-countdown{display:flex;gap:.5rem;margin-bottom:.9rem}
 .cd-box{flex:1;background:rgba(0,0,0,.28);border-radius:10px;padding:.55rem .3rem;text-align:center}
@@ -119,17 +119,27 @@ body{
 .mc-cal:hover{opacity:.85}
 .mc-cal svg{width:10px;height:10px}
 
-/* odds row — team name + flag + price, no separate teams row */
+/* teams row in card — horizontal with dash */
+.mc-teams-row{display:flex;align-items:center;gap:.5rem;padding:.25rem .65rem .35rem;flex-wrap:nowrap}
+.mc-team-inline{display:flex;align-items:center;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--text);min-width:0}
+.mc-team-inline img{border-radius:2px;flex-shrink:0}
+.mc-team-inline span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-dash{color:var(--muted);font-size:.8rem;flex-shrink:0}
+
+/* odds row */
 .mc-odds{
-  padding:.5rem .65rem .6rem;
+  padding:.4rem .65rem .55rem;
   display:grid;grid-template-columns:1fr auto 1fr;gap:.35rem;align-items:start;
 }
-.odds-col{display:flex;flex-direction:column;align-items:center;gap:.22rem}
-.odds-flag{width:28px;height:auto;border-radius:2px}
-.odds-team{font-size:.75rem;font-weight:700;color:var(--text);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
-.odds-draw-label{font-size:.75rem;font-weight:700;color:var(--muted2);text-align:center}
-.odds-price{font-size:.78rem;font-weight:600;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:6px;padding:.22rem .3rem;width:100%;text-align:center}
-.odds-footer{font-size:.56rem;color:var(--muted);font-weight:500;text-align:center;margin-top:.1rem;grid-column:1/-1;letter-spacing:.04em}
+.odds-col{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.odds-flag{width:22px;height:auto;border-radius:2px}
+.odds-team{font-size:.65rem;font-weight:700;color:var(--muted2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px;text-transform:uppercase;letter-spacing:.04em}
+.odds-draw-label{font-size:.65rem;font-weight:700;color:var(--muted2);text-align:center;text-transform:uppercase;letter-spacing:.04em}
+.odds-price{font-size:.82rem;font-weight:700;border-radius:6px;padding:.25rem .3rem;width:100%;text-align:center}
+.odds-price.home{color:#0a1f0a;background:var(--green)}
+.odds-price.draw{color:var(--text);background:rgba(255,255,255,.07);border:1px solid var(--border)}
+.odds-price.away{color:var(--accent);background:rgba(200,255,0,.1);border:1px solid rgba(200,255,0,.2)}
+.odds-footer{font-size:.56rem;color:var(--muted);font-weight:500;text-align:center;margin-top:.15rem;grid-column:1/-1;letter-spacing:.04em}
 
 .empty{color:var(--muted);font-size:.88rem;padding:3rem 0;text-align:center}
 
@@ -199,7 +209,7 @@ body{
       <img class="nm-flag" id="nmFlagH" src="" alt="">
       <div class="nm-name" id="nmHome"></div>
     </div>
-    <div class="nm-vs">vs</div>
+    <div class="nm-vs">⚽</div>
     <div class="nm-team">
       <img class="nm-flag" id="nmFlagA" src="" alt="">
       <div class="nm-name" id="nmAway"></div>
@@ -550,10 +560,12 @@ function render(){
               + Cal
             </button>
           </div>
-          ${odds || `<div class="mc-teams">
-            <div class="mc-team">${flagImg(m.home,18)} ${m.home}</div>
-            <div class="mc-team">${flagImg(m.away,18)} ${m.away}</div>
-          </div>`}
+          <div class="mc-teams-row">
+            <div class="mc-team-inline">${flagImg(m.home,18)}<span>${m.home}</span></div>
+            <span class="mc-dash">–</span>
+            <div class="mc-team-inline">${flagImg(m.away,18)}<span>${m.away}</span></div>
+          </div>
+          ${odds}
         </div>
       </div>`;
     });
@@ -612,17 +624,17 @@ function oddsHtml(home, away) {
       <div class="odds-col">
         ${flagTag(home)}
         <div class="odds-team">${home}</div>
-        <div class="odds-price">${fmt(book.home)}</div>
+        <div class="odds-price home">${fmt(book.home)}</div>
       </div>
       <div class="odds-col">
-        <div style="height:28px;display:flex;align-items:center;justify-content:center"></div>
+        <div style="height:22px"></div>
         <div class="odds-draw-label">Draw</div>
-        <div class="odds-price">${book.draw ? fmt(book.draw) : '—'}</div>
+        <div class="odds-price draw">${book.draw ? fmt(book.draw) : '—'}</div>
       </div>
       <div class="odds-col">
         ${flagTag(away)}
         <div class="odds-team">${away}</div>
-        <div class="odds-price">${fmt(book.away)}</div>
+        <div class="odds-price away">${fmt(book.away)}</div>
       </div>
       <div class="odds-footer">Bookmakers' odds · ${book.name}</div>
     </div>`;
