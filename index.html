@@ -29,13 +29,14 @@ body{
   position:relative;
 }
 
-/* ── PITCH BACKGROUND ── */
+/* ── PITCH BACKGROUND (anchored behind the hero) ── */
 .pitch-bg{
-  position:fixed;top:0;left:50%;transform:translateX(-50%);
-  width:480px;height:100vh;
+  position:absolute;top:-110px;left:50%;transform:translateX(-50%);
+  width:480px;height:680px;
   pointer-events:none;z-index:0;overflow:hidden;
 }
-.pitch-bg svg{width:100%;height:100%;opacity:.18}
+.pitch-bg svg{width:100%;height:100%}
+.pitch-bg g{opacity:.12}
 body > *:not(.pitch-bg){position:relative;z-index:1}
 
 /* ── APP BAR ── */
@@ -193,47 +194,36 @@ body > *:not(.pitch-bg){position:relative;z-index:1}
 <body>
 
 <div class="pitch-bg" aria-hidden="true">
-  <svg viewBox="0 0 480 820" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- All lines in white -->
-    <g stroke="white" stroke-width="2" fill="none">
+  <svg viewBox="0 0 480 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Ghosted neon pitch — centre circle sits behind the hero card -->
+    <g stroke="#c8ff00" stroke-width="2" fill="none">
       <!-- Outer boundary -->
-      <rect x="22" y="22" width="436" height="776"/>
+      <rect x="22" y="22" width="436" height="636"/>
 
       <!-- Halfway line -->
-      <line x1="22" y1="410" x2="458" y2="410"/>
+      <line x1="22" y1="340" x2="458" y2="340"/>
 
-      <!-- Centre circle (r≈62) -->
-      <circle cx="240" cy="410" r="62"/>
-      <!-- Centre spot -->
-      <circle cx="240" cy="410" r="3.5" fill="white" stroke="none"/>
+      <!-- Centre circle -->
+      <circle cx="240" cy="340" r="64"/>
+      <circle cx="240" cy="340" r="3.5" fill="#c8ff00" stroke="none"/>
 
-      <!-- Top penalty box: 40.32m wide, 16.5m deep  (on 68×105 field) -->
-      <rect x="108" y="22" width="264" height="118"/>
-      <!-- Top goal box: 18.32m wide, 5.5m deep -->
-      <rect x="173" y="22" width="134" height="40"/>
-      <!-- Top goals (outside field) -->
-      <rect x="193" y="7"  width="94" height="15"/>
-      <!-- Top penalty spot -->
-      <circle cx="240" cy="96" r="3" fill="white" stroke="none"/>
-      <!-- Top penalty arc (outside box) -->
-      <path d="M 186 140 A 62 62 0 0 1 294 140"/>
-      <!-- Top corner arcs -->
+      <!-- Top penalty box -->
+      <rect x="108" y="22" width="264" height="110"/>
+      <rect x="173" y="22" width="134" height="38"/>
+      <rect x="193" y="10" width="94" height="12"/>
+      <circle cx="240" cy="94" r="3" fill="#c8ff00" stroke="none"/>
+      <path d="M 186 132 A 62 62 0 0 1 294 132"/>
       <path d="M 22 42 A 20 20 0 0 1 42 22"/>
       <path d="M 438 22 A 20 20 0 0 1 458 42"/>
 
       <!-- Bottom penalty box -->
-      <rect x="108" y="680" width="264" height="118"/>
-      <!-- Bottom goal box -->
-      <rect x="173" y="758" width="134" height="40"/>
-      <!-- Bottom goals (outside field) -->
-      <rect x="193" y="798" width="94" height="15"/>
-      <!-- Bottom penalty spot -->
-      <circle cx="240" cy="724" r="3" fill="white" stroke="none"/>
-      <!-- Bottom penalty arc (outside box) -->
-      <path d="M 186 680 A 62 62 0 0 0 294 680"/>
-      <!-- Bottom corner arcs -->
-      <path d="M 22 778 A 20 20 0 0 0 42 798"/>
-      <path d="M 438 798 A 20 20 0 0 0 458 778"/>
+      <rect x="108" y="548" width="264" height="110"/>
+      <rect x="173" y="620" width="134" height="38"/>
+      <rect x="193" y="658" width="94" height="12"/>
+      <circle cx="240" cy="586" r="3" fill="#c8ff00" stroke="none"/>
+      <path d="M 186 548 A 62 62 0 0 0 294 548"/>
+      <path d="M 22 638 A 20 20 0 0 0 42 658"/>
+      <path d="M 438 658 A 20 20 0 0 0 458 638"/>
     </g>
   </svg>
 </div>
