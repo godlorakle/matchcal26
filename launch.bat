@@ -6,7 +6,7 @@ timeout /t 1 /nobreak > nul
 echo Starting World Cup 2026 Calendar...
 start "WC2026Server" /d "%~dp0" python -m http.server 5026
 timeout /t 2 /nobreak > nul
-start "" "http://localhost:5026/worldcup2026.html"
+start "" "http://localhost:5026/index.html"
 echo.
 echo Server running at http://localhost:5026
 echo Close this window to stop the server.
