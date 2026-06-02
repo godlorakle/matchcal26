@@ -142,6 +142,11 @@ body{
 .sec-count{font-family:var(--fb);font-weight:600;font-size:11.5px;color:var(--neon);white-space:nowrap}
 
 /* ── FIXTURE CARD ── */
+.add-all{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;
+  height:42px;border-radius:12px;background:var(--neon);color:var(--on-accent);border:none;cursor:pointer;
+  font-family:var(--fb);font-weight:700;font-size:13px;letter-spacing:.2px;transition:opacity .15s}
+.add-all:hover{opacity:.88}
+.add-all svg{width:15px;height:15px}
 .fx{position:relative;border-radius:16px;overflow:hidden;background:var(--glass);border:1px solid var(--glassB);margin-top:9px}
 .fx-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--neon),var(--lime))}
 .fx-in{display:flex;gap:11px;padding:11px 13px 11px 14px}
@@ -540,6 +545,22 @@ function downloadICS(id){
   URL.revokeObjectURL(url);
   showToast('✓ Added to Apple / Outlook Calendar');
 }
+function downloadAllICS(){
+  const team=tSel.value;if(!team)return;
+  const ms=MATCHES.filter(m=>(m.home===team||m.away===team)&&m.group.startsWith('Group '));
+  if(!ms.length)return;
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//matchcal26//EN','CALSCALE:GREGORIAN'];
+  ms.forEach(m=>{
+    const s=icsDate(m.utc),e=icsDate(new Date(m.utc.getTime()+105*60000));
+    lines.push('BEGIN:VEVENT',`DTSTART:${s}`,`DTEND:${e}`,`SUMMARY:⚽ ${m.home} vs ${m.away} | World Cup 2026`,`DESCRIPTION:${m.group} · ${m.venue}\\nWatch: ${channel}`,`LOCATION:${m.venue}, ${m.city}`,'BEGIN:VALARM','TRIGGER:-PT60M','ACTION:DISPLAY','DESCRIPTION:Match in 1 hour','END:VALARM','END:VEVENT');
+  });
+  lines.push('END:VCALENDAR');
+  const blob=new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=`WC2026_${team}_group_matches.ics`;a.click();
+  URL.revokeObjectURL(url);
+  showToast(`✓ Added all ${ms.length} ${team} group matches`);
+}
 function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2800);}
 
 let activeGroup=null;
@@ -613,6 +634,12 @@ function render(){
   ['Group Stage',...KO].forEach(phase=>{
     const ms=sec[phase];if(!ms)return;
     html+=`<div class="sec-head" style="margin-top:18px"><span class="sec-name">${phase}</span><span class="sec-rule"></span><span class="sec-count">${ms.length} match${ms.length>1?'es':''}</span></div>`;
+    if(phase==='Group Stage'&&teamF){
+      html+=`<button class="add-all" onclick="downloadAllICS()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+        Add all ${ms.length} ${teamF} matches to calendar
+      </button>`;
+    }
     ms.forEach(m=>{
       const isTBD=m.home==='TBD';
       html+=`
