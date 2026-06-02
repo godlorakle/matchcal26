@@ -5,301 +5,273 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup 2026 — Match Calendar</title>
 <meta name="description" content="World Cup 2026 match times in your local timezone. Pick your team, add games to your calendar.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0b1a0d;--surface:#132516;--card:#0f1f11;--hero:#162c19;
-  --border:#1e3d22;--accent:#c8ff00;--green:#3ddc68;
-  --text:#f0f0f0;--muted:#5a8060;--muted2:#8aab8e;--r:14px;
+  --bg0:#081A1C;--bg1:#0C2A2A;
+  --ink:#EAF6F0;--soft:rgba(234,246,240,.55);--faint:rgba(234,246,240,.35);
+  --neon:#46E39A;--lime:#C7F94B;--yellow:#FFE14D;--on-accent:#06231B;
+  --glass:rgba(255,255,255,.05);--glassB:rgba(255,255,255,.10);
+  --fd:'Archivo',sans-serif;--fb:'Space Grotesk',sans-serif;
 }
-html{background:var(--bg)}
+html{background:var(--bg0)}
 body{
+  font-family:var(--fb);color:var(--ink);min-height:100vh;font-size:15px;
+  max-width:440px;margin:0 auto;padding:0 0 5rem;
   background:
-    repeating-linear-gradient(
-      115deg,
-      transparent 0,
-      transparent 46px,
-      rgba(255,255,255,0.018) 46px,
-      rgba(255,255,255,0.018) 92px
-    ),
-    var(--bg);
-  color:var(--text);font-family:'DM Sans',sans-serif;
-  min-height:100vh;font-size:15px;max-width:480px;margin:0 auto;padding:0 0 6rem;
-  position:relative;
+    repeating-linear-gradient(102deg, rgba(70,227,154,.035) 0 46px, transparent 46px 92px),
+    radial-gradient(120% 55% at 50% -8%, var(--bg1), var(--bg0) 72%);
+  background-attachment:fixed;
 }
 
-/* ── PITCH BACKGROUND (anchored behind the hero) ── */
-.pitch-bg{
-  position:absolute;top:-110px;left:50%;transform:translateX(-50%);
-  width:480px;height:680px;
-  pointer-events:none;z-index:0;overflow:hidden;
+/* ── HEADER ── */
+.hdr{padding:38px 18px 0}
+.brand-row{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:8px}
+.logo-chip{width:22px;height:22px;border-radius:7px;background:var(--neon);display:grid;place-items:center;box-shadow:0 0 12px rgba(70,227,154,.5);flex-shrink:0}
+.brand-name{font-family:var(--fb);font-weight:600;font-size:11px;letter-spacing:1.5px;color:var(--soft);white-space:nowrap}
+.brand-name b{color:var(--neon);font-weight:600}
+.brand-sub{font-family:var(--fb);font-weight:500;font-size:9.5px;letter-spacing:1px;color:var(--faint);text-align:right;line-height:1.5}
+.title-row{display:flex;align-items:center;gap:10px;margin-top:11px}
+.title{font-family:var(--fd);font-weight:800;font-size:40px;letter-spacing:-.5px;line-height:1}
+.chips{display:flex;gap:8px;margin-top:14px;margin-bottom:16px;flex-wrap:wrap}
+.chip{
+  position:relative;display:inline-flex;align-items:center;gap:6px;height:31px;padding:0 12px;
+  border-radius:9px;font-family:var(--fb);font-weight:600;font-size:12.5px;white-space:nowrap;
+  background:var(--glass);color:var(--ink);border:1px solid var(--glassB);cursor:pointer;
 }
-.pitch-bg svg{width:100%;height:100%}
-.pitch-bg g{opacity:.12}
-body > *:not(.pitch-bg){position:relative;z-index:1}
+.chip.solid{background:var(--neon);color:var(--on-accent);border:none}
+.chip select{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer;font-size:16px}
+.chip-flag{height:13px;width:auto;border-radius:2px;display:none}
+.chip-flag.visible{display:inline-block}
+.caret{flex-shrink:0}
 
-/* ── APP BAR ── */
-.app-bar{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.2rem .5rem}
-.brand{display:flex;align-items:center;gap:.5rem;font-size:1.25rem;font-weight:700;letter-spacing:.05em;color:var(--text);text-transform:uppercase}
-.brand-sub{font-size:.65rem;color:var(--muted);letter-spacing:.06em;text-align:right;line-height:1.4}
-
-/* ── PAGE TITLE ── */
-.page-title-row{padding:.1rem 1.2rem .9rem;display:flex;align-items:center;gap:.5rem}
-.page-title{font-family:'DM Sans',sans-serif;font-size:2.4rem;font-weight:700;line-height:1;color:var(--text)}
-.live-dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block;flex-shrink:0;margin-top:.15rem;animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-
-/* ── FILTERS ── */
-.filters{display:flex;gap:.5rem;padding:.2rem 1.2rem .9rem;flex-wrap:wrap}
-.pill-wrap{
-  position:relative;display:flex;align-items:center;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;padding:.35rem .75rem;gap:.35rem;cursor:pointer;flex-shrink:0;
+/* ── HERO ── */
+.wrap{padding:0 18px}
+.hero{
+  position:relative;border-radius:20px;padding:18px;overflow:hidden;margin-bottom:13px;
+  background:linear-gradient(160deg, rgba(70,227,154,.16), rgba(255,255,255,.04));
+  border:1px solid var(--glassB);box-shadow:0 18px 40px -18px rgba(0,0,0,.7);
 }
-.pill-wrap select{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer;font-size:1rem}
-.pill-flag{height:14px;width:auto;border-radius:1px;display:none}
-.pill-flag.visible{display:inline-block}
-.pill-text{font-size:.78rem;font-weight:500;color:var(--text);white-space:nowrap}
-.pill-arrow{font-size:.58rem;color:var(--muted)}
+.hero-pitch{position:absolute;inset:0;pointer-events:none}
+.hero-glow{position:absolute;top:-50px;right:-30px;width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle, rgba(199,249,75,.18), transparent 70%);pointer-events:none}
+.hero-inner{position:relative}
+.hero-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.hero-label{display:inline-flex;align-items:center;gap:6px;font-family:var(--fb);font-weight:700;font-size:11px;letter-spacing:1.5px;color:var(--neon);white-space:nowrap}
+.hero-date{font-family:var(--fb);font-weight:500;font-size:12px;color:var(--soft)}
+.hero-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;margin-bottom:18px}
+.hero-team{display:flex;flex-direction:column;align-items:center;gap:9px}
+.hero-flag{width:46px;height:auto;border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);display:block}
+.hero-name{font-family:var(--fd);font-weight:800;font-size:17px;letter-spacing:.3px;color:var(--ink)}
+.hero-vs{display:flex;flex-direction:column;align-items:center;gap:5px}
+.hero-vs-label{font-family:var(--fd);font-weight:800;font-size:11px;color:var(--faint);letter-spacing:1px}
+.cd{display:flex;justify-content:space-between;gap:7px;margin-bottom:16px}
+.cd-cell{flex:1;text-align:center;border:1px solid var(--glassB);border-radius:12px;padding:9px 0;
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03))}
+.cd-num{font-family:var(--fd);font-weight:800;font-size:27px;line-height:1;color:var(--yellow)}
+.cd-unit{font-family:var(--fb);font-weight:600;font-size:8.5px;letter-spacing:1.5px;color:var(--faint);margin-top:3px}
+.hero-venue{display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:14px;
+  font-family:var(--fb);font-weight:500;font-size:12px;color:var(--soft)}
+.cta{display:flex;gap:9px}
+.cta-btn{flex:1;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;gap:6px;
+  font-family:var(--fb);font-weight:700;font-size:12.5px;letter-spacing:.2px;cursor:pointer;text-decoration:none;border:none}
+.cta-btn.solid{background:var(--neon);color:var(--on-accent)}
+.cta-btn.outline{background:transparent;color:var(--ink);border:1px solid var(--glassB)}
+.cta-btn svg{width:14px;height:14px;flex-shrink:0}
+.live-now{text-align:center;font-family:var(--fd);font-weight:800;font-size:15px;color:var(--yellow);letter-spacing:1px}
 
-/* ── NEXT MATCH HERO ── */
-.next-card{
-  margin:.2rem 1rem 1rem;background:var(--hero);
-  border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem 1.1rem;
-}
-.nm-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.9rem}
-.nm-label{display:flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--green);text-transform:uppercase}
-.nm-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.2s infinite;flex-shrink:0}
-.nm-datetime{font-size:.75rem;color:var(--muted2)}
+/* ── SECTION HEADER ── */
+.sec-head{display:flex;align-items:center;gap:10px;margin:2px 0 0}
+.sec-name{font-family:var(--fd);font-weight:800;font-size:14px;letter-spacing:1px;color:var(--ink);white-space:nowrap;text-transform:uppercase}
+.sec-rule{flex:1;height:1px;background:var(--glassB)}
+.sec-count{font-family:var(--fb);font-weight:600;font-size:11.5px;color:var(--neon);white-space:nowrap}
 
-.nm-teams{display:flex;align-items:center;justify-content:space-around;margin-bottom:1rem}
-.nm-team{display:flex;flex-direction:column;align-items:center;gap:.5rem;flex:1}
-.nm-flag{width:64px;height:auto;border-radius:5px;box-shadow:0 2px 12px rgba(0,0,0,.5)}
-.nm-name{font-weight:700;font-size:.92rem;letter-spacing:.04em;color:var(--text);text-align:center;text-transform:uppercase}
-.nm-vs{font-size:1.4rem;flex-shrink:0;padding:0 .3rem;margin-bottom:.5rem}
-
-.nm-countdown{display:flex;gap:.5rem;margin-bottom:.9rem}
-.cd-box{flex:1;background:rgba(0,0,0,.28);border-radius:10px;padding:.55rem .3rem;text-align:center}
-.cd-num{display:block;font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;color:var(--accent);letter-spacing:.04em}
-.cd-unit{display:block;font-size:.58rem;font-weight:600;letter-spacing:.1em;color:var(--muted2);text-transform:uppercase;margin-top:.12rem}
-
-.nm-venue{font-size:.74rem;color:var(--muted2);display:flex;align-items:center;gap:.35rem;margin-bottom:.85rem}
-.nm-venue svg{width:11px;height:11px;flex-shrink:0;color:var(--green)}
-
-.nm-btns{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-.nm-btn{
-  display:flex;align-items:center;justify-content:center;gap:.4rem;
-  padding:.65rem;border-radius:10px;font-family:'DM Sans',sans-serif;
-  font-size:.82rem;font-weight:600;cursor:pointer;text-decoration:none;
-  border:none;transition:opacity .15s;
-}
-.nm-btn:hover{opacity:.82}
-.nm-btn-google{background:var(--green);color:#061008}
-.nm-btn-apple{background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--text)}
-.nm-btn svg{width:13px;height:13px}
-
-/* ── MATCH LIST ── */
-.list-wrap{padding:0 1rem}
-.phase-row{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0 .5rem}
-.phase-row:first-child{padding-top:.3rem}
-.phase-name{font-size:.8rem;font-weight:700;letter-spacing:.1em;color:var(--text);text-transform:uppercase}
-.phase-count{font-size:.75rem;color:var(--green);font-weight:500}
-
-.match-card{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  margin-bottom:.45rem;display:grid;grid-template-columns:52px 1fr;
-  overflow:hidden;transition:border-color .15s;
-}
-.match-card:hover{border-color:#2e5c33}
-
-.mc-date{
-  background:rgba(0,0,0,.22);display:flex;flex-direction:column;
-  align-items:center;justify-content:center;padding:.6rem .3rem;
-  border-right:1px solid var(--border);flex-shrink:0;grid-row:1/-1;
-}
-.mc-dow{font-size:.58rem;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-.mc-day{font-family:'Bebas Neue',sans-serif;font-size:1.65rem;line-height:1;color:var(--text);margin:.04rem 0}
-.mc-mon{font-size:.58rem;font-weight:700;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
-
-/* header row: time · group + cal button */
-.mc-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:.45rem .65rem .3rem;gap:.5rem;
-}
-.mc-time-group{display:flex;align-items:center;gap:.5rem}
-.mc-time{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.04em;color:var(--text);line-height:1}
-.mc-group{font-size:.62rem;font-weight:700;letter-spacing:.07em;color:var(--muted);text-transform:uppercase}
-.mc-cal{
-  display:flex;align-items:center;gap:.3rem;flex-shrink:0;
-  font-size:.7rem;font-weight:600;color:#061008;cursor:pointer;
-  background:var(--green);border:none;padding:.3rem .6rem;
-  border-radius:6px;font-family:'DM Sans',sans-serif;transition:opacity .15s;
-}
-.mc-cal:hover{opacity:.85}
-.mc-cal svg{width:10px;height:10px}
-
-/* teams row in card — horizontal with dash */
-.mc-teams-row{display:flex;align-items:center;gap:.5rem;padding:.25rem .65rem .35rem;flex-wrap:nowrap}
-.mc-team-inline{display:flex;align-items:center;gap:.35rem;font-size:.82rem;font-weight:600;color:var(--text);min-width:0}
-.mc-team-inline img{border-radius:2px;flex-shrink:0}
-.mc-team-inline span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mc-dash{color:var(--muted);font-size:.8rem;flex-shrink:0}
-
-/* odds row */
-.mc-odds{
-  padding:.4rem .65rem .55rem;
-  display:grid;grid-template-columns:1fr auto 1fr;gap:.35rem;align-items:start;
-}
-.odds-col{display:flex;flex-direction:column;align-items:center;gap:.2rem}
-.odds-flag{width:22px;height:auto;border-radius:2px}
-.odds-team{font-size:.65rem;font-weight:700;color:var(--muted2);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px;text-transform:uppercase;letter-spacing:.04em}
-.odds-draw-label{font-size:.65rem;font-weight:700;color:var(--muted2);text-align:center;text-transform:uppercase;letter-spacing:.04em}
-.odds-price{font-size:.82rem;font-weight:700;border-radius:6px;padding:.25rem .3rem;width:100%;text-align:center}
-.odds-price.home{color:#0a1f0a;background:var(--green)}
-.odds-price.draw{color:var(--text);background:rgba(255,255,255,.07);border:1px solid var(--border)}
-.odds-price.away{color:var(--accent);background:rgba(200,255,0,.1);border:1px solid rgba(200,255,0,.2)}
-.odds-footer{font-size:.56rem;color:var(--muted);font-weight:500;text-align:center;margin-top:.15rem;grid-column:1/-1;letter-spacing:.04em}
-
-.empty{color:var(--muted);font-size:.88rem;padding:3rem 0;text-align:center}
+/* ── FIXTURE CARD ── */
+.fx{position:relative;border-radius:16px;overflow:hidden;background:var(--glass);border:1px solid var(--glassB);margin-top:9px}
+.fx-bar{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--neon),var(--lime))}
+.fx-in{display:flex;gap:11px;padding:11px 13px 11px 14px}
+.fx-rail{width:38px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.fx-dow{font-family:var(--fb);font-weight:600;font-size:9px;letter-spacing:1px;color:var(--neon)}
+.fx-day{font-family:var(--fd);font-weight:800;font-size:23px;line-height:1;color:var(--ink)}
+.fx-mon{font-family:var(--fb);font-weight:600;font-size:8.5px;letter-spacing:1px;color:var(--faint)}
+.fx-main{flex:1;min-width:0}
+.fx-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.fx-time{font-family:var(--fb);font-weight:600;font-size:12px;color:var(--ink);white-space:nowrap}
+.fx-time b{color:var(--yellow);font-weight:700}
+.fx-time span{color:var(--faint)}
+.fx-cal{display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 9px;border-radius:7px;
+  border:1px solid rgba(70,227,154,.45);color:var(--neon);font-family:var(--fb);font-weight:700;font-size:10.5px;
+  background:none;cursor:pointer;white-space:nowrap}
+.fx-cal svg{width:11px;height:11px}
+.fx-teams{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+.fx-side{display:flex;align-items:center;gap:7px;min-width:0}
+.fx-side.away{justify-content:flex-end}
+.fx-flag{border-radius:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);flex-shrink:0;display:block}
+.fx-tname{font-family:var(--fd);font-weight:800;font-size:13.5px;color:var(--ink);letter-spacing:.2px;white-space:nowrap}
+.fx-dash{font-family:var(--fb);font-weight:600;font-size:10px;color:var(--faint);flex-shrink:0}
+.fx-odds{display:flex;gap:6px}
+.odd{flex:1;text-align:center;border-radius:9px;padding:6px 4px;background:var(--glass);border:1px solid var(--glassB)}
+.odd.fav{background:rgba(70,227,154,.10);border-color:rgba(70,227,154,.35)}
+.odd-label{font-family:var(--fb);font-weight:600;font-size:8.5px;letter-spacing:.8px;color:var(--faint);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.odd.fav .odd-label{color:var(--neon)}
+.odd-val{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--ink);margin-top:1px}
+.odd.fav .odd-val{color:var(--neon)}
+.fx-cap{font-family:var(--fb);font-weight:500;font-size:9.5px;color:var(--faint);margin-top:7px;text-align:center}
+.fx-cap b{color:var(--soft);font-weight:500}
 
 /* ── GROUPS OVERVIEW ── */
-.groups-section{padding:.2rem 1rem .5rem}
-.groups-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.55rem}
-.groups-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
-.group-tile{
-  background:var(--card);border:1px solid var(--border);border-radius:10px;
-  padding:.5rem .6rem;cursor:pointer;transition:border-color .15s;
-}
-.group-tile:hover{border-color:#2e5c33}
-.group-tile.active{border-color:var(--green);background:rgba(61,220,104,.06)}
-.group-tile-label{font-size:.58rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.35rem}
-.group-tile-flags{display:flex;gap:.3rem;flex-wrap:wrap}
-.group-tile-flags img{border-radius:2px;width:22px;height:auto}
+.groups{margin-top:13px}
+.groups-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.gtile{background:var(--glass);border:1px solid var(--glassB);border-radius:12px;padding:9px 11px;cursor:pointer;transition:border-color .15s}
+.gtile:hover{border-color:rgba(70,227,154,.4)}
+.gtile.active{border-color:var(--neon);background:rgba(70,227,154,.07)}
+.gtile-label{font-family:var(--fb);font-weight:700;font-size:9px;letter-spacing:1px;color:var(--neon);text-transform:uppercase;margin-bottom:7px}
+.gtile-flags{display:flex;gap:5px;flex-wrap:wrap}
+.gtile-flags img{width:22px;height:auto;border-radius:3px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+
+.empty{color:var(--faint);font-size:13px;padding:2.5rem 0;text-align:center}
 
 /* ── FOOTER ── */
-.footer{margin:1.5rem 1rem 0;border:1px dashed #1e3d22;border-radius:10px;padding:.55rem;font-size:.63rem;color:#2e5c33;text-align:center;letter-spacing:.05em}
+.footer{margin:16px 18px 0;padding-top:12px;border-top:1px dashed var(--glassB);text-align:center;
+  font-family:var(--fb);font-weight:500;font-size:10px;color:var(--faint)}
 
 /* ── TOAST ── */
-.toast{
-  position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);
-  background:var(--accent);color:#061008;font-weight:600;font-size:.8rem;
-  padding:.55rem 1.2rem;border-radius:20px;
-  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
-  pointer-events:none;white-space:nowrap;z-index:999;
-}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--neon);color:var(--on-accent);font-family:var(--fb);font-weight:700;font-size:12.5px;
+  padding:.6rem 1.2rem;border-radius:20px;transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;white-space:nowrap;z-index:999}
 .toast.show{transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
 
-<div class="pitch-bg" aria-hidden="true">
-  <svg viewBox="0 0 480 680" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Ghosted neon pitch — centre circle sits behind the hero card -->
-    <g stroke="#c8ff00" stroke-width="2" fill="none">
-      <!-- Outer boundary -->
-      <rect x="22" y="22" width="436" height="636"/>
-
-      <!-- Halfway line -->
-      <line x1="22" y1="340" x2="458" y2="340"/>
-
-      <!-- Centre circle -->
-      <circle cx="240" cy="340" r="64"/>
-      <circle cx="240" cy="340" r="3.5" fill="#c8ff00" stroke="none"/>
-
-      <!-- Top penalty box -->
-      <rect x="108" y="22" width="264" height="110"/>
-      <rect x="173" y="22" width="134" height="38"/>
-      <rect x="193" y="10" width="94" height="12"/>
-      <circle cx="240" cy="94" r="3" fill="#c8ff00" stroke="none"/>
-      <path d="M 186 132 A 62 62 0 0 1 294 132"/>
-      <path d="M 22 42 A 20 20 0 0 1 42 22"/>
-      <path d="M 438 22 A 20 20 0 0 1 458 42"/>
-
-      <!-- Bottom penalty box -->
-      <rect x="108" y="548" width="264" height="110"/>
-      <rect x="173" y="620" width="134" height="38"/>
-      <rect x="193" y="658" width="94" height="12"/>
-      <circle cx="240" cy="586" r="3" fill="#c8ff00" stroke="none"/>
-      <path d="M 186 548 A 62 62 0 0 0 294 548"/>
-      <path d="M 22 638 A 20 20 0 0 0 42 658"/>
-      <path d="M 438 658 A 20 20 0 0 0 458 638"/>
-    </g>
-  </svg>
-</div>
-
-<div class="app-bar">
-  <div class="brand">⚽ World Cup 2026</div>
-  <div class="brand-sub">SUMMER<br>USA · CAN · MEX</div>
-</div>
-
-<div class="page-title-row">
-  <h1 class="page-title">Calendar</h1>
-  <span class="live-dot"></span>
-</div>
-
-<div class="filters">
-  <div class="pill-wrap" id="teamPill">
-    <img class="pill-flag" id="pillFlag" src="" alt="">
-    <span class="pill-text" id="pillTeamText">All teams</span>
-    <span class="pill-arrow">▾</span>
-    <select id="teamFilter" onchange="onTeamChange()">
-      <option value="">All teams</option>
-    </select>
-  </div>
-  <div class="pill-wrap">
-    <span class="pill-text" id="tzPill">UTC…</span>
-    <span class="pill-arrow">▾</span>
-    <select id="tzSelect" onchange="onTzChange()"></select>
-  </div>
-</div>
-
-<div id="nextCard" style="display:none" class="next-card">
-  <div class="nm-top">
-    <div class="nm-label"><span class="nm-dot"></span>Next Match</div>
-    <div class="nm-datetime" id="nmDatetime"></div>
-  </div>
-  <div class="nm-teams">
-    <div class="nm-team">
-      <img class="nm-flag" id="nmFlagH" src="" alt="">
-      <div class="nm-name" id="nmHome"></div>
+<!-- HEADER -->
+<div class="hdr">
+  <div class="brand-row">
+    <div class="brand">
+      <span class="logo-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" style="display:block">
+          <circle cx="12" cy="12" r="10.5" fill="#06231B" stroke="#46E39A" stroke-width="1.1"/>
+          <path d="M12 6.4l4.6 3.34-1.76 5.42H9.16L7.4 9.74z" fill="#46E39A"/>
+          <g stroke="#46E39A" stroke-width="1.3" stroke-linecap="round">
+            <path d="M12 6.4V2.1"/><path d="M16.6 9.74l3.7-1.5"/><path d="M14.84 15.16l2.4 3.2"/><path d="M9.16 15.16l-2.4 3.2"/><path d="M7.4 9.74L3.7 8.24"/>
+          </g>
+        </svg>
+      </span>
+      <span class="brand-name">WORLD CUP <b>2026</b></span>
     </div>
-    <div class="nm-vs">⚽</div>
-    <div class="nm-team">
-      <img class="nm-flag" id="nmFlagA" src="" alt="">
-      <div class="nm-name" id="nmAway"></div>
+    <span class="brand-sub">SUMMER<br>USA·CAN·MEX</span>
+  </div>
+  <div class="title-row">
+    <h1 class="title">Calendar</h1>
+    <svg width="19" height="19" viewBox="0 0 24 24" style="display:block;transform:translateY(2px)">
+      <circle cx="12" cy="12" r="10.5" fill="#46E39A" stroke="#06231B" stroke-width="1.1"/>
+      <path d="M12 6.4l4.6 3.34-1.76 5.42H9.16L7.4 9.74z" fill="#06231B"/>
+      <g stroke="#06231B" stroke-width="1.3" stroke-linecap="round">
+        <path d="M12 6.4V2.1"/><path d="M16.6 9.74l3.7-1.5"/><path d="M14.84 15.16l2.4 3.2"/><path d="M9.16 15.16l-2.4 3.2"/><path d="M7.4 9.74L3.7 8.24"/>
+      </g>
+    </svg>
+  </div>
+  <div class="chips">
+    <div class="chip solid" id="teamChip">
+      <img class="chip-flag" id="chipFlag" src="" alt="">
+      <span id="chipTeamText">All teams</span>
+      <svg class="caret" width="9" height="6" viewBox="0 0 9 6"><path d="M1 1l3.5 3.5L8 1" stroke="#06231B" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="teamFilter" onchange="onTeamChange()"><option value="">All teams</option></select>
+    </div>
+    <div class="chip">
+      <span id="tzPill">UTC…</span>
+      <svg class="caret" width="9" height="6" viewBox="0 0 9 6"><path d="M1 1l3.5 3.5L8 1" stroke="#EAF6F0" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="tzSelect" onchange="onTzChange()"></select>
     </div>
   </div>
-  <div class="nm-countdown">
-    <div class="cd-box"><span class="cd-num" id="cdDays">--</span><span class="cd-unit">Days</span></div>
-    <div class="cd-box"><span class="cd-num" id="cdHrs">--</span><span class="cd-unit">Hrs</span></div>
-    <div class="cd-box"><span class="cd-num" id="cdMin">--</span><span class="cd-unit">Min</span></div>
-    <div class="cd-box"><span class="cd-num" id="cdSec">--</span><span class="cd-unit">Sec</span></div>
-  </div>
-  <div class="nm-venue">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"/><circle cx="8" cy="6" r="1.5"/></svg>
-    <span id="nmVenue"></span>
-  </div>
-  <div class="nm-btns">
-    <a class="nm-btn nm-btn-google" id="nmGcal" href="#" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
-      + Google
-    </a>
-    <button class="nm-btn nm-btn-apple" id="nmIcal">
-      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1.5" y="2.5" width="13" height="12" rx="2"/><line x1="1.5" y1="6.5" x2="14.5" y2="6.5"/><line x1="5" y1="1" x2="5" y2="4"/><line x1="11" y1="1" x2="11" y2="4"/></svg>
-      + Apple
-    </button>
-  </div>
 </div>
 
-<div class="groups-section" id="groupsSection">
-  <div class="groups-label">Groups</div>
-  <div class="groups-grid" id="groupsGrid"></div>
+<div class="wrap">
+  <!-- HERO -->
+  <div id="hero" class="hero" style="display:none">
+    <svg class="hero-pitch" viewBox="0 0 340 220" preserveAspectRatio="none">
+      <g fill="none" stroke="#46E39A" stroke-width="1.4" opacity="0.11">
+        <rect x="10" y="10" width="320" height="200" rx="2"/>
+        <line x1="170" y1="10" x2="170" y2="210"/>
+        <circle cx="170" cy="110" r="40"/>
+        <rect x="10" y="62" width="46" height="96"/>
+        <rect x="10" y="88" width="20" height="44"/>
+        <rect x="284" y="62" width="46" height="96"/>
+        <rect x="310" y="88" width="20" height="44"/>
+      </g>
+      <circle cx="170" cy="110" r="2.4" fill="#46E39A" opacity="0.17"/>
+    </svg>
+    <div class="hero-glow"></div>
+    <div class="hero-inner">
+      <div class="hero-top">
+        <span class="hero-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" style="display:block">
+            <circle cx="12" cy="12" r="10.5" fill="#46E39A" stroke="#06231B" stroke-width="1.1"/>
+            <path d="M12 6.4l4.6 3.34-1.76 5.42H9.16L7.4 9.74z" fill="#06231B"/>
+            <g stroke="#06231B" stroke-width="1.3" stroke-linecap="round"><path d="M12 6.4V2.1"/><path d="M16.6 9.74l3.7-1.5"/><path d="M14.84 15.16l2.4 3.2"/><path d="M9.16 15.16l-2.4 3.2"/><path d="M7.4 9.74L3.7 8.24"/></g>
+          </svg>
+          NEXT MATCH
+        </span>
+        <span class="hero-date" id="heroDate"></span>
+      </div>
+      <div class="hero-teams">
+        <div class="hero-team">
+          <img class="hero-flag" id="heroFlagH" src="" alt="">
+          <span class="hero-name" id="heroHome"></span>
+        </div>
+        <div class="hero-vs">
+          <svg width="26" height="26" viewBox="0 0 24 24" style="display:block">
+            <circle cx="12" cy="12" r="10.5" fill="#EAF6F0" stroke="#06231B" stroke-width="1.1"/>
+            <path d="M12 6.4l4.6 3.34-1.76 5.42H9.16L7.4 9.74z" fill="#06231B"/>
+            <g stroke="#06231B" stroke-width="1.3" stroke-linecap="round"><path d="M12 6.4V2.1"/><path d="M16.6 9.74l3.7-1.5"/><path d="M14.84 15.16l2.4 3.2"/><path d="M9.16 15.16l-2.4 3.2"/><path d="M7.4 9.74L3.7 8.24"/></g>
+          </svg>
+          <span class="hero-vs-label">VS</span>
+        </div>
+        <div class="hero-team">
+          <img class="hero-flag" id="heroFlagA" src="" alt="">
+          <span class="hero-name" id="heroAway"></span>
+        </div>
+      </div>
+      <div class="cd" id="heroCd">
+        <div class="cd-cell"><div class="cd-num" id="cdDays">--</div><div class="cd-unit">DAYS</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cdHrs">--</div><div class="cd-unit">HRS</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cdMin">--</div><div class="cd-unit">MIN</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cdSec">--</div><div class="cd-unit">SEC</div></div>
+      </div>
+      <div class="hero-venue">
+        <svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 .7c2.1 0 3.8 1.7 3.8 3.8 0 2.6-3.1 6.2-3.6 6.7a.3.3 0 01-.4 0C5.3 10.7 2.2 7.1 2.2 4.5 2.2 2.4 3.9.7 6 .7z" fill="#46E39A"/><circle cx="6" cy="4.5" r="1.4" fill="#fff" fill-opacity=".9"/></svg>
+        <span id="heroVenue"></span>
+      </div>
+      <div class="cta">
+        <a class="cta-btn solid" id="heroGcal" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+          Google
+        </a>
+        <button class="cta-btn outline" id="heroIcal">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+          Apple
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GROUPS OVERVIEW (browse mode only) -->
+  <div class="groups" id="groupsSection">
+    <div class="sec-head"><span class="sec-name">Groups</span><span class="sec-rule"></span></div>
+    <div class="groups-grid" id="groupsGrid"></div>
+  </div>
+
+  <!-- LIST -->
+  <div id="listWrap"></div>
+
+  <div class="footer">Not affiliated with FIFA · matchcal26 · <span id="oddsAge">–</span></div>
 </div>
 
-<div class="list-wrap" id="listWrap"></div>
-
-<div class="footer">Not affiliated with FIFA &nbsp;·&nbsp; matchcal26.netlify.app &nbsp;·&nbsp; Odds: <span id="oddsAge">–</span></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -315,10 +287,9 @@ const FLAGS={
   "Austria":"at","Jordan":"jo","Portugal":"pt","DR Congo":"cd","England":"gb-eng",
   "Croatia":"hr","Ghana":"gh","Panama":"pa","Uzbekistan":"uz","Colombia":"co",
 };
-// flagcdn only serves fixed widths — snap to the smallest standard >= 2x display (retina)
 function fcWidth(displayW){return [20,40,80,160,320].find(w=>w>=displayW*2)||320;}
 function flagSrc(team,displayW=20){return FLAGS[team]?`https://flagcdn.com/w${fcWidth(displayW)}/${FLAGS[team]}.png`:'';}
-function flagImg(team,w=18){const s=flagSrc(team,w);return s?`<img src="${s}" width="${w}" height="${Math.round(w*.75)}" style="border-radius:2px;vertical-align:middle" alt="">`:'';}
+function flagImg(team,w=22,cls='fx-flag'){const s=flagSrc(team,w);return s?`<img class="${cls}" src="${s}" width="${w}" height="${Math.round(w*.66)}" alt="">`:'';}
 
 function getChannel(tz){
   const m={"Europe/Zurich":"SRF / RTS / RSI","Europe/Bern":"SRF / RTS / RSI","Europe/Berlin":"ARD / ZDF / MagentaTV","Europe/Vienna":"ORF / ServusTV","Europe/Rome":"RAI / Sky Sport","Europe/Paris":"TF1 / beIN Sports","Europe/Madrid":"TVE / RTVE Play","Europe/Amsterdam":"NOS / Ziggo Sport","Europe/Brussels":"RTBF / VRT","Europe/Warsaw":"TVP / Polsat Sport","Europe/London":"BBC / ITV","Europe/Dublin":"BBC / ITV","America/Sao_Paulo":"Globo / SporTV","Asia/Tokyo":"NHK / DAZN","Asia/Seoul":"KBS / SPOTV"};
@@ -443,69 +414,34 @@ const MATCHES=RAW.trim().split('\n').map(line=>{
 let userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
 let channel=getChannel(userTZ);
 
-// Common timezones list
 const TZ_LIST=[
-  {tz:"Europe/Lisbon",    label:"🇵🇹 Lisbon"},
-  {tz:"Europe/London",    label:"🇬🇧 London"},
-  {tz:"Europe/Zurich",    label:"🇨🇭 Zurich"},
-  {tz:"Europe/Berlin",    label:"🇩🇪 Berlin"},
-  {tz:"Europe/Paris",     label:"🇫🇷 Paris"},
-  {tz:"Europe/Rome",      label:"🇮🇹 Rome"},
-  {tz:"Europe/Madrid",    label:"🇪🇸 Madrid"},
-  {tz:"Europe/Amsterdam", label:"🇳🇱 Amsterdam"},
-  {tz:"Europe/Brussels",  label:"🇧🇪 Brussels"},
-  {tz:"Europe/Vienna",    label:"🇦🇹 Vienna"},
-  {tz:"Europe/Warsaw",    label:"🇵🇱 Warsaw"},
-  {tz:"America/New_York",                  label:"🇺🇸 New York"},
-  {tz:"America/Chicago",                   label:"🇺🇸 Chicago"},
-  {tz:"America/Denver",                    label:"🇺🇸 Denver"},
-  {tz:"America/Los_Angeles",               label:"🇺🇸 Los Angeles"},
-  {tz:"America/Sao_Paulo",                 label:"🇧🇷 São Paulo"},
-  {tz:"America/Argentina/Buenos_Aires",    label:"🇦🇷 Buenos Aires"},
-  {tz:"America/Mexico_City",               label:"🇲🇽 Mexico City"},
-  {tz:"America/Toronto",                   label:"🇨🇦 Toronto"},
-  {tz:"Asia/Tokyo",       label:"🇯🇵 Tokyo"},
-  {tz:"Asia/Seoul",       label:"🇰🇷 Seoul"},
-  {tz:"Asia/Dubai",       label:"🇦🇪 Dubai"},
-  {tz:"Australia/Sydney", label:"🇦🇺 Sydney"},
+  {tz:"Europe/Lisbon",label:"🇵🇹 Lisbon"},{tz:"Europe/London",label:"🇬🇧 London"},
+  {tz:"Europe/Zurich",label:"🇨🇭 Zurich"},{tz:"Europe/Berlin",label:"🇩🇪 Berlin"},
+  {tz:"Europe/Paris",label:"🇫🇷 Paris"},{tz:"Europe/Rome",label:"🇮🇹 Rome"},
+  {tz:"Europe/Madrid",label:"🇪🇸 Madrid"},{tz:"Europe/Amsterdam",label:"🇳🇱 Amsterdam"},
+  {tz:"Europe/Brussels",label:"🇧🇪 Brussels"},{tz:"Europe/Vienna",label:"🇦🇹 Vienna"},
+  {tz:"Europe/Warsaw",label:"🇵🇱 Warsaw"},{tz:"America/New_York",label:"🇺🇸 New York"},
+  {tz:"America/Chicago",label:"🇺🇸 Chicago"},{tz:"America/Denver",label:"🇺🇸 Denver"},
+  {tz:"America/Los_Angeles",label:"🇺🇸 Los Angeles"},{tz:"America/Sao_Paulo",label:"🇧🇷 São Paulo"},
+  {tz:"America/Argentina/Buenos_Aires",label:"🇦🇷 Buenos Aires"},{tz:"America/Mexico_City",label:"🇲🇽 Mexico City"},
+  {tz:"America/Toronto",label:"🇨🇦 Toronto"},{tz:"Asia/Tokyo",label:"🇯🇵 Tokyo"},
+  {tz:"Asia/Seoul",label:"🇰🇷 Seoul"},{tz:"Asia/Dubai",label:"🇦🇪 Dubai"},
+  {tz:"Australia/Sydney",label:"🇦🇺 Sydney"},
 ];
 
 function utcLabel(tz){
-  const off=-new Date().getTimezoneOffset(); // fallback
-  try{
-    const s=new Date().toLocaleTimeString('en',{timeZone:tz,timeZoneName:'shortOffset'});
-    const m=s.match(/GMT([+-]\d+(?::\d+)?)/);
-    if(m)return`UTC${m[1]}`;
-  }catch{}
-  const sign=off>=0?'+':'-';
+  try{const s=new Date().toLocaleTimeString('en',{timeZone:tz,timeZoneName:'shortOffset'});
+    const m=s.match(/GMT([+-]\d+(?::\d+)?)/);if(m)return`UTC${m[1]}`;}catch{}
+  const off=-new Date().getTimezoneOffset();const sign=off>=0?'+':'-';
   return`UTC${sign}${String(Math.floor(Math.abs(off)/60)).padStart(2,'0')}:${String(Math.abs(off)%60).padStart(2,'0')}`;
 }
 
-// Populate timezone select
 const tzSel=document.getElementById('tzSelect');
-// Add detected TZ if not in list
 const detected=userTZ;
-const inList=TZ_LIST.some(t=>t.tz===detected);
-if(!inList) TZ_LIST.unshift({tz:detected,label:`⚙️ ${detected.replace('_',' ')}`});
-
-TZ_LIST.forEach(({tz,label})=>{
-  const o=document.createElement('option');
-  o.value=tz; o.textContent=`${label}  (${utcLabel(tz)})`;
-  if(tz===detected)o.selected=true;
-  tzSel.appendChild(o);
-});
-
-function updateTzPill(){
-  document.getElementById('tzPill').textContent=utcLabel(userTZ);
-}
-
-function onTzChange(){
-  userTZ=tzSel.value;
-  channel=getChannel(userTZ);
-  updateTzPill();
-  render();
-}
-
+if(!TZ_LIST.some(t=>t.tz===detected)) TZ_LIST.unshift({tz:detected,label:`⚙️ ${detected.replace('_',' ')}`});
+TZ_LIST.forEach(({tz,label})=>{const o=document.createElement('option');o.value=tz;o.textContent=`${label}  (${utcLabel(tz)})`;if(tz===detected)o.selected=true;tzSel.appendChild(o);});
+function updateTzPill(){document.getElementById('tzPill').textContent=utcLabel(userTZ);}
+function onTzChange(){userTZ=tzSel.value;channel=getChannel(userTZ);updateTzPill();render();}
 updateTzPill();
 
 const pad=n=>String(n).padStart(2,'0');
@@ -532,60 +468,63 @@ function downloadICS(id){
 }
 function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2800);}
 
-let activeGroup = null;
-let oddsData = { updated: null, matches: [] };
+let activeGroup=null;
+let oddsData={updated:null,matches:[]};
 const teams=[...new Set(MATCHES.flatMap(m=>[m.home,m.away]).filter(t=>t!=='TBD'))].sort();
 const tSel=document.getElementById('teamFilter');
 teams.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;tSel.appendChild(o);});
 
 function onTeamChange(){
   const team=tSel.value;
-  const pf=document.getElementById('pillFlag'),pt=document.getElementById('pillTeamText');
-  if(team&&FLAGS[team]){pf.src=flagSrc(team,20);pf.alt=team;pf.classList.add('visible');}
+  const chip=document.getElementById('teamChip');
+  const pf=document.getElementById('chipFlag'),pt=document.getElementById('chipTeamText');
+  if(team&&FLAGS[team]){pf.src=flagSrc(team,18);pf.classList.add('visible');}
   else pf.classList.remove('visible');
   pt.textContent=team||'All teams';
+  // chip is solid only when a team is chosen
+  chip.classList.toggle('solid', !!team);
+  // recolor caret
+  chip.querySelector('.caret path').setAttribute('stroke', team ? '#06231B' : '#EAF6F0');
   render();
 }
 
 let nextMatch=null;
 function updateHero(){
   const team=tSel.value;
-  const card=document.getElementById('nextCard');
+  const card=document.getElementById('hero');
   if(!team){card.style.display='none';return;}
   const now=Date.now();
   const next=MATCHES.filter(m=>(m.home===team||m.away===team)&&m.home!=='TBD'&&m.utc.getTime()>now-105*60000).sort((a,b)=>a.utc-b.utc)[0];
   if(!next){card.style.display='none';return;}
   nextMatch=next;card.style.display='block';
-  document.getElementById('nmFlagH').src=flagSrc(next.home,80);
-  document.getElementById('nmFlagA').src=flagSrc(next.away,80);
-  document.getElementById('nmHome').textContent=next.home.toUpperCase();
-  document.getElementById('nmAway').textContent=next.away.toUpperCase();
-  document.getElementById('nmDatetime').textContent=`${localDateLabel(next.utc)} · ${localStr(next.utc)}`;
-  document.getElementById('nmVenue').textContent=`${next.venue} · ${next.city}`;
-  document.getElementById('nmGcal').href=makeGCalURL(next);
-  document.getElementById('nmIcal').onclick=()=>downloadICS(next.id);
+  document.getElementById('heroFlagH').src=flagSrc(next.home,80);
+  document.getElementById('heroFlagA').src=flagSrc(next.away,80);
+  document.getElementById('heroHome').textContent=next.home.toUpperCase();
+  document.getElementById('heroAway').textContent=next.away.toUpperCase();
+  document.getElementById('heroDate').textContent=`${localDateLabel(next.utc)} · ${localStr(next.utc)}`;
+  document.getElementById('heroVenue').textContent=`${next.venue} · ${next.city}`;
+  document.getElementById('heroGcal').href=makeGCalURL(next);
+  document.getElementById('heroIcal').onclick=()=>downloadICS(next.id);
 }
 
 function tickCountdown(){
   if(!nextMatch)return;
   const diff=nextMatch.utc.getTime()-Date.now();
   if(diff<=0&&diff>-105*60000){
-    ['cdDays','cdHrs','cdMin','cdSec'].forEach(id=>document.getElementById(id).textContent='--');
-    document.getElementById('nmDatetime').textContent='🔴 LIVE NOW';return;
+    document.getElementById('heroDate').textContent='🔴 LIVE NOW';
+    document.getElementById('heroCd').innerHTML='<div class="live-now">KICK-OFF · LIVE NOW</div>';return;
   }
   if(diff<=0){nextMatch=null;updateHero();render();return;}
   const s=Math.floor(diff/1000);
-  document.getElementById('cdDays').textContent=pad(Math.floor(s/86400));
-  document.getElementById('cdHrs').textContent=pad(Math.floor((s%86400)/3600));
-  document.getElementById('cdMin').textContent=pad(Math.floor((s%3600)/60));
-  document.getElementById('cdSec').textContent=pad(s%60);
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=pad(v);};
+  set('cdDays',Math.floor(s/86400));set('cdHrs',Math.floor((s%86400)/3600));
+  set('cdMin',Math.floor((s%3600)/60));set('cdSec',s%60);
 }
 
 function render(){
   updateHero();
   const teamF=tSel.value;
-  // Groups overview only shows in the unfiltered browse state
-  document.getElementById('groupsSection').style.display = teamF ? 'none' : 'block';
+  document.getElementById('groupsSection').style.display=teamF?'none':'block';
   let matches=MATCHES;
   if(teamF)matches=matches.filter(m=>m.home===teamF||m.away===teamF);
   if(activeGroup)matches=matches.filter(m=>m.group===activeGroup);
@@ -598,29 +537,29 @@ function render(){
   let html='';
   ['Group Stage',...KO].forEach(phase=>{
     const ms=sec[phase];if(!ms)return;
-    html+=`<div class="phase-row"><span class="phase-name">${phase}</span><span class="phase-count">${ms.length} match${ms.length>1?'es':''}</span></div>`;
+    html+=`<div class="sec-head" style="margin-top:18px"><span class="sec-name">${phase}</span><span class="sec-rule"></span><span class="sec-count">${ms.length} match${ms.length>1?'es':''}</span></div>`;
     ms.forEach(m=>{
-      const odds = m.home !== 'TBD' ? oddsHtml(m.home, m.away) : '';
+      const isTBD=m.home==='TBD';
       html+=`
-      <div class="match-card">
-        <div class="mc-date"><div class="mc-dow">${localDow(m.utc)}</div><div class="mc-day">${localDay(m.utc)}</div><div class="mc-mon">${localMon(m.utc)}</div></div>
-        <div>
-          <div class="mc-header">
-            <div class="mc-time-group">
-              <span class="mc-time">${localStr(m.utc)}</span>
-              <span class="mc-group">${m.group}</span>
+      <div class="fx">
+        <div class="fx-bar"></div>
+        <div class="fx-in">
+          <div class="fx-rail"><div class="fx-dow">${localDow(m.utc)}</div><div class="fx-day">${localDay(m.utc)}</div><div class="fx-mon">${localMon(m.utc)}</div></div>
+          <div class="fx-main">
+            <div class="fx-meta">
+              <span class="fx-time"><b>${localStr(m.utc)}</b><span> · ${m.group.toUpperCase()}</span></span>
+              <button class="fx-cal" onclick="downloadICS(${m.id})">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+                Cal
+              </button>
             </div>
-            <button class="mc-cal" onclick="downloadICS(${m.id})">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2.5" width="13" height="12" rx="2"/><line x1="1.5" y1="6.5" x2="14.5" y2="6.5"/><line x1="5" y1="1" x2="5" y2="4"/><line x1="11" y1="1" x2="11" y2="4"/></svg>
-              + Cal
-            </button>
+            <div class="fx-teams">
+              <div class="fx-side">${flagImg(m.home,22)}<span class="fx-tname">${m.home.toUpperCase()}</span></div>
+              <span class="fx-dash">—</span>
+              <div class="fx-side away"><span class="fx-tname">${m.away.toUpperCase()}</span>${flagImg(m.away,22)}</div>
+            </div>
+            ${isTBD?'':oddsHtml(m.home,m.away,teamF)}
           </div>
-          <div class="mc-teams-row">
-            <div class="mc-team-inline">${flagImg(m.home,18)}<span>${m.home}</span></div>
-            <span class="mc-dash">–</span>
-            <div class="mc-team-inline">${flagImg(m.away,18)}<span>${m.away}</span></div>
-          </div>
-          ${odds}
         </div>
       </div>`;
     });
@@ -631,18 +570,8 @@ function render(){
 const countryTeam={"CH":"Switzerland","DE":"Germany","FR":"France","ES":"Spain","PT":"Portugal","IT":"Italy","NL":"Netherlands","BE":"Belgium","AT":"Austria","PL":"Poland","GB":"England","US":"United States","AR":"Argentina","BR":"Brazil","JP":"Japan","MX":"Mexico","CA":"Canada","QA":"Qatar","MA":"Morocco","SN":"Senegal","GH":"Ghana","KR":"South Korea","AU":"Australia","SE":"Sweden","NO":"Norway","DZ":"Algeria","EG":"Egypt","UY":"Uruguay","CO":"Colombia","UZ":"Uzbekistan"};
 const tzCountry={"Europe/Zurich":"CH","Europe/Bern":"CH","Europe/Berlin":"DE","Europe/Vienna":"AT","Europe/Rome":"IT","Europe/Paris":"FR","Europe/Madrid":"ES","Europe/Lisbon":"PT","Europe/Amsterdam":"NL","Europe/Brussels":"BE","Europe/Warsaw":"PL","Europe/London":"GB","Europe/Dublin":"GB","America/New_York":"US","America/Chicago":"US","America/Denver":"US","America/Los_Angeles":"US","America/Sao_Paulo":"BR","America/Manaus":"BR","America/Argentina/Buenos_Aires":"AR","America/Argentina/Cordoba":"AR","Asia/Tokyo":"JP","Asia/Seoul":"KR","Australia/Sydney":"AU","Australia/Melbourne":"AU"};
 const langCountry={"de-ch":"CH","fr-ch":"CH","it-ch":"CH","de-at":"AT","de-de":"DE","fr-fr":"FR","fr-be":"BE","nl-be":"BE","pt-br":"BR","pt-pt":"PT","es-ar":"AR","es-mx":"MX","es-es":"ES","en-gb":"GB","en-us":"US","nl-nl":"NL","pl-pl":"PL","it-it":"IT","ja-jp":"JP","ko-kr":"KR"};
-
-function disambiguate(code){
-  const langs=[...(navigator.languages||[navigator.language])].map(l=>l.toLowerCase());
-  for(const lang of langs){if(langCountry[lang])return langCountry[lang];}
-  return code;
-}
-function applyTeam(code){
-  const team=countryTeam[code];if(!team)return;
-  const opt=[...tSel.options].find(o=>o.value===team);if(!opt)return;
-  tSel.value=team;onTeamChange();
-}
-
+function disambiguate(code){const langs=[...(navigator.languages||[navigator.language])].map(l=>l.toLowerCase());for(const lang of langs){if(langCountry[lang])return langCountry[lang];}return code;}
+function applyTeam(code){const team=countryTeam[code];if(!team)return;const opt=[...tSel.options].find(o=>o.value===team);if(!opt)return;tSel.value=team;onTeamChange();}
 applyTeam(tzCountry[userTZ]||'');
 (async()=>{
   const svcs=[
@@ -653,96 +582,50 @@ applyTeam(tzCountry[userTZ]||'');
   for(const svc of svcs){try{const c=await svc();if(c&&c.length===2){applyTeam(disambiguate(c));break;}}catch{}}
 })();
 
-// ── ODDS ──────────────────────────────────────────────────────────────────────
-function oddsKey(home, away) {
-  return `${home}__${away}`;
-}
+// ── ODDS ──
+function oddsKey(home,away){return `${home}__${away}`;}
+function timeAgo(iso){const diff=Math.floor((Date.now()-new Date(iso))/60000);if(diff<2)return'just now';if(diff<60)return`${diff}m ago`;return`${Math.floor(diff/60)}h ago`;}
 
-function timeAgo(iso) {
-  const diff = Math.floor((Date.now() - new Date(iso)) / 60000);
-  if (diff < 2)   return 'just now';
-  if (diff < 60)  return `${diff}m ago`;
-  const h = Math.floor(diff / 60);
-  return `${h}h ago`;
-}
-
-function oddsHtml(home, away) {
-  const key = oddsKey(home, away);
-  const match = oddsData.matches.find(m => oddsKey(m.home, m.away) === key);
-  if (!match || !match.books.length) return '';
-  const book = match.books[0];
-  if (!book.home || !book.away) return '';
-  const fmt = v => v ? v.toFixed(2) : '—';
-  const flagTag = t => { const s=flagSrc(t,28); return s?`<img class="odds-flag" src="${s}" alt="${t}">`:''; };
+// highlight = the SELECTED team's cell (lighter). No team selected → no highlight.
+function oddsHtml(home,away,selectedTeam){
+  const match=oddsData.matches.find(m=>oddsKey(m.home,m.away)===oddsKey(home,away));
+  if(!match||!match.books.length)return'';
+  const book=match.books[0];
+  if(!book.home||!book.away)return'';
+  const fmt=v=>v?v.toFixed(2):'—';
+  const favHome=selectedTeam&&selectedTeam===home;
+  const favAway=selectedTeam&&selectedTeam===away;
   return `
-    <div class="mc-odds">
-      <div class="odds-col">
-        ${flagTag(home)}
-        <div class="odds-team">${home}</div>
-        <div class="odds-price home">${fmt(book.home)}</div>
-      </div>
-      <div class="odds-col">
-        <div style="height:22px"></div>
-        <div class="odds-draw-label">Draw</div>
-        <div class="odds-price draw">${book.draw ? fmt(book.draw) : '—'}</div>
-      </div>
-      <div class="odds-col">
-        ${flagTag(away)}
-        <div class="odds-team">${away}</div>
-        <div class="odds-price away">${fmt(book.away)}</div>
-      </div>
-      <div class="odds-footer">Bookmakers' odds · ${book.name}</div>
-    </div>`;
+    <div class="fx-odds">
+      <div class="odd${favHome?' fav':''}"><div class="odd-label">${home}</div><div class="odd-val">${fmt(book.home)}</div></div>
+      <div class="odd"><div class="odd-label">Draw</div><div class="odd-val">${book.draw?fmt(book.draw):'—'}</div></div>
+      <div class="odd${favAway?' fav':''}"><div class="odd-label">${away}</div><div class="odd-val">${fmt(book.away)}</div></div>
+    </div>
+    <div class="fx-cap">Bookmakers' odds · <b>${book.name}</b></div>`;
 }
 
-async function loadOdds() {
-  try {
-    const res = await fetch('./odds.json?t=' + Date.now());
-    if (!res.ok) return;
-    oddsData = await res.json();
-    render(); // re-render with odds
-    if (oddsData.updated) {
-      document.getElementById('oddsAge').textContent = 'updated ' + timeAgo(oddsData.updated);
-    }
-  } catch {}
+async function loadOdds(){
+  try{
+    const res=await fetch('./odds.json?t='+Date.now());
+    if(!res.ok)return;
+    oddsData=await res.json();
+    render();
+    if(oddsData.updated)document.getElementById('oddsAge').textContent='odds updated '+timeAgo(oddsData.updated);
+  }catch{}
 }
 
-// ── GROUPS OVERVIEW ───────────────────────────────────────────────────────────
-const GROUP_NAMES = ['Group A','Group B','Group C','Group D','Group E','Group F',
-                     'Group G','Group H','Group I','Group J','Group K','Group L'];
-
-// Build map: group → unique teams (home sides only, in order)
-const groupTeams = {};
-MATCHES.forEach(m => {
-  if (!GROUP_NAMES.includes(m.group)) return;
-  if (!groupTeams[m.group]) groupTeams[m.group] = new Set();
-  if (m.home !== 'TBD') groupTeams[m.group].add(m.home);
-  if (m.away !== 'TBD') groupTeams[m.group].add(m.away);
-});
-
-function buildGroupsGrid() {
-  const grid = document.getElementById('groupsGrid');
-  grid.innerHTML = GROUP_NAMES.map(g => {
-    const teams = [...(groupTeams[g] || [])];
-    const flags = teams.map(t => {
-      const src = flagSrc(t, 22);
-      return src ? `<img src="${src}" alt="${t}" title="${t}">` : '';
-    }).join('');
-    const letter = g.replace('Group ', '');
-    return `<div class="group-tile${activeGroup===g?' active':''}" onclick="onGroupClick('${g}')">
-      <div class="group-tile-label">Group ${letter}</div>
-      <div class="group-tile-flags">${flags}</div>
-    </div>`;
+// ── GROUPS OVERVIEW ──
+const GROUP_NAMES=['Group A','Group B','Group C','Group D','Group E','Group F','Group G','Group H','Group I','Group J','Group K','Group L'];
+const groupTeams={};
+MATCHES.forEach(m=>{if(!GROUP_NAMES.includes(m.group))return;if(!groupTeams[m.group])groupTeams[m.group]=new Set();if(m.home!=='TBD')groupTeams[m.group].add(m.home);if(m.away!=='TBD')groupTeams[m.group].add(m.away);});
+function buildGroupsGrid(){
+  const grid=document.getElementById('groupsGrid');
+  grid.innerHTML=GROUP_NAMES.map(g=>{
+    const flags=[...(groupTeams[g]||[])].map(t=>{const src=flagSrc(t,22);return src?`<img src="${src}" alt="${t}" title="${t}">`:'';}).join('');
+    return `<div class="gtile${activeGroup===g?' active':''}" onclick="onGroupClick('${g}')"><div class="gtile-label">${g}</div><div class="gtile-flags">${flags}</div></div>`;
   }).join('');
 }
-
-function onGroupClick(group) {
-  // Toggle: clicking same group clears filter
-  activeGroup = activeGroup === group ? null : group;
-  buildGroupsGrid();
-  render();
-}
-
+function onGroupClick(group){activeGroup=activeGroup===group?null:group;buildGroupsGrid();render();}
 buildGroupsGrid();
 
 render();
