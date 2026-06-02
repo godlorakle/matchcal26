@@ -119,21 +119,17 @@ body{
 .mc-cal:hover{opacity:.85}
 .mc-cal svg{width:10px;height:10px}
 
-/* teams row */
-.mc-teams{padding:.2rem .65rem .45rem;display:flex;flex-direction:column;gap:.28rem}
-.mc-team{display:flex;align-items:center;gap:.42rem;font-size:.84rem;font-weight:600;color:var(--text)}
-.mc-team img{border-radius:2px;flex-shrink:0}
-
-/* odds row — team names above their price */
+/* odds row — team name + flag + price, no separate teams row */
 .mc-odds{
-  padding:.45rem .65rem .55rem;border-top:1px solid var(--border);
-  display:grid;grid-template-columns:1fr auto 1fr;gap:.4rem;align-items:start;
+  padding:.5rem .65rem .6rem;
+  display:grid;grid-template-columns:1fr auto 1fr;gap:.35rem;align-items:start;
 }
-.odds-col{display:flex;flex-direction:column;align-items:center;gap:.2rem}
-.odds-col.draw{justify-self:center;width:100%}
-.odds-team{font-size:.58rem;font-weight:700;letter-spacing:.04em;color:var(--muted2);text-transform:uppercase;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
-.odds-price{font-size:.82rem;font-weight:700;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:6px;padding:.25rem .4rem;width:100%;text-align:center}
-.odds-book{font-size:.58rem;color:var(--muted);font-weight:500;text-align:center;margin-top:.15rem;grid-column:1/-1}
+.odds-col{display:flex;flex-direction:column;align-items:center;gap:.22rem}
+.odds-flag{width:28px;height:auto;border-radius:2px}
+.odds-team{font-size:.75rem;font-weight:700;color:var(--text);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
+.odds-draw-label{font-size:.75rem;font-weight:700;color:var(--muted2);text-align:center}
+.odds-price{font-size:.78rem;font-weight:600;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:6px;padding:.22rem .3rem;width:100%;text-align:center}
+.odds-footer{font-size:.56rem;color:var(--muted);font-weight:500;text-align:center;margin-top:.1rem;grid-column:1/-1;letter-spacing:.04em}
 
 .empty{color:var(--muted);font-size:.88rem;padding:3rem 0;text-align:center}
 
@@ -554,11 +550,10 @@ function render(){
               + Cal
             </button>
           </div>
-          <div class="mc-teams">
+          ${odds || `<div class="mc-teams">
             <div class="mc-team">${flagImg(m.home,18)} ${m.home}</div>
             <div class="mc-team">${flagImg(m.away,18)} ${m.away}</div>
-          </div>
-          ${odds}
+          </div>`}
         </div>
       </div>`;
     });
@@ -611,22 +606,25 @@ function oddsHtml(home, away) {
   const book = match.books[0];
   if (!book.home || !book.away) return '';
   const fmt = v => v ? v.toFixed(2) : '—';
-  const shortName = t => t.split(' ').pop(); // "South Korea" → "Korea"
+  const flagTag = t => { const s=flagSrc(t,28); return s?`<img class="odds-flag" src="${s}" alt="${t}">`:''; };
   return `
     <div class="mc-odds">
       <div class="odds-col">
-        <div class="odds-team">${shortName(home)}</div>
+        ${flagTag(home)}
+        <div class="odds-team">${home}</div>
         <div class="odds-price">${fmt(book.home)}</div>
       </div>
-      <div class="odds-col draw">
-        <div class="odds-team">Draw</div>
+      <div class="odds-col">
+        <div style="height:28px;display:flex;align-items:center;justify-content:center"></div>
+        <div class="odds-draw-label">Draw</div>
         <div class="odds-price">${book.draw ? fmt(book.draw) : '—'}</div>
       </div>
       <div class="odds-col">
-        <div class="odds-team">${shortName(away)}</div>
+        ${flagTag(away)}
+        <div class="odds-team">${away}</div>
         <div class="odds-price">${fmt(book.away)}</div>
       </div>
-      <div class="odds-book">${book.name}</div>
+      <div class="odds-footer">Bookmakers' odds · ${book.name}</div>
     </div>`;
 }
 
