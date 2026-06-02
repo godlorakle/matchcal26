@@ -15,7 +15,16 @@
 }
 html{background:var(--bg)}
 body{
-  background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;
+  background:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0,
+      transparent 46px,
+      rgba(255,255,255,0.018) 46px,
+      rgba(255,255,255,0.018) 92px
+    ),
+    var(--bg);
+  color:var(--text);font-family:'DM Sans',sans-serif;
   min-height:100vh;font-size:15px;max-width:480px;margin:0 auto;padding:0 0 6rem;
   position:relative;
 }
@@ -185,13 +194,6 @@ body > *:not(.pitch-bg){position:relative;z-index:1}
 
 <div class="pitch-bg" aria-hidden="true">
   <svg viewBox="0 0 480 820" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Grass stripes (alternating) -->
-    <rect x="0" y="0"   width="480" height="820" fill="#0b1a0d"/>
-    <rect x="0" y="0"   width="480" height="103" fill="rgba(255,255,255,0.025)"/>
-    <rect x="0" y="206" width="480" height="103" fill="rgba(255,255,255,0.025)"/>
-    <rect x="0" y="412" width="480" height="103" fill="rgba(255,255,255,0.025)"/>
-    <rect x="0" y="618" width="480" height="103" fill="rgba(255,255,255,0.025)"/>
-
     <!-- All lines in white -->
     <g stroke="white" stroke-width="2" fill="none">
       <!-- Outer boundary -->
