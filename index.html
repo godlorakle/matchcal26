@@ -653,7 +653,7 @@ applyTeam(tzCountry[userTZ]||'');
     ()=>fetch('https://ipwho.is/').then(r=>r.json()).then(d=>d.success&&d.country_code),
     ()=>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>d.country_code),
   ];
-  for(const svc of svcs){try{const c=await svc();if(c&&c.length===2){applyTeam(disambiguate(c));break;}}catch{}}
+  for(const svc of svcs){try{const c=await svc();if(c&&c.length===2){applyTeam(c);break;}}catch{}}
 })();
 
 // ── ODDS ──
