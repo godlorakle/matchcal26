@@ -128,6 +128,20 @@ body{
 
 .empty{color:var(--muted);font-size:.88rem;padding:3rem 0;text-align:center}
 
+/* ── GROUPS OVERVIEW ── */
+.groups-section{padding:.2rem 1rem .5rem}
+.groups-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:.55rem}
+.groups-grid{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}
+.group-tile{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:.5rem .6rem;cursor:pointer;transition:border-color .15s;
+}
+.group-tile:hover{border-color:#2e5c33}
+.group-tile.active{border-color:var(--green);background:rgba(61,220,104,.06)}
+.group-tile-label{font-size:.58rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.35rem}
+.group-tile-flags{display:flex;gap:.3rem;flex-wrap:wrap}
+.group-tile-flags img{border-radius:2px;width:22px;height:auto}
+
 /* ── FOOTER ── */
 .footer{margin:1.5rem 1rem 0;border:1px dashed #1e3d22;border-radius:10px;padding:.55rem;font-size:.63rem;color:#2e5c33;text-align:center;letter-spacing:.05em}
 
@@ -206,6 +220,11 @@ body{
       + Apple
     </button>
   </div>
+</div>
+
+<div class="groups-section" id="groupsSection">
+  <div class="groups-label">Groups</div>
+  <div class="groups-grid" id="groupsGrid"></div>
 </div>
 
 <div class="list-wrap" id="listWrap"></div>
@@ -493,6 +512,7 @@ function render(){
   const teamF=tSel.value;
   let matches=MATCHES;
   if(teamF)matches=matches.filter(m=>m.home===teamF||m.away===teamF);
+  if(activeGroup)matches=matches.filter(m=>m.group===activeGroup);
   const wrap=document.getElementById('listWrap');
   if(!matches.length){wrap.innerHTML='<div class="empty">No matches for this selection.</div>';return;}
   const GP=['Group A','Group B','Group C','Group D','Group E','Group F','Group G','Group H','Group I','Group J','Group K','Group L'];
@@ -598,6 +618,46 @@ async function loadOdds() {
     }
   } catch {}
 }
+
+// ── GROUPS OVERVIEW ───────────────────────────────────────────────────────────
+const GROUP_NAMES = ['Group A','Group B','Group C','Group D','Group E','Group F',
+                     'Group G','Group H','Group I','Group J','Group K','Group L'];
+
+// Build map: group → unique teams (home sides only, in order)
+const groupTeams = {};
+MATCHES.forEach(m => {
+  if (!GROUP_NAMES.includes(m.group)) return;
+  if (!groupTeams[m.group]) groupTeams[m.group] = new Set();
+  if (m.home !== 'TBD') groupTeams[m.group].add(m.home);
+  if (m.away !== 'TBD') groupTeams[m.group].add(m.away);
+});
+
+let activeGroup = null;
+
+function buildGroupsGrid() {
+  const grid = document.getElementById('groupsGrid');
+  grid.innerHTML = GROUP_NAMES.map(g => {
+    const teams = [...(groupTeams[g] || [])];
+    const flags = teams.map(t => {
+      const src = flagSrc(t, 22);
+      return src ? `<img src="${src}" alt="${t}" title="${t}">` : '';
+    }).join('');
+    const letter = g.replace('Group ', '');
+    return `<div class="group-tile${activeGroup===g?' active':''}" onclick="onGroupClick('${g}')">
+      <div class="group-tile-label">Group ${letter}</div>
+      <div class="group-tile-flags">${flags}</div>
+    </div>`;
+  }).join('');
+}
+
+function onGroupClick(group) {
+  // Toggle: clicking same group clears filter
+  activeGroup = activeGroup === group ? null : group;
+  buildGroupsGrid();
+  render();
+}
+
+buildGroupsGrid();
 
 render();
 loadOdds();
