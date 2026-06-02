@@ -26,7 +26,7 @@ body{
   width:480px;height:100vh;
   pointer-events:none;z-index:0;overflow:hidden;
 }
-.pitch-bg svg{width:100%;height:100%;opacity:.12}
+.pitch-bg svg{width:100%;height:100%;opacity:.18}
 body > *:not(.pitch-bg){position:relative;z-index:1}
 
 /* ── APP BAR ── */
@@ -184,38 +184,55 @@ body > *:not(.pitch-bg){position:relative;z-index:1}
 <body>
 
 <div class="pitch-bg" aria-hidden="true">
-  <svg viewBox="0 0 480 900" fill="none" stroke="white" stroke-width="2.5" xmlns="http://www.w3.org/2000/svg">
-    <!-- Outer boundary -->
-    <rect x="30" y="30" width="420" height="840" rx="2"/>
-    <!-- Halfway line -->
-    <line x1="30" y1="450" x2="450" y2="450"/>
-    <!-- Centre circle -->
-    <circle cx="240" cy="450" r="70"/>
-    <!-- Centre spot -->
-    <circle cx="240" cy="450" r="3" fill="white" stroke="none"/>
-    <!-- Top penalty box -->
-    <rect x="110" y="30" width="260" height="110"/>
-    <!-- Top goal box -->
-    <rect x="170" y="30" width="140" height="45"/>
-    <!-- Top penalty spot -->
-    <circle cx="240" cy="96" r="3" fill="white" stroke="none"/>
-    <!-- Top penalty arc -->
-    <path d="M 190 140 A 60 60 0 0 1 290 140"/>
-    <!-- Bottom penalty box -->
-    <rect x="110" y="760" width="260" height="110"/>
-    <!-- Bottom goal box -->
-    <rect x="170" y="825" width="140" height="45"/>
-    <!-- Bottom penalty spot -->
-    <circle cx="240" cy="804" r="3" fill="white" stroke="none"/>
-    <!-- Bottom penalty arc -->
-    <path d="M 190 760 A 60 60 0 0 0 290 760"/>
-    <!-- Corner arcs -->
-    <path d="M 30 50 A 20 20 0 0 1 50 30"/>
-    <path d="M 430 30 A 20 20 0 0 1 450 50"/>
-    <path d="M 450 850 A 20 20 0 0 1 430 870"/>
-    <path d="M 50 870 A 20 20 0 0 1 30 850"/>
-    <!-- Centre kick-off mark -->
-    <line x1="225" y1="450" x2="255" y2="450" stroke-width="1.5"/>
+  <svg viewBox="0 0 480 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Grass stripes (alternating) -->
+    <rect x="0" y="0"   width="480" height="820" fill="#0b1a0d"/>
+    <rect x="0" y="0"   width="480" height="103" fill="rgba(255,255,255,0.025)"/>
+    <rect x="0" y="206" width="480" height="103" fill="rgba(255,255,255,0.025)"/>
+    <rect x="0" y="412" width="480" height="103" fill="rgba(255,255,255,0.025)"/>
+    <rect x="0" y="618" width="480" height="103" fill="rgba(255,255,255,0.025)"/>
+
+    <!-- All lines in white -->
+    <g stroke="white" stroke-width="2" fill="none">
+      <!-- Outer boundary -->
+      <rect x="22" y="22" width="436" height="776"/>
+
+      <!-- Halfway line -->
+      <line x1="22" y1="410" x2="458" y2="410"/>
+
+      <!-- Centre circle (r≈62) -->
+      <circle cx="240" cy="410" r="62"/>
+      <!-- Centre spot -->
+      <circle cx="240" cy="410" r="3.5" fill="white" stroke="none"/>
+
+      <!-- Top penalty box: 40.32m wide, 16.5m deep  (on 68×105 field) -->
+      <rect x="108" y="22" width="264" height="118"/>
+      <!-- Top goal box: 18.32m wide, 5.5m deep -->
+      <rect x="173" y="22" width="134" height="40"/>
+      <!-- Top goals (outside field) -->
+      <rect x="193" y="7"  width="94" height="15"/>
+      <!-- Top penalty spot -->
+      <circle cx="240" cy="96" r="3" fill="white" stroke="none"/>
+      <!-- Top penalty arc (outside box) -->
+      <path d="M 186 140 A 62 62 0 0 1 294 140"/>
+      <!-- Top corner arcs -->
+      <path d="M 22 42 A 20 20 0 0 1 42 22"/>
+      <path d="M 438 22 A 20 20 0 0 1 458 42"/>
+
+      <!-- Bottom penalty box -->
+      <rect x="108" y="680" width="264" height="118"/>
+      <!-- Bottom goal box -->
+      <rect x="173" y="758" width="134" height="40"/>
+      <!-- Bottom goals (outside field) -->
+      <rect x="193" y="798" width="94" height="15"/>
+      <!-- Bottom penalty spot -->
+      <circle cx="240" cy="724" r="3" fill="white" stroke="none"/>
+      <!-- Bottom penalty arc (outside box) -->
+      <path d="M 186 680 A 62 62 0 0 0 294 680"/>
+      <!-- Bottom corner arcs -->
+      <path d="M 22 778 A 20 20 0 0 0 42 798"/>
+      <path d="M 438 798 A 20 20 0 0 0 458 778"/>
+    </g>
   </svg>
 </div>
 
