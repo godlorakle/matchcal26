@@ -23,6 +23,8 @@ const TEAM_MAP = {
   'Bosnia-Herzegovina': 'Bosnia & Herzegovina',
   'Bosnia and Herzegovina': 'Bosnia & Herzegovina',
   'Curacao':            'Curaçao',
+  'Czech Republic':     'Czechia',
+  'Czechia':            'Czechia',
   'Cape Verde Islands': 'Cape Verde',
   'Iran':               'Iran',
   'IR Iran':            'Iran',
