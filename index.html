@@ -122,6 +122,13 @@ body{
 .odd.fav .odd-val{color:var(--neon)}
 .fx-cap{font-family:var(--fb);font-weight:500;font-size:9.5px;color:var(--faint);margin-top:7px;text-align:center}
 .fx-cap b{color:var(--soft);font-weight:500}
+.odds-toggle{display:inline-flex;align-items:center;gap:5px;margin-top:9px;padding:0;
+  background:none;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:10.5px;
+  letter-spacing:.3px;color:var(--neon);opacity:.8;transition:opacity .15s}
+.odds-toggle:hover{opacity:1}
+.odds-toggle svg{width:9px;height:9px;transition:transform .2s}
+.odds-toggle.open svg{transform:rotate(180deg)}
+.odds-wrap{margin-top:9px}
 
 /* ── GROUPS OVERVIEW ── */
 .groups{margin-top:13px}
@@ -605,13 +612,26 @@ function oddsHtml(home,away,selectedTeam){
   const fmt=v=>v?v.toFixed(2):'—';
   const favHome=selectedTeam&&selectedTeam===home;
   const favAway=selectedTeam&&selectedTeam===away;
+  const chevron=`<svg viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   return `
-    <div class="fx-odds">
-      <div class="odd${favHome?' fav':''}"><div class="odd-label">${home}</div><div class="odd-val">${fmt(book.home)}</div></div>
-      <div class="odd"><div class="odd-label">Draw</div><div class="odd-val">${book.draw?fmt(book.draw):'—'}</div></div>
-      <div class="odd${favAway?' fav':''}"><div class="odd-label">${away}</div><div class="odd-val">${fmt(book.away)}</div></div>
-    </div>
-    <div class="fx-cap">Bookmakers' odds · <b>${book.name}</b></div>`;
+    <button class="odds-toggle" onclick="toggleOdds(this)">Show bookmakers' odds ${chevron}</button>
+    <div class="odds-wrap" style="display:none">
+      <div class="fx-odds">
+        <div class="odd${favHome?' fav':''}"><div class="odd-label">${home}</div><div class="odd-val">${fmt(book.home)}</div></div>
+        <div class="odd"><div class="odd-label">Draw</div><div class="odd-val">${book.draw?fmt(book.draw):'—'}</div></div>
+        <div class="odd${favAway?' fav':''}"><div class="odd-label">${away}</div><div class="odd-val">${fmt(book.away)}</div></div>
+      </div>
+      <div class="fx-cap">Bookmakers' odds · <b>${book.name}</b></div>
+    </div>`;
+}
+
+function toggleOdds(btn){
+  const wrap=btn.nextElementSibling;
+  const open=wrap.style.display==='none';
+  wrap.style.display=open?'block':'none';
+  btn.classList.toggle('open',open);
+  const chevron=btn.querySelector('svg').outerHTML;
+  btn.innerHTML=(open?"Hide bookmakers' odds ":"Show bookmakers' odds ")+chevron;
 }
 
 async function loadOdds(){
