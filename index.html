@@ -249,10 +249,23 @@ body{
       <select id="teamFilter" onchange="onTeamChange()"><option value="">All teams</option></select>
     </div>
     <div class="chip">
-      <span style="color:var(--faint);font-weight:600">Timezone</span>
+      <span id="tzLabelText" style="color:var(--faint);font-weight:600">Timezone</span>
       <span id="tzPill">UTC…</span>
       <svg class="caret" width="9" height="6" viewBox="0 0 9 6"><path d="M1 1l3.5 3.5L8 1" stroke="#EAF6F0" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <select id="tzSelect" onchange="onTzChange()"></select>
+    </div>
+    <div class="chip">
+      <span style="font-size:14px;line-height:1">🌐</span>
+      <span id="langText" style="font-weight:600">EN</span>
+      <svg class="caret" width="9" height="6" viewBox="0 0 9 6"><path d="M1 1l3.5 3.5L8 1" stroke="#EAF6F0" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="langSelect" onchange="onLangChange()">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="it">Italiano</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+      </select>
     </div>
   </div>
 </div>
@@ -281,7 +294,7 @@ body{
             <path d="M12 6.4l4.6 3.34-1.76 5.42H9.16L7.4 9.74z" fill="#06231B"/>
             <g stroke="#06231B" stroke-width="1.3" stroke-linecap="round"><path d="M12 6.4V2.1"/><path d="M16.6 9.74l3.7-1.5"/><path d="M14.84 15.16l2.4 3.2"/><path d="M9.16 15.16l-2.4 3.2"/><path d="M7.4 9.74L3.7 8.24"/></g>
           </svg>
-          NEXT MATCH
+          <span id="nextMatchLabel">NEXT MATCH</span>
         </span>
         <span class="hero-date" id="heroDate"></span>
       </div>
@@ -338,14 +351,14 @@ body{
 
   <!-- GROUPS OVERVIEW (browse mode only) -->
   <div class="groups" id="groupsSection">
-    <div class="sec-head"><span class="sec-name">Groups</span><span class="sec-rule"></span></div>
+    <div class="sec-head"><span class="sec-name" id="groupsLabel">Groups</span><span class="sec-rule"></span></div>
     <div class="groups-grid" id="groupsGrid"></div>
   </div>
 
   <!-- LIST -->
   <div id="listWrap"></div>
 
-  <div class="footer">Not affiliated with FIFA · matchcal26 · <span id="oddsAge">–</span></div>
+  <div class="footer" id="footer">Not affiliated with FIFA · matchcal26 · <span id="oddsAge">–</span></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -493,6 +506,23 @@ const MATCHES=RAW.trim().split('\n').map(line=>{
 let userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
 let channel=getChannel(userTZ);
 
+// ── i18n ──────────────────────────────────────────────────────────────────────
+const T={
+ en:{yourTeam:'Your team',allTeams:'All teams',timezone:'Timezone',nextMatch:'NEXT MATCH',days:'DAYS',hrs:'HRS',min:'MIN',sec:'SEC',groups:'Groups','Group Stage':'Group Stage','Round of 32':'Round of 32','Round of 16':'Round of 16','Quarter-final':'Quarter-finals','Semi-final':'Semi-finals','Third Place':'Third place','Final':'Final',group:'Group',matches:'matches',match:'match',showOdds:"Show bookmakers' odds",hideOdds:"Hide bookmakers' odds",draw:'Draw',bookmakers:"Bookmakers' odds",live:'🔴 LIVE NOW',kickoffLive:'KICK-OFF · LIVE NOW',notAffiliated:'Not affiliated with FIFA',oddsUpdated:'odds updated',justNow:'just now',minAgo:' min ago',hrAgo:'h ago',addedOne:'✓ Added to Apple / Outlook Calendar',noMatches:'No matches for this selection.',addAll:(n,t)=>`Add all ${n} ${t} matches to calendar`,addedAll:(n,t)=>`✓ Added all ${n} ${t} group matches`},
+ fr:{yourTeam:'Votre équipe',allTeams:'Toutes les équipes',timezone:'Fuseau',nextMatch:'PROCHAIN MATCH',days:'JOURS',hrs:'H',min:'MIN',sec:'SEC',groups:'Groupes','Group Stage':'Phase de groupes','Round of 32':'16es de finale','Round of 16':'8es de finale','Quarter-final':'Quarts de finale','Semi-final':'Demi-finales','Third Place':'Petite finale','Final':'Finale',group:'Groupe',matches:'matchs',match:'match',showOdds:'Voir les cotes',hideOdds:'Masquer les cotes',draw:'Nul',bookmakers:'Cotes des bookmakers',live:'🔴 EN DIRECT',kickoffLive:'COUP D’ENVOI · EN DIRECT',notAffiliated:'Non affilié à la FIFA',oddsUpdated:'cotes mises à jour il y a',justNow:"à l'instant",minAgo:' min',hrAgo:' h',addedOne:'✓ Ajouté au calendrier',noMatches:'Aucun match pour cette sélection.',addAll:(n,t)=>`Ajouter les ${n} matchs de ${t} au calendrier`,addedAll:(n,t)=>`✓ ${n} matchs de groupe de ${t} ajoutés`},
+ de:{yourTeam:'Dein Team',allTeams:'Alle Teams',timezone:'Zeitzone',nextMatch:'NÄCHSTES SPIEL',days:'TAGE',hrs:'STD',min:'MIN',sec:'SEK',groups:'Gruppen','Group Stage':'Gruppenphase','Round of 32':'Sechzehntelfinale','Round of 16':'Achtelfinale','Quarter-final':'Viertelfinale','Semi-final':'Halbfinale','Third Place':'Spiel um Platz 3','Final':'Finale',group:'Gruppe',matches:'Spiele',match:'Spiel',showOdds:'Wettquoten anzeigen',hideOdds:'Wettquoten ausblenden',draw:'Unent.',bookmakers:'Wettquoten',live:'🔴 LIVE',kickoffLive:'ANPFIFF · LIVE',notAffiliated:'Nicht mit der FIFA verbunden',oddsUpdated:'Quoten aktualisiert vor',justNow:'gerade eben',minAgo:' Min',hrAgo:' Std',addedOne:'✓ Zum Kalender hinzugefügt',noMatches:'Keine Spiele für diese Auswahl.',addAll:(n,t)=>`Alle ${n} ${t}-Spiele zum Kalender hinzufügen`,addedAll:(n,t)=>`✓ Alle ${n} ${t}-Gruppenspiele hinzugefügt`},
+ it:{yourTeam:'La tua squadra',allTeams:'Tutte le squadre',timezone:'Fuso orario',nextMatch:'PROSSIMA PARTITA',days:'GIORNI',hrs:'ORE',min:'MIN',sec:'SEC',groups:'Gironi','Group Stage':'Fase a gironi','Round of 32':'Sedicesimi','Round of 16':'Ottavi','Quarter-final':'Quarti di finale','Semi-final':'Semifinali','Third Place':'Finale 3° posto','Final':'Finale',group:'Girone',matches:'partite',match:'partita',showOdds:'Mostra quote',hideOdds:'Nascondi quote',draw:'Pareggio',bookmakers:'Quote dei bookmaker',live:'🔴 IN DIRETTA',kickoffLive:'FISCHIO D’INIZIO · LIVE',notAffiliated:'Non affiliato alla FIFA',oddsUpdated:'quote aggiornate',justNow:'adesso',minAgo:' min fa',hrAgo:' h fa',addedOne:'✓ Aggiunto al calendario',noMatches:'Nessuna partita per questa selezione.',addAll:(n,t)=>`Aggiungi le ${n} partite di ${t} al calendario`,addedAll:(n,t)=>`✓ Aggiunte ${n} partite del girone di ${t}`},
+ es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`},
+ pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`},
+};
+const LOCALES={en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',es:'es-ES',pt:'pt-PT'};
+const SUPPORTED=Object.keys(T);
+let LANG=(navigator.languages||[navigator.language||'en']).map(l=>l.toLowerCase().split('-')[0]).find(l=>SUPPORTED.includes(l))||'en';
+let LOCALE=LOCALES[LANG];
+function tt(){return T[LANG];}
+function tPhase(p){return tt()[p]||p;}
+function groupLabel(g){return `${tt().group} ${g.split(' ')[1]||''}`.trim();}
+
 const TZ_LIST=[
   {tz:"Europe/Lisbon",label:"🇵🇹 Lisbon"},{tz:"Europe/London",label:"🇬🇧 London"},
   {tz:"Europe/Zurich",label:"🇨🇭 Zurich"},{tz:"Europe/Berlin",label:"🇩🇪 Berlin"},
@@ -523,12 +553,37 @@ function updateTzPill(){document.getElementById('tzPill').textContent=utcLabel(u
 function onTzChange(){userTZ=tzSel.value;channel=getChannel(userTZ);updateTzPill();render();}
 updateTzPill();
 
+let oddsAgeText='–';
+function updateFooter(){
+  document.getElementById('footer').innerHTML=`${tt().notAffiliated} · matchcal26 · <span id="oddsAge">${oddsAgeText}</span>`;
+}
+function applyI18n(){
+  const L=tt();
+  document.documentElement.lang=LANG;
+  document.getElementById('teamLabel').textContent=L.yourTeam;
+  document.getElementById('tzLabelText').textContent=L.timezone;
+  document.getElementById('langText').textContent=LANG.toUpperCase();
+  document.getElementById('langSelect').value=LANG;
+  if(!tSel.value)document.getElementById('chipTeamText').textContent=L.allTeams;
+  document.getElementById('nextMatchLabel').textContent=L.nextMatch;
+  const u=[L.days,L.hrs,L.min,L.sec];
+  document.querySelectorAll('.cd-unit').forEach((el,i)=>{if(u[i])el.textContent=u[i];});
+  document.getElementById('groupsLabel').textContent=L.groups;
+  updateFooter();
+}
+function setLang(l){
+  if(!SUPPORTED.includes(l))l='en';
+  LANG=l;LOCALE=LOCALES[l];
+  applyI18n();buildGroupsGrid();render();
+}
+function onLangChange(){setLang(document.getElementById('langSelect').value);}
+
 const pad=n=>String(n).padStart(2,'0');
-const localStr=d=>d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',timeZone:userTZ});
-const localDateLabel=d=>d.toLocaleDateString([],{weekday:'short',day:'numeric',month:'short',timeZone:userTZ});
-const localDow=d=>d.toLocaleDateString([],{weekday:'short',timeZone:userTZ}).toUpperCase();
-const localDay=d=>d.toLocaleDateString([],{day:'numeric',timeZone:userTZ});
-const localMon=d=>d.toLocaleDateString([],{month:'short',timeZone:userTZ}).toUpperCase();
+const localStr=d=>d.toLocaleTimeString(LOCALE,{hour:'2-digit',minute:'2-digit',timeZone:userTZ});
+const localDateLabel=d=>d.toLocaleDateString(LOCALE,{weekday:'short',day:'numeric',month:'short',timeZone:userTZ});
+const localDow=d=>d.toLocaleDateString(LOCALE,{weekday:'short',timeZone:userTZ}).toUpperCase();
+const localDay=d=>d.toLocaleDateString(LOCALE,{day:'numeric',timeZone:userTZ});
+const localMon=d=>d.toLocaleDateString(LOCALE,{month:'short',timeZone:userTZ}).toUpperCase();
 const icsDate=d=>d.toISOString().replace(/[-:]/g,'').split('.')[0]+'Z';
 
 function makeGCalURL(m){
@@ -543,7 +598,7 @@ function downloadICS(id){
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download=`WC2026_${m.home}_vs_${m.away}.ics`;a.click();
   URL.revokeObjectURL(url);
-  showToast('✓ Added to Apple / Outlook Calendar');
+  showToast(tt().addedOne);
 }
 function downloadAllICS(){
   const team=tSel.value;if(!team)return;
@@ -559,7 +614,7 @@ function downloadAllICS(){
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download=`WC2026_${team}_group_matches.ics`;a.click();
   URL.revokeObjectURL(url);
-  showToast(`✓ Added all ${ms.length} ${team} group matches`);
+  showToast(tt().addedAll(ms.length, team));
 }
 function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2800);}
 
@@ -607,8 +662,8 @@ function tickCountdown(){
   if(!nextMatch)return;
   const diff=nextMatch.utc.getTime()-Date.now();
   if(diff<=0&&diff>-105*60000){
-    document.getElementById('heroDate').textContent='🔴 LIVE NOW';
-    document.getElementById('heroCd').innerHTML='<div class="live-now">KICK-OFF · LIVE NOW</div>';return;
+    document.getElementById('heroDate').textContent=tt().live;
+    document.getElementById('heroCd').innerHTML=`<div class="live-now">${tt().kickoffLive}</div>`;return;
   }
   if(diff<=0){nextMatch=null;updateHero();render();return;}
   const s=Math.floor(diff/1000);
@@ -625,7 +680,7 @@ function render(){
   if(teamF)matches=matches.filter(m=>m.home===teamF||m.away===teamF);
   if(activeGroup)matches=matches.filter(m=>m.group===activeGroup);
   const wrap=document.getElementById('listWrap');
-  if(!matches.length){wrap.innerHTML='<div class="empty">No matches for this selection.</div>';return;}
+  if(!matches.length){wrap.innerHTML=`<div class="empty">${tt().noMatches}</div>`;return;}
   const GP=['Group A','Group B','Group C','Group D','Group E','Group F','Group G','Group H','Group I','Group J','Group K','Group L'];
   const KO=['Round of 32','Round of 16','Quarter-final','Semi-final','Third Place','Final'];
   const pl=m=>GP.includes(m.group)?'Group Stage':m.group;
@@ -633,11 +688,12 @@ function render(){
   let html='';
   ['Group Stage',...KO].forEach(phase=>{
     const ms=sec[phase];if(!ms)return;
-    html+=`<div class="sec-head" style="margin-top:18px"><span class="sec-name">${phase}</span><span class="sec-rule"></span><span class="sec-count">${ms.length} match${ms.length>1?'es':''}</span></div>`;
+    const cnt=`${ms.length} ${ms.length>1?tt().matches:tt().match}`;
+    html+=`<div class="sec-head" style="margin-top:18px"><span class="sec-name">${tPhase(phase)}</span><span class="sec-rule"></span><span class="sec-count">${cnt}</span></div>`;
     if(phase==='Group Stage'&&teamF){
       html+=`<button class="add-all" onclick="downloadAllICS()">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
-        Add all ${ms.length} ${teamF} matches to calendar
+        ${tt().addAll(ms.length, teamF)}
       </button>`;
     }
     ms.forEach(m=>{
@@ -649,7 +705,7 @@ function render(){
           <div class="fx-rail"><div class="fx-dow">${localDow(m.utc)}</div><div class="fx-day">${localDay(m.utc)}</div><div class="fx-mon">${localMon(m.utc)}</div></div>
           <div class="fx-main">
             <div class="fx-meta">
-              <span class="fx-time"><b>${localStr(m.utc)}</b><span> · ${m.group.toUpperCase()}</span></span>
+              <span class="fx-time"><b>${localStr(m.utc)}</b><span> · ${(m.group.startsWith('Group ')?groupLabel(m.group):tPhase(m.group)).toUpperCase()}</span></span>
               <button class="fx-cal" onclick="downloadICS(${m.id})">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
                 + Cal
@@ -686,7 +742,7 @@ applyTeam(tzCountry[userTZ]||'');
 
 // ── ODDS ──
 function oddsKey(home,away){return `${home}__${away}`;}
-function timeAgo(iso){const diff=Math.floor((Date.now()-new Date(iso))/60000);if(diff<2)return'just now';if(diff<60)return`${diff}m ago`;return`${Math.floor(diff/60)}h ago`;}
+function timeAgo(iso){const L=tt();const diff=Math.floor((Date.now()-new Date(iso))/60000);if(diff<2)return L.justNow;if(diff<60)return diff+L.minAgo;return Math.floor(diff/60)+L.hrAgo;}
 
 // highlight = the SELECTED team's cell (lighter). No team selected → no highlight.
 function oddsHtml(home,away,selectedTeam){
@@ -699,14 +755,14 @@ function oddsHtml(home,away,selectedTeam){
   const favAway=selectedTeam&&selectedTeam===away;
   const chevron=`<svg viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   return `
-    <button class="odds-toggle" onclick="toggleOdds(this)">Show bookmakers' odds ${chevron}</button>
+    <button class="odds-toggle" onclick="toggleOdds(this)">${tt().showOdds} ${chevron}</button>
     <div class="odds-wrap" style="display:none">
       <div class="fx-odds">
         <div class="odd${favHome?' fav':''}"><div class="odd-label">${home}</div><div class="odd-val">${fmt(book.home)}</div></div>
-        <div class="odd"><div class="odd-label">Draw</div><div class="odd-val">${book.draw?fmt(book.draw):'—'}</div></div>
+        <div class="odd"><div class="odd-label">${tt().draw}</div><div class="odd-val">${book.draw?fmt(book.draw):'—'}</div></div>
         <div class="odd${favAway?' fav':''}"><div class="odd-label">${away}</div><div class="odd-val">${fmt(book.away)}</div></div>
       </div>
-      <div class="fx-cap">Bookmakers' odds · <b>${book.name}</b></div>
+      <div class="fx-cap">${tt().bookmakers} · <b>${book.name}</b></div>
     </div>`;
 }
 
@@ -716,7 +772,7 @@ function toggleOdds(btn){
   wrap.style.display=open?'block':'none';
   btn.classList.toggle('open',open);
   const chevron=btn.querySelector('svg').outerHTML;
-  btn.innerHTML=(open?"Hide bookmakers' odds ":"Show bookmakers' odds ")+chevron;
+  btn.innerHTML=(open?tt().hideOdds+' ':tt().showOdds+' ')+chevron;
 }
 
 async function loadOdds(){
@@ -725,7 +781,7 @@ async function loadOdds(){
     if(!res.ok)return;
     oddsData=await res.json();
     render();
-    if(oddsData.updated)document.getElementById('oddsAge').textContent='odds updated '+timeAgo(oddsData.updated);
+    if(oddsData.updated){oddsAgeText=tt().oddsUpdated+' '+timeAgo(oddsData.updated);updateFooter();}
   }catch{}
 }
 
@@ -737,12 +793,13 @@ function buildGroupsGrid(){
   const grid=document.getElementById('groupsGrid');
   grid.innerHTML=GROUP_NAMES.map(g=>{
     const flags=[...(groupTeams[g]||[])].map(t=>{const src=flagSrc(t,22);return src?`<img src="${src}" alt="${t}" title="${t}">`:'';}).join('');
-    return `<div class="gtile${activeGroup===g?' active':''}" onclick="onGroupClick('${g}')"><div class="gtile-label">${g}</div><div class="gtile-flags">${flags}</div></div>`;
+    return `<div class="gtile${activeGroup===g?' active':''}" onclick="onGroupClick('${g}')"><div class="gtile-label">${groupLabel(g)}</div><div class="gtile-flags">${flags}</div></div>`;
   }).join('');
 }
 function onGroupClick(group){activeGroup=activeGroup===group?null:group;buildGroupsGrid();render();}
 buildGroupsGrid();
 
+applyI18n();
 render();
 loadOdds();
 setInterval(tickCountdown,1000);
