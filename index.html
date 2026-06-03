@@ -294,7 +294,7 @@ body{
       <img class="chip-flag" id="chipFlag" src="" alt="">
       <span id="chipTeamText">All teams</span>
       <svg class="caret" width="9" height="6" viewBox="0 0 9 6"><path d="M1 1l3.5 3.5L8 1" stroke="#06231B" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <select id="teamFilter" onchange="onTeamChange()"><option value="">All teams</option></select>
+      <select id="teamFilter" onchange="onTeamChange(true)"><option value="">All teams</option></select>
     </div>
     <div class="chip">
       <span id="tzLabelText" style="color:var(--faint);font-weight:600">Timezone</span>
@@ -558,7 +558,10 @@ Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según
 Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto',share:'Partilhar',copied:'Link copiado',shareText:'Copa do Mundo 2026 — todos os jogos no seu fuso horário, adicione ao calendário num toque:'});
 const LOCALES={en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',es:'es-ES',pt:'pt-PT'};
 const SUPPORTED=Object.keys(T);
-let LANG=(navigator.languages||[navigator.language||'en']).map(l=>l.toLowerCase().split('-')[0]).find(l=>SUPPORTED.includes(l))||'en';
+const PREFS={get(k){try{return localStorage.getItem('mc_'+k);}catch{return null;}},set(k,v){try{localStorage.setItem('mc_'+k,v);}catch{}}};
+const _savedLang=PREFS.get('lang');
+let LANG=(_savedLang&&SUPPORTED.includes(_savedLang))?_savedLang
+  :((navigator.languages||[navigator.language||'en']).map(l=>l.toLowerCase().split('-')[0]).find(l=>SUPPORTED.includes(l))||'en');
 let LOCALE=LOCALES[LANG];
 function tt(){return T[LANG];}
 function tPhase(p){return tt()[p]||p;}
@@ -608,11 +611,15 @@ function utcLabel(tz){
 }
 
 const tzSel=document.getElementById('tzSelect');
+// restore saved timezone over the detected one
+const _savedTz=PREFS.get('tz');
+if(_savedTz)userTZ=_savedTz;
 const detected=userTZ;
 if(!TZ_LIST.some(t=>t.tz===detected)) TZ_LIST.unshift({tz:detected,label:`⚙️ ${detected.replace('_',' ')}`});
 TZ_LIST.forEach(({tz,label})=>{const o=document.createElement('option');o.value=tz;o.textContent=`${label}  (${utcLabel(tz)})`;if(tz===detected)o.selected=true;tzSel.appendChild(o);});
+channel=getChannel(userTZ);
 function updateTzPill(){document.getElementById('tzPill').textContent=utcLabel(userTZ);}
-function onTzChange(){userTZ=tzSel.value;channel=getChannel(userTZ);updateTzPill();render();}
+function onTzChange(){userTZ=tzSel.value;channel=getChannel(userTZ);PREFS.set('tz',userTZ);updateTzPill();render();}
 updateTzPill();
 
 let oddsAgeText='–';
@@ -659,7 +666,7 @@ function setLang(l){
   LANG=l;LOCALE=LOCALES[l];
   applyI18n();buildGroupsGrid();render();
 }
-function onLangChange(){setLang(document.getElementById('langSelect').value);}
+function onLangChange(){const l=document.getElementById('langSelect').value;PREFS.set('lang',l);setLang(l);}
 
 const pad=n=>String(n).padStart(2,'0');
 const localStr=d=>d.toLocaleTimeString(LOCALE,{hour:'2-digit',minute:'2-digit',timeZone:userTZ});
@@ -707,8 +714,9 @@ const teams=[...new Set(MATCHES.flatMap(m=>[m.home,m.away]).filter(t=>t!=='TBD')
 const tSel=document.getElementById('teamFilter');
 teams.forEach(t=>{const o=document.createElement('option');o.value=t;o.textContent=t;tSel.appendChild(o);});
 
-function onTeamChange(){
+function onTeamChange(save){
   const team=tSel.value;
+  if(save)PREFS.set('team',team);
   const chip=document.getElementById('teamChip');
   const pf=document.getElementById('chipFlag'),pt=document.getElementById('chipTeamText');
   if(team&&FLAGS[team]){pf.src=flagSrc(team,18);pf.classList.add('visible');}
@@ -812,16 +820,23 @@ const countryTeam={"CH":"Switzerland","DE":"Germany","FR":"France","ES":"Spain",
 const tzCountry={"Europe/Zurich":"CH","Europe/Bern":"CH","Europe/Berlin":"DE","Europe/Vienna":"AT","Europe/Rome":"IT","Europe/Paris":"FR","Europe/Madrid":"ES","Europe/Lisbon":"PT","Europe/Amsterdam":"NL","Europe/Brussels":"BE","Europe/Warsaw":"PL","Europe/London":"GB","Europe/Dublin":"GB","America/New_York":"US","America/Chicago":"US","America/Denver":"US","America/Los_Angeles":"US","America/Sao_Paulo":"BR","America/Manaus":"BR","America/Argentina/Buenos_Aires":"AR","America/Argentina/Cordoba":"AR","Asia/Tokyo":"JP","Asia/Seoul":"KR","Australia/Sydney":"AU","Australia/Melbourne":"AU"};
 const langCountry={"de-ch":"CH","fr-ch":"CH","it-ch":"CH","de-at":"AT","de-de":"DE","fr-fr":"FR","fr-be":"BE","nl-be":"BE","pt-br":"BR","pt-pt":"PT","es-ar":"AR","es-mx":"MX","es-es":"ES","en-gb":"GB","en-us":"US","nl-nl":"NL","pl-pl":"PL","it-it":"IT","ja-jp":"JP","ko-kr":"KR"};
 function disambiguate(code){const langs=[...(navigator.languages||[navigator.language])].map(l=>l.toLowerCase());for(const lang of langs){if(langCountry[lang])return langCountry[lang];}return code;}
-function applyTeam(code){const team=countryTeam[code];if(!team)return;const opt=[...tSel.options].find(o=>o.value===team);if(!opt)return;tSel.value=team;onTeamChange();}
-applyTeam(tzCountry[userTZ]||'');
-(async()=>{
-  const svcs=[
-    ()=>fetch('https://api.country.is/').then(r=>r.json()).then(d=>d.country),
-    ()=>fetch('https://ipwho.is/').then(r=>r.json()).then(d=>d.success&&d.country_code),
-    ()=>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>d.country_code),
-  ];
-  for(const svc of svcs){try{const c=await svc();if(c&&c.length===2){applyTeam(c);break;}}catch{}}
-})();
+function applyTeam(code){const team=countryTeam[code];if(!team)return;const opt=[...tSel.options].find(o=>o.value===team);if(!opt)return;tSel.value=team;onTeamChange(false);}
+// If the user has a saved team preference, honour it and skip auto-detection entirely.
+const _savedTeam=PREFS.get('team');
+if(_savedTeam!==null){
+  tSel.value=_savedTeam;
+  onTeamChange(false);
+}else{
+  applyTeam(tzCountry[userTZ]||'');
+  (async()=>{
+    const svcs=[
+      ()=>fetch('https://api.country.is/').then(r=>r.json()).then(d=>d.country),
+      ()=>fetch('https://ipwho.is/').then(r=>r.json()).then(d=>d.success&&d.country_code),
+      ()=>fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>d.country_code),
+    ];
+    for(const svc of svcs){try{const c=await svc();if(c&&c.length===2){applyTeam(c);break;}}catch{}}
+  })();
+}
 
 // ── ODDS ──
 function oddsKey(home,away){return `${home}__${away}`;}
