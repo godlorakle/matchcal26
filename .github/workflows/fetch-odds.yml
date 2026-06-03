@@ -33,4 +33,15 @@ jobs:
           git config user.name  "odds-bot"
           git config user.email "bot@matchcal26.netlify.app"
           git add odds.json
-          git diff --staged --quiet || (git commit -m "chore: update odds [skip ci]" && git push)
+          if git diff --staged --quiet; then
+            echo "No odds changes."
+            exit 0
+          fi
+          git commit -m "chore: update odds [skip ci]"
+          # Rebase onto latest main and push, retrying if the remote moved
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep 5
+          done
+          echo "Push failed after retries" && exit 1
