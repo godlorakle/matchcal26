@@ -528,6 +528,27 @@ function tt(){return T[LANG];}
 function tPhase(p){return tt()[p]||p;}
 function groupLabel(g){return `${tt().group} ${g.split(' ')[1]||''}`.trim();}
 
+// Localized country names. Uses Intl.DisplayNames from the ISO code; small overrides for sub-regions.
+const NAME_OVERRIDE={
+  England:{fr:'Angleterre',de:'England',it:'Inghilterra',es:'Inglaterra',pt:'Inglaterra'},
+  Scotland:{fr:'Écosse',de:'Schottland',it:'Scozia',es:'Escocia',pt:'Escócia'},
+  "DR Congo":{fr:'RD Congo',de:'DR Kongo',it:'RD Congo',es:'RD Congo',pt:'RD Congo'},
+};
+let _dn=null,_dnLang=null;
+function teamName(t){
+  if(LANG==='en'||t==='TBD')return t;
+  if(NAME_OVERRIDE[t]&&NAME_OVERRIDE[t][LANG])return NAME_OVERRIDE[t][LANG];
+  const code=FLAGS[t];
+  if(code&&code.length===2){
+    try{
+      if(_dnLang!==LANG){_dn=new Intl.DisplayNames([LOCALE],{type:'region'});_dnLang=LANG;}
+      const n=_dn.of(code.toUpperCase());
+      if(n&&n.toUpperCase()!==code.toUpperCase())return n;
+    }catch{}
+  }
+  return t;
+}
+
 const TZ_LIST=[
   {tz:"Europe/Lisbon",label:"🇵🇹 Lisbon"},{tz:"Europe/London",label:"🇬🇧 London"},
   {tz:"Europe/Zurich",label:"🇨🇭 Zurich"},{tz:"Europe/Berlin",label:"🇩🇪 Berlin"},
@@ -569,7 +590,9 @@ function applyI18n(){
   document.getElementById('tzLabelText').textContent=L.timezone;
   document.getElementById('langText').textContent=LANG.toUpperCase();
   document.getElementById('langSelect').value=LANG;
-  if(!tSel.value)document.getElementById('chipTeamText').textContent=L.allTeams;
+  document.getElementById('chipTeamText').textContent=tSel.value?teamName(tSel.value):L.allTeams;
+  // localize the team dropdown option labels (keep English values as keys)
+  [...tSel.options].forEach(o=>{o.textContent=o.value?teamName(o.value):L.allTeams;});
   document.getElementById('nextMatchLabel').textContent=L.nextMatch;
   const u=[L.days,L.hrs,L.min,L.sec];
   document.querySelectorAll('.cd-unit').forEach((el,i)=>{if(u[i])el.textContent=u[i];});
@@ -619,7 +642,7 @@ function downloadAllICS(){
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download=`WC2026_${team}_group_matches.ics`;a.click();
   URL.revokeObjectURL(url);
-  showToast(tt().addedAll(ms.length, team));
+  showToast(tt().addedAll(ms.length, teamName(team)));
 }
 function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2800);}
 
@@ -635,7 +658,7 @@ function onTeamChange(){
   const pf=document.getElementById('chipFlag'),pt=document.getElementById('chipTeamText');
   if(team&&FLAGS[team]){pf.src=flagSrc(team,18);pf.classList.add('visible');}
   else pf.classList.remove('visible');
-  pt.textContent=team||'All teams';
+  pt.textContent=team?teamName(team):tt().allTeams;
   // chip is solid only when a team is chosen
   chip.classList.toggle('solid', !!team);
   // recolor caret + label to match chip state
@@ -655,8 +678,8 @@ function updateHero(){
   nextMatch=next;card.style.display='block';
   document.getElementById('heroFlagH').src=flagSrc(next.home,80);
   document.getElementById('heroFlagA').src=flagSrc(next.away,80);
-  document.getElementById('heroHome').textContent=next.home.toUpperCase();
-  document.getElementById('heroAway').textContent=next.away.toUpperCase();
+  document.getElementById('heroHome').textContent=teamName(next.home).toUpperCase();
+  document.getElementById('heroAway').textContent=teamName(next.away).toUpperCase();
   document.getElementById('heroDate').textContent=`${localDateLabel(next.utc)} · ${localStr(next.utc)}`;
   document.getElementById('heroVenue').textContent=`${next.venue} · ${next.city}`;
   document.getElementById('heroGcal').href=makeGCalURL(next);
@@ -698,7 +721,7 @@ function render(){
     if(phase==='Group Stage'&&teamF){
       html+=`<button class="add-all" onclick="downloadAllICS()">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
-        ${tt().addAll(ms.length, teamF)}
+        ${tt().addAll(ms.length, teamName(teamF))}
       </button>`;
     }
     ms.forEach(m=>{
@@ -717,9 +740,9 @@ function render(){
               </button>
             </div>
             <div class="fx-teams">
-              <div class="fx-side">${flagImg(m.home,22)}<span class="fx-tname">${m.home.toUpperCase()}</span></div>
+              <div class="fx-side">${flagImg(m.home,22)}<span class="fx-tname">${teamName(m.home).toUpperCase()}</span></div>
               <span class="fx-dash">—</span>
-              <div class="fx-side away"><span class="fx-tname">${m.away.toUpperCase()}</span>${flagImg(m.away,22)}</div>
+              <div class="fx-side away"><span class="fx-tname">${teamName(m.away).toUpperCase()}</span>${flagImg(m.away,22)}</div>
             </div>
             ${isTBD?'':oddsHtml(m.home,m.away,teamF)}
           </div>
@@ -763,9 +786,9 @@ function oddsHtml(home,away,selectedTeam){
     <button class="odds-toggle" onclick="toggleOdds(this)">${tt().showOdds} ${chevron}</button>
     <div class="odds-wrap" style="display:none">
       <div class="fx-odds">
-        <div class="odd${favHome?' fav':''}"><div class="odd-label">${home}</div><div class="odd-val">${fmt(book.home)}</div></div>
+        <div class="odd${favHome?' fav':''}"><div class="odd-label">${teamName(home)}</div><div class="odd-val">${fmt(book.home)}</div></div>
         <div class="odd"><div class="odd-label">${tt().draw}</div><div class="odd-val">${book.draw?fmt(book.draw):'—'}</div></div>
-        <div class="odd${favAway?' fav':''}"><div class="odd-label">${away}</div><div class="odd-val">${fmt(book.away)}</div></div>
+        <div class="odd${favAway?' fav':''}"><div class="odd-label">${teamName(away)}</div><div class="odd-val">${fmt(book.away)}</div></div>
       </div>
       <div class="fx-cap">${tt().bookmakers} · <b>${book.name}</b></div>
     </div>`;
