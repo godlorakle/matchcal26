@@ -80,11 +80,17 @@ body{
 
 /* ── HEADER ── */
 .hdr{padding:38px 18px 0;position:relative}
-.lang-switch{position:absolute;top:10px;right:14px;z-index:6;display:inline-flex;align-items:center;gap:4px;
+.lang-switch{position:relative;display:inline-flex;align-items:center;gap:4px;
   background:var(--glass);border:1px solid var(--glassB);border-radius:8px;padding:3px 7px;
   font-family:var(--fb);font-weight:600;font-size:10.5px;letter-spacing:.3px;color:var(--soft);cursor:pointer}
-.lang-switch svg{color:var(--faint)}
+.lang-switch .caret,.lang-switch svg{color:var(--faint)}
 .lang-switch select{position:absolute;inset:0;opacity:0;width:100%;cursor:pointer;font-size:16px}
+.top-actions{position:absolute;top:10px;right:14px;z-index:6;display:flex;align-items:center;gap:6px}
+.share-btn{display:inline-flex;align-items:center;gap:5px;background:var(--neon);color:var(--on-accent);
+  border:none;border-radius:8px;padding:4px 9px;font-family:var(--fb);font-weight:700;font-size:10.5px;
+  letter-spacing:.3px;cursor:pointer;transition:opacity .15s}
+.share-btn:hover{opacity:.88}
+.share-btn svg{flex-shrink:0}
 .brand-row{display:flex;justify-content:space-between;align-items:center}
 .brand{display:flex;align-items:center;gap:8px}
 .logo-chip{width:30px;height:30px;border-radius:9px;background:var(--neon);display:grid;place-items:center;box-shadow:0 0 12px rgba(70,227,154,.5);flex-shrink:0}
@@ -238,6 +244,11 @@ body{
 
 <!-- HEADER -->
 <div class="hdr">
+  <div class="top-actions">
+  <button class="share-btn" id="shareBtn" onclick="shareSite()">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    <span id="shareLabel">Share</span>
+  </button>
   <div class="lang-switch">
     <span style="font-size:12px;line-height:1">🌐</span>
     <span id="langText">EN</span>
@@ -250,6 +261,7 @@ body{
       <option value="es">Español</option>
       <option value="pt">Português</option>
     </select>
+  </div>
   </div>
   <div class="brand-row">
     <div class="brand">
@@ -538,12 +550,12 @@ const T={
  es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`},
  pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`},
 };
-Object.assign(T.en,{whoWins:"Who's most likely to win?",basedOn:"Based on bookmakers' odds",tooClose:'Too close to call',tossUp:'Toss-up'});
-Object.assign(T.fr,{whoWins:'Qui a le plus de chances de gagner ?',basedOn:"D'après les cotes des bookmakers",tooClose:'Trop serré pour trancher',tossUp:'Indécis'});
-Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basierend auf Wettquoten',tooClose:'Zu knapp',tossUp:'Offen'});
-Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker',tooClose:'Troppo equilibrato',tossUp:'Incerta'});
-Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas',tooClose:'Demasiado parejo',tossUp:'Reñido'});
-Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto'});
+Object.assign(T.en,{whoWins:"Who's most likely to win?",basedOn:"Based on bookmakers' odds",tooClose:'Too close to call',tossUp:'Toss-up',share:'Share',copied:'Link copied',shareText:'World Cup 2026 — every match in your timezone, add to your calendar in one tap:'});
+Object.assign(T.fr,{whoWins:'Qui a le plus de chances de gagner ?',basedOn:"D'après les cotes des bookmakers",tooClose:'Trop serré pour trancher',tossUp:'Indécis',share:'Partager',copied:'Lien copié',shareText:'Coupe du Monde 2026 — tous les matchs à ton fuseau horaire, à ajouter au calendrier en un clic :'});
+Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basierend auf Wettquoten',tooClose:'Zu knapp',tossUp:'Offen',share:'Teilen',copied:'Link kopiert',shareText:'WM 2026 — alle Spiele in deiner Zeitzone, mit einem Tipp zum Kalender:'});
+Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker',tooClose:'Troppo equilibrato',tossUp:'Incerta',share:'Condividi',copied:'Link copiato',shareText:'Mondiali 2026 — tutte le partite nel tuo fuso orario, aggiungile al calendario con un tocco:'});
+Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas',tooClose:'Demasiado parejo',tossUp:'Reñido',share:'Compartir',copied:'Enlace copiado',shareText:'Mundial 2026 — todos los partidos en tu zona horaria, añádelos al calendario con un toque:'});
+Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto',share:'Partilhar',copied:'Link copiado',shareText:'Copa do Mundo 2026 — todos os jogos no seu fuso horário, adicione ao calendário num toque:'});
 const LOCALES={en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',es:'es-ES',pt:'pt-PT'};
 const SUPPORTED=Object.keys(T);
 let LANG=(navigator.languages||[navigator.language||'en']).map(l=>l.toLowerCase().split('-')[0]).find(l=>SUPPORTED.includes(l))||'en';
@@ -621,7 +633,18 @@ function applyI18n(){
   const u=[L.days,L.hrs,L.min,L.sec];
   document.querySelectorAll('.cd-unit').forEach((el,i)=>{if(u[i])el.textContent=u[i];});
   document.getElementById('groupsLabel').textContent=L.groups;
+  document.getElementById('shareLabel').textContent=L.share;
   updateFooter();
+}
+async function shareSite(){
+  const url='https://matchcal26.pages.dev/';
+  const text=tt().shareText;
+  if(navigator.share){
+    try{await navigator.share({title:'matchcal26 · World Cup 2026',text,url});}catch(e){}
+  }else{
+    try{await navigator.clipboard.writeText(text+' '+url);showToast(tt().copied);}
+    catch(e){window.open('https://wa.me/?text='+encodeURIComponent(text+' '+url),'_blank');}
+  }
 }
 function setLang(l){
   if(!SUPPORTED.includes(l))l='en';
