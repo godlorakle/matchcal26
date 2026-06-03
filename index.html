@@ -64,7 +64,7 @@
 :root{
   --bg0:#081A1C;--bg1:#0C2A2A;
   --ink:#EAF6F0;--soft:rgba(234,246,240,.55);--faint:rgba(234,246,240,.35);
-  --neon:#46E39A;--lime:#C7F94B;--yellow:#FFE14D;--on-accent:#06231B;
+  --neon:#46E39A;--lime:#C7F94B;--yellow:#FFE14D;--amber:#FFB84D;--on-accent:#06231B;
   --glass:rgba(255,255,255,.05);--glassB:rgba(255,255,255,.10);
   --fd:'Archivo',sans-serif;--fb:'Space Grotesk',sans-serif;
 }
@@ -187,12 +187,27 @@ body{
 .odd-odd{font-family:var(--fb);font-weight:500;font-size:9.5px;color:var(--faint);margin-top:2px}
 .fx-cap{font-family:var(--fb);font-weight:500;font-size:9.5px;color:var(--faint);margin-top:7px;text-align:center}
 .fx-cap b{color:var(--soft);font-weight:500}
-.odds-toggle{display:inline-flex;align-items:center;gap:5px;margin-top:9px;padding:0;
-  background:none;border:none;cursor:pointer;font-family:var(--fb);font-weight:600;font-size:10.5px;
-  letter-spacing:.3px;color:var(--neon);opacity:.8;transition:opacity .15s}
-.odds-toggle:hover{opacity:1}
-.odds-toggle svg{width:9px;height:9px;transition:transform .2s}
-.odds-toggle.open svg{transform:rotate(180deg)}
+/* win teaser (collapsed prediction) */
+.win-teaser{display:block;width:100%;text-align:left;margin-top:4px;padding:9px 11px 10px;border-radius:11px;
+  cursor:pointer;background:rgba(70,227,154,.09);border:1px solid rgba(70,227,154,.30);font-family:var(--fb)}
+.win-teaser.tight{background:rgba(255,184,77,.09);border-color:rgba(255,184,77,.32)}
+.wt-top{display:flex;align-items:center;gap:7px}
+.wt-icon{color:var(--neon);flex-shrink:0}
+.win-teaser.tight .wt-icon{color:var(--amber)}
+.wt-label{font-weight:700;font-size:11.5px;letter-spacing:.2px;color:var(--neon);white-space:nowrap}
+.win-teaser.tight .wt-label{color:var(--amber)}
+.wt-caret{margin-left:auto;color:var(--neon);transition:transform .2s;flex-shrink:0}
+.win-teaser.tight .wt-caret{color:var(--amber)}
+.win-teaser.open .wt-caret{transform:rotate(180deg)}
+.wt-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+.wt-bar{flex:1;display:flex;gap:2px;height:5px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.06)}
+.wt-seg{height:5px;border-radius:2px;animation:wtfill .72s cubic-bezier(.2,.7,.2,1) both}
+@keyframes wtfill{from{width:0}}
+.wt-fav{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.wt-fav img{height:11px;width:auto;border-radius:2px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.wt-pct{font-family:var(--fd);font-weight:800;font-size:13px;color:var(--neon)}
+.win-teaser.tight .wt-pct{color:var(--amber)}
+.wt-tossup{font-weight:600;font-size:10.5px;color:var(--amber);white-space:nowrap;flex-shrink:0}
 .odds-wrap{margin-top:9px}
 
 /* ── GROUPS OVERVIEW ── */
@@ -523,12 +538,12 @@ const T={
  es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`},
  pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`},
 };
-Object.assign(T.en,{whoWins:"Who's most likely to win?",basedOn:"Based on bookmakers' odds"});
-Object.assign(T.fr,{whoWins:'Qui a le plus de chances de gagner ?',basedOn:"D'après les cotes des bookmakers"});
-Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basierend auf Wettquoten'});
-Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker'});
-Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas'});
-Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas'});
+Object.assign(T.en,{whoWins:"Who's most likely to win?",basedOn:"Based on bookmakers' odds",tooClose:'Too close to call',tossUp:'Toss-up'});
+Object.assign(T.fr,{whoWins:'Qui a le plus de chances de gagner ?',basedOn:"D'après les cotes des bookmakers",tooClose:'Trop serré pour trancher',tossUp:'Indécis'});
+Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basierend auf Wettquoten',tooClose:'Zu knapp',tossUp:'Offen'});
+Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker',tooClose:'Troppo equilibrato',tossUp:'Incerta'});
+Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas',tooClose:'Demasiado parejo',tossUp:'Reñido'});
+Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto'});
 const LOCALES={en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',es:'es-ES',pt:'pt-PT'};
 const SUPPORTED=Object.keys(T);
 let LANG=(navigator.languages||[navigator.language||'en']).map(l=>l.toLowerCase().split('-')[0]).find(l=>SUPPORTED.includes(l))||'en';
@@ -794,9 +809,30 @@ function oddsHtml(home,away,selectedTeam){
   const rh=1/book.home, rd=book.draw?1/book.draw:0, ra=1/book.away, tot=rh+rd+ra;
   const pct=r=>tot?Math.round(r/tot*100):0;
   const ph=pct(rh), pd=pct(rd), pa=pct(ra);
-  const chevron=`<svg viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const P=[ph,pd,pa];
+  const favIdx=(ph>=pd&&ph>=pa)?0:(pa>=pd?2:1);
+  const tight=P[favIdx]<42;                       // genuine toss-up
+  const accent=tight?'#FFB84D':'#46E39A';
+  const segColor=i=>i===favIdx?accent:(i===1?'rgba(234,246,240,0.28)':'rgba(234,246,240,0.16)');
+  const favName=favIdx===0?home:(favIdx===2?away:null);
+  const favFlag=favName&&FLAGS[favName]?`<img src="${flagSrc(favName,16)}" alt="">`:'';
+  const label=tight?tt().tooClose:tt().whoWins;
+  const barsIcon=`<svg class="wt-icon" width="12" height="11" viewBox="0 0 12 11" fill="currentColor"><rect x="0" y="6" width="3" height="5" rx="1"/><rect x="4.5" y="3" width="3" height="8" rx="1"/><rect x="9" y="0" width="3" height="11" rx="1"/></svg>`;
+  const caret=`<svg class="wt-caret" width="9" height="6" viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   return `
-    <button class="odds-toggle" onclick="toggleOdds(this)">${tt().whoWins} ${chevron}</button>
+    <div class="win-teaser${tight?' tight':''}" role="button" tabindex="0" onclick="toggleOdds(this)">
+      <div class="wt-top">${barsIcon}<span class="wt-label">${label}</span>${caret}</div>
+      <div class="wt-row">
+        <div class="wt-bar">
+          <span class="wt-seg" style="width:${ph}%;background:${segColor(0)};animation-delay:0ms"></span>
+          <span class="wt-seg" style="width:${pd}%;background:${segColor(1)};animation-delay:70ms"></span>
+          <span class="wt-seg" style="width:${pa}%;background:${segColor(2)};animation-delay:140ms"></span>
+        </div>
+        ${tight
+          ? `<span class="wt-tossup">${tt().tossUp}</span>`
+          : `<span class="wt-fav">${favFlag}<span class="wt-pct">${P[favIdx]}%</span></span>`}
+      </div>
+    </div>
     <div class="odds-wrap" style="display:none">
       <div class="fx-odds">
         <div class="odd${favHome?' fav':''}"><div class="odd-label">${teamName(home)}</div><div class="odd-pct">${ph}%</div><div class="odd-odd">${fmt(book.home)}</div></div>
@@ -807,13 +843,11 @@ function oddsHtml(home,away,selectedTeam){
     </div>`;
 }
 
-function toggleOdds(btn){
-  const wrap=btn.nextElementSibling;
+function toggleOdds(el){
+  const wrap=el.nextElementSibling;
   const open=wrap.style.display==='none';
   wrap.style.display=open?'block':'none';
-  btn.classList.toggle('open',open);
-  const chevron=btn.querySelector('svg').outerHTML;
-  btn.innerHTML=(open?tt().hideOdds+' ':tt().whoWins+' ')+chevron;
+  el.classList.toggle('open',open);
 }
 
 async function loadOdds(){
