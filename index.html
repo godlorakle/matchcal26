@@ -182,6 +182,9 @@ body{
 .odd.fav .odd-label{color:var(--neon)}
 .odd-val{font-family:var(--fd);font-weight:800;font-size:15px;color:var(--ink);margin-top:1px}
 .odd.fav .odd-val{color:var(--neon)}
+.odd-pct{font-family:var(--fd);font-weight:800;font-size:18px;color:var(--ink);margin-top:2px;line-height:1}
+.odd.fav .odd-pct{color:var(--neon)}
+.odd-odd{font-family:var(--fb);font-weight:500;font-size:9.5px;color:var(--faint);margin-top:2px}
 .fx-cap{font-family:var(--fb);font-weight:500;font-size:9.5px;color:var(--faint);margin-top:7px;text-align:center}
 .fx-cap b{color:var(--soft);font-weight:500}
 .odds-toggle{display:inline-flex;align-items:center;gap:5px;margin-top:9px;padding:0;
@@ -520,6 +523,12 @@ const T={
  es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`},
  pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`},
 };
+Object.assign(T.en,{whoWins:"Who's most likely to win?",basedOn:"Based on bookmakers' odds"});
+Object.assign(T.fr,{whoWins:'Qui a le plus de chances de gagner ?',basedOn:"D'après les cotes des bookmakers"});
+Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basierend auf Wettquoten'});
+Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker'});
+Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas'});
+Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas'});
 const LOCALES={en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',es:'es-ES',pt:'pt-PT'};
 const SUPPORTED=Object.keys(T);
 let LANG=(navigator.languages||[navigator.language||'en']).map(l=>l.toLowerCase().split('-')[0]).find(l=>SUPPORTED.includes(l))||'en';
@@ -781,16 +790,20 @@ function oddsHtml(home,away,selectedTeam){
   const fmt=v=>v?v.toFixed(2):'—';
   const favHome=selectedTeam&&selectedTeam===home;
   const favAway=selectedTeam&&selectedTeam===away;
+  // implied probabilities (normalized to remove bookmaker margin)
+  const rh=1/book.home, rd=book.draw?1/book.draw:0, ra=1/book.away, tot=rh+rd+ra;
+  const pct=r=>tot?Math.round(r/tot*100):0;
+  const ph=pct(rh), pd=pct(rd), pa=pct(ra);
   const chevron=`<svg viewBox="0 0 9 6" fill="none"><path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   return `
-    <button class="odds-toggle" onclick="toggleOdds(this)">${tt().showOdds} ${chevron}</button>
+    <button class="odds-toggle" onclick="toggleOdds(this)">${tt().whoWins} ${chevron}</button>
     <div class="odds-wrap" style="display:none">
       <div class="fx-odds">
-        <div class="odd${favHome?' fav':''}"><div class="odd-label">${teamName(home)}</div><div class="odd-val">${fmt(book.home)}</div></div>
-        <div class="odd"><div class="odd-label">${tt().draw}</div><div class="odd-val">${book.draw?fmt(book.draw):'—'}</div></div>
-        <div class="odd${favAway?' fav':''}"><div class="odd-label">${teamName(away)}</div><div class="odd-val">${fmt(book.away)}</div></div>
+        <div class="odd${favHome?' fav':''}"><div class="odd-label">${teamName(home)}</div><div class="odd-pct">${ph}%</div><div class="odd-odd">${fmt(book.home)}</div></div>
+        <div class="odd"><div class="odd-label">${tt().draw}</div><div class="odd-pct">${book.draw?pd+'%':'—'}</div><div class="odd-odd">${book.draw?fmt(book.draw):'—'}</div></div>
+        <div class="odd${favAway?' fav':''}"><div class="odd-label">${teamName(away)}</div><div class="odd-pct">${pa}%</div><div class="odd-odd">${fmt(book.away)}</div></div>
       </div>
-      <div class="fx-cap">${tt().bookmakers} · <b>${book.name}</b></div>
+      <div class="fx-cap">${tt().basedOn} · <b>${book.name}</b></div>
     </div>`;
 }
 
@@ -800,7 +813,7 @@ function toggleOdds(btn){
   wrap.style.display=open?'block':'none';
   btn.classList.toggle('open',open);
   const chevron=btn.querySelector('svg').outerHTML;
-  btn.innerHTML=(open?tt().hideOdds+' ':tt().showOdds+' ')+chevron;
+  btn.innerHTML=(open?tt().hideOdds+' ':tt().whoWins+' ')+chevron;
 }
 
 async function loadOdds(){
