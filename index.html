@@ -627,8 +627,16 @@ function applyI18n(){
   document.getElementById('langText').textContent=LANG.toUpperCase();
   document.getElementById('langSelect').value=LANG;
   document.getElementById('chipTeamText').textContent=tSel.value?teamName(tSel.value):L.allTeams;
-  // localize the team dropdown option labels (keep English values as keys)
-  [...tSel.options].forEach(o=>{o.textContent=o.value?teamName(o.value):L.allTeams;});
+  // localize the team dropdown option labels (keep English values as keys) and re-sort alphabetically per language
+  const cur=tSel.value;
+  const opts=[...tSel.options];
+  opts.forEach(o=>{o.textContent=o.value?teamName(o.value):L.allTeams;});
+  const empty=opts.find(o=>!o.value);
+  const rest=opts.filter(o=>o.value).sort((a,b)=>teamName(a.value).localeCompare(teamName(b.value),LOCALE));
+  tSel.textContent='';
+  if(empty)tSel.appendChild(empty);
+  rest.forEach(o=>tSel.appendChild(o));
+  tSel.value=cur;
   document.getElementById('nextMatchLabel').textContent=L.nextMatch;
   const u=[L.days,L.hrs,L.min,L.sec];
   document.querySelectorAll('.cd-unit').forEach((el,i)=>{if(u[i])el.textContent=u[i];});
