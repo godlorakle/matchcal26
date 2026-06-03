@@ -38,9 +38,13 @@ jobs:
             exit 0
           fi
           git commit -m "chore: update odds [skip ci]"
-          # Rebase onto latest main and push, retrying if the remote moved
+          # Rebase onto latest main and push, retrying if the remote moved (handles detached HEAD)
           for i in 1 2 3; do
-            git pull --rebase origin main && git push && exit 0
+            git fetch origin main
+            git rebase origin/main || git rebase --abort
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $i" && exit 0
+            fi
             echo "Push attempt $i failed, retrying..."
             sleep 5
           done
