@@ -430,7 +430,7 @@ body{
 
   <details class="seo">
     <summary id="seoTitle">World Cup 2026 — schedule info &amp; FAQ</summary>
-    <div class="seo-body">
+    <div class="seo-body" id="seoBody">
       <p><strong>matchcal26</strong> is a free World Cup 2026 calendar that shows every fixture in your own local timezone. Pick your team to see their matches, check the win predictions, and add games to your Google or Apple Calendar in one tap — no app and no sign-up. The tournament runs from <strong>11 June to 19 July 2026</strong>, co-hosted by the <strong>United States, Canada and Mexico</strong>, with 48 teams playing 104 matches across 16 host cities.</p>
       <div class="faq">
         <details><summary>When does the FIFA World Cup 2026 start?</summary><p>The 2026 World Cup starts on 11 June 2026 with the opening match in Mexico City, and runs until the final on 19 July 2026 at MetLife Stadium near New York.</p></details>
@@ -606,6 +606,57 @@ Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basier
 Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker',tooClose:'Troppo equilibrato',tossUp:'Incerta',share:'Condividi',copied:'Link copiato',copyLink:'Copia link',shareText:'Mondiali 2026 — tutte le partite nel tuo fuso orario, aggiungile al calendario con un tocco:',oddsExplainL:'Probabilità calcolate dalle quote dei bookmaker',oddsExplainS:'Calcolate dalle quote dei bookmaker',seoTitle:'Mondiali 2026 — info & FAQ'});
 Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas',tooClose:'Demasiado parejo',tossUp:'Reñido',share:'Compartir',copied:'Enlace copiado',copyLink:'Copiar enlace',shareText:'Mundial 2026 — todos los partidos en tu zona horaria, añádelos al calendario con un toque:',oddsExplainL:'Probabilidades calculadas a partir de las cuotas',oddsExplainS:'Calculadas a partir de las cuotas',seoTitle:'Mundial 2026 — info & FAQ'});
 Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto',share:'Partilhar',copied:'Link copiado',copyLink:'Copiar link',shareText:'Copa do Mundo 2026 — todos os jogos no seu fuso horário, adicione ao calendário num toque:',oddsExplainL:'Probabilidades calculadas a partir das odds',oddsExplainS:'Calculadas a partir das odds',seoTitle:'Copa do Mundo 2026 — info & FAQ'});
+// Localized FAQ content (visible section). English stays as the static crawler fallback.
+const FAQ={
+ en:{intro:"matchcal26 is a free World Cup 2026 calendar that shows every fixture in your own local timezone. Pick your team, check the win predictions, and add games to Google or Apple Calendar in one tap — no app, no sign-up. The tournament runs from 11 June to 19 July 2026, co-hosted by the United States, Canada and Mexico, with 48 teams playing 104 matches across 16 host cities.",qa:[
+   ["When does the FIFA World Cup 2026 start?","The 2026 World Cup starts on 11 June 2026 with the opening match in Mexico City, and runs until the final on 19 July 2026 at MetLife Stadium near New York."],
+   ["Where is the 2026 World Cup being held?","It is co-hosted by the United States, Canada and Mexico across 16 host cities — the first 48-team World Cup, with 104 matches in total."],
+   ["How many teams are in the 2026 World Cup?","48 teams, drawn into 12 groups of four. The top two from each group plus the eight best third-placed teams advance to a new Round of 32."],
+   ["What time does my team play in my timezone?","Pick your team above and every kick-off is converted automatically to your local timezone. You can add any match — or your team's whole group stage — to Google or Apple Calendar in one tap."],
+   ["How is the win probability calculated?","Each match shows the implied chance of a home win, draw or away win, derived from bookmakers' decimal odds (probability = 1 ÷ odds), normalised to remove the margin so they add up to 100%. It reflects the betting market's view — not a guarantee."],
+   ["Is matchcal26 free and official?","Yes, it's completely free with no sign-up. It is an independent tool and is not affiliated with or endorsed by FIFA."]]},
+ fr:{intro:"matchcal26 est un calendrier gratuit de la Coupe du Monde 2026 qui affiche chaque match à ton fuseau horaire local. Choisis ton équipe, consulte les pronostics et ajoute les matchs à ton agenda Google ou Apple en un clic — sans appli ni inscription. Le tournoi se déroule du 11 juin au 19 juillet 2026, coorganisé par les États-Unis, le Canada et le Mexique, avec 48 équipes et 104 matchs dans 16 villes hôtes.",qa:[
+   ["Quand commence la Coupe du Monde 2026 ?","La Coupe du Monde 2026 débute le 11 juin 2026 avec le match d'ouverture à Mexico, et se termine par la finale le 19 juillet 2026 au MetLife Stadium près de New York."],
+   ["Où se déroule la Coupe du Monde 2026 ?","Elle est coorganisée par les États-Unis, le Canada et le Mexique dans 16 villes hôtes — la première Coupe du Monde à 48 équipes, avec 104 matchs au total."],
+   ["Combien d'équipes participent ?","48 équipes, réparties en 12 groupes de quatre. Les deux premiers de chaque groupe et les huit meilleurs troisièmes accèdent aux seizièmes de finale."],
+   ["À quelle heure joue mon équipe dans mon fuseau ?","Choisis ton équipe ci-dessus et chaque coup d'envoi est converti automatiquement à ton heure locale. Tu peux ajouter un match — ou toute la phase de groupes de ton équipe — à Google ou Apple Calendar en un clic."],
+   ["Comment est calculée la probabilité de victoire ?","Chaque match affiche la probabilité d'une victoire, d'un nul ou d'une défaite, calculée à partir des cotes décimales des bookmakers (probabilité = 1 ÷ cote), normalisée pour retirer la marge afin que le total fasse 100 %. Cela reflète l'avis du marché, pas une garantie."],
+   ["matchcal26 est-il gratuit et officiel ?","Oui, c'est entièrement gratuit et sans inscription. C'est un outil indépendant, non affilié à la FIFA."]]},
+ de:{intro:"matchcal26 ist ein kostenloser WM-2026-Kalender, der jedes Spiel in deiner lokalen Zeitzone anzeigt. Wähle dein Team, sieh dir die Prognosen an und füge Spiele mit einem Tipp zum Google- oder Apple-Kalender hinzu — ohne App, ohne Anmeldung. Das Turnier läuft vom 11. Juni bis 19. Juli 2026, ausgerichtet von den USA, Kanada und Mexiko, mit 48 Teams und 104 Spielen in 16 Städten.",qa:[
+   ["Wann beginnt die Fußball-WM 2026?","Die WM 2026 beginnt am 11. Juni 2026 mit dem Eröffnungsspiel in Mexiko-Stadt und endet mit dem Finale am 19. Juli 2026 im MetLife Stadium bei New York."],
+   ["Wo findet die WM 2026 statt?","Sie wird von den USA, Kanada und Mexiko in 16 Städten ausgerichtet — die erste WM mit 48 Teams und insgesamt 104 Spielen."],
+   ["Wie viele Teams nehmen teil?","48 Teams in 12 Vierergruppen. Die zwei Besten jeder Gruppe sowie die acht besten Gruppendritten erreichen das neue Sechzehntelfinale."],
+   ["Wann spielt mein Team in meiner Zeitzone?","Wähle oben dein Team und jeder Anstoß wird automatisch in deine lokale Zeit umgerechnet. Du kannst jedes Spiel — oder die ganze Gruppenphase deines Teams — mit einem Tipp zum Kalender hinzufügen."],
+   ["Wie wird die Siegwahrscheinlichkeit berechnet?","Jedes Spiel zeigt die Wahrscheinlichkeit für Heimsieg, Unentschieden oder Auswärtssieg, abgeleitet aus den Dezimalquoten der Buchmacher (Wahrscheinlichkeit = 1 ÷ Quote), bereinigt um die Marge, sodass die Summe 100 % ergibt. Das spiegelt die Markteinschätzung wider — keine Garantie."],
+   ["Ist matchcal26 kostenlos und offiziell?","Ja, völlig kostenlos und ohne Anmeldung. Es ist ein unabhängiges Tool und steht in keiner Verbindung zur FIFA."]]},
+ it:{intro:"matchcal26 è un calendario gratuito dei Mondiali 2026 che mostra ogni partita nel tuo fuso orario locale. Scegli la tua squadra, guarda i pronostici e aggiungi le partite al calendario Google o Apple con un tocco — senza app e senza registrazione. Il torneo si svolge dall'11 giugno al 19 luglio 2026, ospitato da Stati Uniti, Canada e Messico, con 48 squadre e 104 partite in 16 città.",qa:[
+   ["Quando iniziano i Mondiali 2026?","I Mondiali 2026 iniziano l'11 giugno 2026 con la gara inaugurale a Città del Messico e si concludono con la finale il 19 luglio 2026 al MetLife Stadium vicino a New York."],
+   ["Dove si svolgono i Mondiali 2026?","Sono ospitati da Stati Uniti, Canada e Messico in 16 città — i primi Mondiali a 48 squadre, con 104 partite totali."],
+   ["Quante squadre partecipano?","48 squadre, divise in 12 gironi da quattro. Le prime due di ogni girone e le otto migliori terze accedono ai sedicesimi di finale."],
+   ["A che ora gioca la mia squadra nel mio fuso?","Scegli la tua squadra qui sopra e ogni fischio d'inizio viene convertito automaticamente nel tuo orario locale. Puoi aggiungere una partita — o tutta la fase a gironi della tua squadra — a Google o Apple Calendar con un tocco."],
+   ["Come si calcola la probabilità di vittoria?","Ogni partita mostra la probabilità di vittoria casalinga, pareggio o vittoria ospite, ricavata dalle quote decimali dei bookmaker (probabilità = 1 ÷ quota), normalizzata per togliere il margine così che il totale sia 100%. Riflette l'opinione del mercato, non una garanzia."],
+   ["matchcal26 è gratuito e ufficiale?","Sì, è completamente gratuito e senza registrazione. È uno strumento indipendente, non affiliato alla FIFA."]]},
+ es:{intro:"matchcal26 es un calendario gratuito del Mundial 2026 que muestra cada partido en tu zona horaria local. Elige tu selección, mira los pronósticos y añade los partidos a tu calendario de Google o Apple con un toque — sin app y sin registro. El torneo se disputa del 11 de junio al 19 de julio de 2026, organizado por Estados Unidos, Canadá y México, con 48 selecciones y 104 partidos en 16 ciudades.",qa:[
+   ["¿Cuándo empieza el Mundial 2026?","El Mundial 2026 comienza el 11 de junio de 2026 con el partido inaugural en Ciudad de México y termina con la final el 19 de julio de 2026 en el MetLife Stadium, cerca de Nueva York."],
+   ["¿Dónde se celebra el Mundial 2026?","Lo organizan Estados Unidos, Canadá y México en 16 ciudades — el primer Mundial de 48 selecciones, con 104 partidos en total."],
+   ["¿Cuántas selecciones participan?","48 selecciones, repartidas en 12 grupos de cuatro. Los dos primeros de cada grupo y los ocho mejores terceros avanzan a los dieciseisavos de final."],
+   ["¿A qué hora juega mi selección en mi zona horaria?","Elige tu selección arriba y cada inicio se convierte automáticamente a tu hora local. Puedes añadir cualquier partido — o toda la fase de grupos de tu selección — a Google o Apple Calendar con un toque."],
+   ["¿Cómo se calcula la probabilidad de victoria?","Cada partido muestra la probabilidad de victoria local, empate o victoria visitante, a partir de las cuotas decimales (probabilidad = 1 ÷ cuota), normalizada para quitar el margen y que sumen 100%. Refleja la visión del mercado, no una garantía."],
+   ["¿matchcal26 es gratis y oficial?","Sí, es totalmente gratis y sin registro. Es una herramienta independiente y no está afiliada a la FIFA."]]},
+ pt:{intro:"matchcal26 é um calendário gratuito da Copa do Mundo 2026 que mostra cada jogo no seu fuso horário local. Escolha a sua seleção, veja os palpites e adicione os jogos ao calendário Google ou Apple num toque — sem app e sem registo. O torneio decorre de 11 de junho a 19 de julho de 2026, organizado pelos Estados Unidos, Canadá e México, com 48 seleções e 104 jogos em 16 cidades.",qa:[
+   ["Quando começa a Copa do Mundo 2026?","A Copa do Mundo 2026 começa a 11 de junho de 2026 com o jogo inaugural na Cidade do México e termina com a final a 19 de julho de 2026 no MetLife Stadium, perto de Nova Iorque."],
+   ["Onde se realiza a Copa do Mundo 2026?","É organizada pelos Estados Unidos, Canadá e México em 16 cidades — a primeira Copa com 48 seleções e 104 jogos no total."],
+   ["Quantas seleções participam?","48 seleções, divididas em 12 grupos de quatro. Os dois primeiros de cada grupo e os oito melhores terceiros avançam para os 16-avos de final."],
+   ["A que horas joga a minha seleção no meu fuso?","Escolha a sua seleção acima e cada pontapé de saída é convertido automaticamente para a sua hora local. Pode adicionar qualquer jogo — ou toda a fase de grupos da sua seleção — ao Google ou Apple Calendar num toque."],
+   ["Como é calculada a probabilidade de vitória?","Cada jogo mostra a probabilidade de vitória da casa, empate ou vitória de fora, a partir das odds decimais (probabilidade = 1 ÷ odd), normalizada para remover a margem de modo a somar 100%. Reflete a visão do mercado, não uma garantia."],
+   ["O matchcal26 é gratuito e oficial?","Sim, é totalmente gratuito e sem registo. É uma ferramenta independente e não está associada à FIFA."]]},
+};
+function renderFAQ(){
+  const box=document.getElementById('seoBody');if(!box)return;
+  const f=FAQ[LANG]||FAQ.en;
+  box.innerHTML=`<p>${f.intro}</p><div class="faq">`+
+    f.qa.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')+`</div>`;
+}
 const LOCALES={en:'en-GB',fr:'fr-FR',de:'de-DE',it:'it-IT',es:'es-ES',pt:'pt-PT'};
 const SUPPORTED=Object.keys(T);
 const PREFS={get(k){try{return localStorage.getItem('mc_'+k);}catch{return null;}},set(k,v){try{localStorage.setItem('mc_'+k,v);}catch{}}};
@@ -712,6 +763,7 @@ function applyI18n(){
   document.getElementById('shareLabel').textContent=L.share;
   const cl=document.getElementById('copyLabel');if(cl)cl.textContent=L.copyLink||'Copy link';
   const st=document.getElementById('seoTitle');if(st)st.textContent=L.seoTitle||st.textContent;
+  renderFAQ();
   updateFooter();
 }
 const SHARE_URL='https://matchcal26.pages.dev/';
