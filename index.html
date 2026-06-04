@@ -143,6 +143,13 @@ body{
   background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03))}
 .cd-num{font-family:var(--fd);font-weight:800;font-size:27px;line-height:1;color:var(--yellow)}
 .cd-unit{font-family:var(--fb);font-weight:600;font-size:8.5px;letter-spacing:1.5px;color:var(--faint);margin-top:3px}
+.hero-prob{display:flex;justify-content:center;margin-bottom:11px}
+.hero-prob .pill{display:inline-flex;align-items:center;gap:7px;background:rgba(70,227,154,.12);
+  border:1px solid rgba(70,227,154,.35);border-radius:20px;padding:5px 13px;
+  font-family:var(--fb);font-weight:600;font-size:12px;color:var(--neon)}
+.hero-prob .pill.tight{background:rgba(255,184,77,.12);border-color:rgba(255,184,77,.35);color:var(--amber)}
+.hero-prob .pill b{font-family:var(--fd);font-weight:800;font-size:14px}
+.hero-prob .pill img{border-radius:2px}
 .hero-venue{display:flex;align-items:center;gap:6px;justify-content:center;margin-bottom:14px;
   font-family:var(--fb);font-weight:500;font-size:12px;color:var(--soft)}
 .cta{display:flex;gap:9px}
@@ -402,6 +409,7 @@ body{
         <div class="cd-cell"><div class="cd-num" id="cdMin">--</div><div class="cd-unit">MIN</div></div>
         <div class="cd-cell"><div class="cd-num" id="cdSec">--</div><div class="cd-unit">SEC</div></div>
       </div>
+      <div class="hero-prob" id="heroProb" style="display:none"></div>
       <div class="hero-venue">
         <svg width="12" height="12" viewBox="0 0 12 12"><path d="M6 .7c2.1 0 3.8 1.7 3.8 3.8 0 2.6-3.1 6.2-3.6 6.7a.3.3 0 01-.4 0C5.3 10.7 2.2 7.1 2.2 4.5 2.2 2.4 3.9.7 6 .7z" fill="#46E39A"/><circle cx="6" cy="4.5" r="1.4" fill="#fff" fill-opacity=".9"/></svg>
         <span id="heroVenue"></span>
@@ -606,6 +614,8 @@ Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basier
 Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker',tooClose:'Troppo equilibrato',tossUp:'Incerta',share:'Condividi',copied:'Link copiato',copyLink:'Copia link',shareText:'Mondiali 2026 — tutte le partite nel tuo fuso orario, aggiungile al calendario con un tocco:',oddsExplainL:'Probabilità calcolate dalle quote dei bookmaker',oddsExplainS:'Calcolate dalle quote dei bookmaker',seoTitle:'Mondiali 2026 — info & FAQ'});
 Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas',tooClose:'Demasiado parejo',tossUp:'Reñido',share:'Compartir',copied:'Enlace copiado',copyLink:'Copiar enlace',shareText:'Mundial 2026 — todos los partidos en tu zona horaria, añádelos al calendario con un toque:',oddsExplainL:'Probabilidades calculadas a partir de las cuotas',oddsExplainS:'Calculadas a partir de las cuotas',seoTitle:'Mundial 2026 — info & FAQ'});
 Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto',share:'Partilhar',copied:'Link copiado',copyLink:'Copiar link',shareText:'Copa do Mundo 2026 — todos os jogos no seu fuso horário, adicione ao calendário num toque:',oddsExplainL:'Probabilidades calculadas a partir das odds',oddsExplainS:'Calculadas a partir das odds',seoTitle:'Copa do Mundo 2026 — info & FAQ'});
+T.en.toWin='chance to win';T.fr.toWin='de chances de gagner';T.de.toWin='Siegchance';T.it.toWin='di vittoria';T.es.toWin='de ganar';T.pt.toWin='de vitória';
+
 // Localized FAQ content (visible section). English stays as the static crawler fallback.
 const FAQ={
  en:{intro:"matchcal26 is a free World Cup 2026 calendar that shows every fixture in your own local timezone. Pick your team, check the win predictions, and add games to Google or Apple Calendar in one tap — no app, no sign-up. The tournament runs from 11 June to 19 July 2026, co-hosted by the United States, Canada and Mexico, with 48 teams playing 104 matches across 16 host cities.",qa:[
@@ -878,6 +888,24 @@ function updateHero(){
   document.getElementById('heroVenue').textContent=`${next.venue} · ${next.city}, ${countryDisplay(next.city)}`;
   document.getElementById('heroGcal').href=makeGCalURL(next);
   document.getElementById('heroIcal').onclick=()=>downloadICS(next.id);
+
+  // picked team's win probability for the next match, from bookmaker odds
+  const hp=document.getElementById('heroProb');
+  const od=oddsData.matches.find(x=>oddsKey(x.home,x.away)===oddsKey(next.home,next.away));
+  let shown=false;
+  if(od&&od.books&&od.books.length){
+    const b=od.books[0];
+    if(b.home&&b.away){
+      const rh=1/b.home, rd=b.draw?1/b.draw:0, ra=1/b.away, tot=rh+rd+ra;
+      const p = team===next.home ? rh/tot : team===next.away ? ra/tot : null;
+      if(p!=null){
+        const pct=Math.round(p*100);
+        hp.innerHTML=`<span class="pill${pct<42?' tight':''}">${flagImg(team,15)}<b>${pct}%</b> ${tt().toWin}</span>`;
+        hp.style.display='flex'; shown=true;
+      }
+    }
+  }
+  if(!shown)hp.style.display='none';
 }
 
 function tickCountdown(){
