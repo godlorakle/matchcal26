@@ -235,18 +235,22 @@ body{
 
 .empty{color:var(--faint);font-size:13px;padding:2.5rem 0;text-align:center}
 
-/* ── SEO / FAQ ── */
-.seo{margin:28px 4px 0;padding-top:18px;border-top:1px solid var(--glassB)}
-.seo h2{font-family:var(--fd);font-weight:800;font-size:17px;color:var(--soft);letter-spacing:.2px;margin-bottom:9px}
-.seo h3{font-family:var(--fd);font-weight:800;font-size:13px;color:var(--soft);letter-spacing:.3px;margin:18px 0 8px;text-transform:uppercase}
-.seo p{font-family:var(--fb);font-weight:400;font-size:12.5px;line-height:1.6;color:var(--faint)}
-.seo p strong{color:var(--soft);font-weight:600}
-.faq details{border:1px solid var(--glassB);border-radius:9px;padding:0;margin-bottom:6px;background:var(--glass);overflow:hidden}
-.faq summary{cursor:pointer;list-style:none;padding:10px 12px;font-family:var(--fb);font-weight:600;font-size:12.5px;color:var(--ink)}
+/* ── SEO / FAQ (collapsed, low-profile) ── */
+.seo{margin:22px 6px 0}
+.seo>summary{cursor:pointer;list-style:none;font-family:var(--fb);font-weight:600;font-size:11px;
+  letter-spacing:.3px;color:var(--faint);text-align:center;padding:6px}
+.seo>summary::-webkit-details-marker{display:none}
+.seo>summary::after{content:' ▾';color:var(--muted)}
+.seo[open]>summary::after{content:' ▴'}
+.seo-body{padding:6px 2px 0}
+.seo-body p{font-family:var(--fb);font-weight:400;font-size:12px;line-height:1.6;color:var(--faint);margin-bottom:12px}
+.seo-body p strong{color:var(--soft);font-weight:600}
+.faq details{border:1px solid var(--glassB);border-radius:9px;margin-bottom:6px;background:var(--glass);overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:10px 12px;font-family:var(--fb);font-weight:600;font-size:12px;color:var(--ink)}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:'+';float:right;color:var(--neon);font-weight:700}
 .faq details[open] summary::after{content:'–'}
-.faq details p{padding:0 12px 11px;color:var(--faint);font-size:12px}
+.faq details p{padding:0 12px 11px;color:var(--faint);font-size:12px;margin:0}
 
 /* ── FOOTER ── */
 .footer{margin:16px 18px 0;padding-top:12px;border-top:1px dashed var(--glassB);text-align:center;
@@ -422,19 +426,19 @@ body{
   <!-- LIST -->
   <div id="listWrap"></div>
 
-  <section class="seo">
-    <h2>World Cup 2026 schedule &amp; kick-off times</h2>
-    <p><strong>matchcal26</strong> is a free World Cup 2026 calendar that shows every fixture in your own local timezone. Pick your team to see their matches, check the win predictions, and add games to your Google or Apple Calendar in one tap — no app and no sign-up. The tournament runs from <strong>11 June to 19 July 2026</strong>, co-hosted by the <strong>United States, Canada and Mexico</strong>, with 48 teams playing 104 matches across 16 host cities.</p>
-
-    <h3>Frequently asked questions</h3>
-    <div class="faq">
-      <details><summary>When does the FIFA World Cup 2026 start?</summary><p>The 2026 World Cup starts on 11 June 2026 with the opening match in Mexico City, and runs until the final on 19 July 2026 at MetLife Stadium near New York.</p></details>
-      <details><summary>Where is the 2026 World Cup being held?</summary><p>It is co-hosted by the United States, Canada and Mexico across 16 host cities — the first 48-team World Cup, with 104 matches in total.</p></details>
-      <details><summary>How many teams are in the 2026 World Cup?</summary><p>48 teams, drawn into 12 groups of four. The top two from each group plus the eight best third-placed teams advance to a new Round of 32.</p></details>
-      <details><summary>What time does my team play in my timezone?</summary><p>Pick your team above and every kick-off is converted automatically to your local timezone. You can add any match — or your team's whole group stage — to Google or Apple Calendar in one tap.</p></details>
-      <details><summary>Is matchcal26 free and official?</summary><p>Yes, it's completely free with no sign-up. It is an independent tool and is not affiliated with or endorsed by FIFA.</p></details>
+  <details class="seo">
+    <summary>World Cup 2026 — schedule info &amp; FAQ</summary>
+    <div class="seo-body">
+      <p><strong>matchcal26</strong> is a free World Cup 2026 calendar that shows every fixture in your own local timezone. Pick your team to see their matches, check the win predictions, and add games to your Google or Apple Calendar in one tap — no app and no sign-up. The tournament runs from <strong>11 June to 19 July 2026</strong>, co-hosted by the <strong>United States, Canada and Mexico</strong>, with 48 teams playing 104 matches across 16 host cities.</p>
+      <div class="faq">
+        <details><summary>When does the FIFA World Cup 2026 start?</summary><p>The 2026 World Cup starts on 11 June 2026 with the opening match in Mexico City, and runs until the final on 19 July 2026 at MetLife Stadium near New York.</p></details>
+        <details><summary>Where is the 2026 World Cup being held?</summary><p>It is co-hosted by the United States, Canada and Mexico across 16 host cities — the first 48-team World Cup, with 104 matches in total.</p></details>
+        <details><summary>How many teams are in the 2026 World Cup?</summary><p>48 teams, drawn into 12 groups of four. The top two from each group plus the eight best third-placed teams advance to a new Round of 32.</p></details>
+        <details><summary>What time does my team play in my timezone?</summary><p>Pick your team above and every kick-off is converted automatically to your local timezone. You can add any match — or your team's whole group stage — to Google or Apple Calendar in one tap.</p></details>
+        <details><summary>Is matchcal26 free and official?</summary><p>Yes, it's completely free with no sign-up. It is an independent tool and is not affiliated with or endorsed by FIFA.</p></details>
+      </div>
     </div>
-  </section>
+  </details>
 
   <div class="footer" id="footer">Not affiliated with FIFA · matchcal26 · <span id="oddsAge">–</span></div>
 </div>
