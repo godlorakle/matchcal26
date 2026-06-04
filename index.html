@@ -614,7 +614,7 @@ Object.assign(T.de,{whoWins:'Wer gewinnt am wahrscheinlichsten?',basedOn:'Basier
 Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote dei bookmaker',tooClose:'Troppo equilibrato',tossUp:'Incerta',share:'Condividi',copied:'Link copiato',copyLink:'Copia link',shareText:'Mondiali 2026 — tutte le partite nel tuo fuso orario, aggiungile al calendario con un tocco:',oddsExplainL:'Probabilità calcolate dalle quote dei bookmaker',oddsExplainS:'Calcolate dalle quote dei bookmaker',seoTitle:'Mondiali 2026 — info & FAQ'});
 Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas',tooClose:'Demasiado parejo',tossUp:'Reñido',share:'Compartir',copied:'Enlace copiado',copyLink:'Copiar enlace',shareText:'Mundial 2026 — todos los partidos en tu zona horaria, añádelos al calendario con un toque:',oddsExplainL:'Probabilidades calculadas a partir de las cuotas',oddsExplainS:'Calculadas a partir de las cuotas',seoTitle:'Mundial 2026 — info & FAQ'});
 Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto',share:'Partilhar',copied:'Link copiado',copyLink:'Copiar link',shareText:'Copa do Mundo 2026 — todos os jogos no seu fuso horário, adicione ao calendário num toque:',oddsExplainL:'Probabilidades calculadas a partir das odds',oddsExplainS:'Calculadas a partir das odds',seoTitle:'Copa do Mundo 2026 — info & FAQ'});
-T.en.toWin='chance to win';T.fr.toWin='de chances de gagner';T.de.toWin='Siegchance';T.it.toWin='di vittoria';T.es.toWin='de ganar';T.pt.toWin='de vitória';
+T.en.toWin='to win the World Cup';T.fr.toWin='de gagner la Coupe du Monde';T.de.toWin='den WM-Titel zu holen';T.it.toWin='di vincere i Mondiali';T.es.toWin='de ganar el Mundial';T.pt.toWin='de vencer a Copa';
 
 // Localized FAQ content (visible section). English stays as the static crawler fallback.
 const FAQ={
@@ -889,23 +889,18 @@ function updateHero(){
   document.getElementById('heroGcal').href=makeGCalURL(next);
   document.getElementById('heroIcal').onclick=()=>downloadICS(next.id);
 
-  // picked team's win probability for the next match, from bookmaker odds
+  // picked team's odds-implied chance to WIN THE TOURNAMENT (outright winner market)
   const hp=document.getElementById('heroProb');
-  const od=oddsData.matches.find(x=>oddsKey(x.home,x.away)===oddsKey(next.home,next.away));
-  let shown=false;
-  if(od&&od.books&&od.books.length){
-    const b=od.books[0];
-    if(b.home&&b.away){
-      const rh=1/b.home, rd=b.draw?1/b.draw:0, ra=1/b.away, tot=rh+rd+ra;
-      const p = team===next.home ? rh/tot : team===next.away ? ra/tot : null;
-      if(p!=null){
-        const pct=Math.round(p*100);
-        hp.innerHTML=`<span class="pill${pct<42?' tight':''}">${flagImg(team,15)}<b>${pct}%</b> ${tt().toWin}</span>`;
-        hp.style.display='flex'; shown=true;
-      }
-    }
+  const w=oddsData.winner||{};
+  if(team && w[team]){
+    const tot=Object.values(w).reduce((s,o)=>s+(o?1/o:0),0);
+    const p=tot?(1/w[team])/tot:0, pctNum=p*100;
+    const disp=pctNum>=1?Math.round(pctNum)+'%':'<1%';
+    hp.innerHTML=`<span class="pill">🏆 <b>${disp}</b> ${tt().toWin}</span>`;
+    hp.style.display='flex';
+  }else{
+    hp.style.display='none';
   }
-  if(!shown)hp.style.display='none';
 }
 
 function tickCountdown(){

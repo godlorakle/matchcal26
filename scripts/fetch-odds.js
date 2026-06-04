@@ -122,17 +122,46 @@ async function main() {
     return { home, away, commence: match.commence_time, books: formatted };
   });
 
-  saveOdds(matches);
+  // ── Outright "winner" market: each team's odds to win the tournament ──
+  let winner = {};
+  try {
+    const winnerSport = sports.find(s => s.active && /winner|outright/i.test(s.key) &&
+      (s.key.includes('world_cup') || s.title?.toLowerCase().includes('world cup')));
+    if (winnerSport) {
+      console.log(`Found outright market: ${winnerSport.key}`);
+      const wUrl = `https://api.the-odds-api.com/v4/sports/${winnerSport.key}/odds/` +
+        `?apiKey=${API_KEY}&regions=eu&markets=outrights&oddsFormat=decimal`;
+      const wRaw = await get(wUrl);
+      if (Array.isArray(wRaw) && wRaw.length) {
+        // pick the preferred bookmaker that has outrights
+        const evt = wRaw[0];
+        const book = [...(evt.bookmakers || [])].sort((a, b) => {
+          const ai = PREFERRED_BOOKS.indexOf(a.title), bi = PREFERRED_BOOKS.indexOf(b.title);
+          return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+        })[0];
+        const mkt = book?.markets?.find(m => m.key === 'outrights');
+        if (mkt) {
+          mkt.outcomes.forEach(o => { winner[normalize(o.name)] = o.price; });
+          console.log(`Got outright odds for ${Object.keys(winner).length} teams from ${book.title}`);
+        }
+      }
+    } else {
+      console.log('No outright winner market listed yet.');
+    }
+  } catch (e) { console.log('Outright fetch skipped:', e.message); }
+
+  saveOdds(matches, winner);
 }
 
-function saveOdds(matches) {
+function saveOdds(matches, winner = {}) {
   const out = {
     updated: new Date().toISOString(),
     matches,
+    winner,
   };
   const outPath = path.join(__dirname, '..', 'odds.json');
   fs.writeFileSync(outPath, JSON.stringify(out, null, 2));
-  console.log(`Saved odds.json — ${matches.length} matches, ${new Date().toISOString()}`);
+  console.log(`Saved odds.json — ${matches.length} matches, ${Object.keys(winner).length} outright teams, ${new Date().toISOString()}`);
 }
 
 main().catch(err => {
