@@ -37,7 +37,7 @@ jobs:
             echo "No odds changes."
             exit 0
           fi
-          git commit -m "chore: update odds [skip ci]"
+          git commit -m "chore: update odds"
           # Rebase onto latest main and push, retrying if the remote moved (handles detached HEAD)
           for i in 1 2 3; do
             git fetch origin main
