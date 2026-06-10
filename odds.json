@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-09T23:57:30.232Z",
+  "updated": "2026-06-10T18:11:59.407Z",
   "matches": [
     {
       "home": "Mexico",
@@ -15,14 +15,14 @@
         {
           "name": "Betfair",
           "home": 1.44,
-          "draw": 4.8,
-          "away": 9.8
+          "draw": 4.7,
+          "away": 10
         },
         {
           "name": "Pinnacle",
-          "home": 1.41,
-          "draw": 4.62,
-          "away": 8.77
+          "home": 1.43,
+          "draw": 4.42,
+          "away": 8.78
         }
       ]
     },
@@ -33,21 +33,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 2.6,
+          "home": 2.62,
           "draw": 3,
-          "away": 2.8
+          "away": 2.75
         },
         {
           "name": "Betfair",
           "home": 2.78,
           "draw": 3.25,
-          "away": 2.96
+          "away": 3
         },
         {
           "name": "Pinnacle",
-          "home": 2.68,
+          "home": 2.71,
           "draw": 3.14,
-          "away": 2.94
+          "away": 2.89
         }
       ]
     },
@@ -59,20 +59,20 @@
         {
           "name": "William Hill",
           "home": 1.8,
-          "draw": 3.5,
-          "away": 4.33
+          "draw": 3.4,
+          "away": 4.4
         },
         {
           "name": "Betfair",
-          "home": 1.89,
+          "home": 1.87,
           "draw": 3.7,
-          "away": 4.8
+          "away": 5
         },
         {
           "name": "Pinnacle",
-          "home": 1.83,
-          "draw": 3.71,
-          "away": 4.56
+          "home": 1.81,
+          "draw": 3.63,
+          "away": 4.84
         }
       ]
     },
@@ -85,19 +85,19 @@
           "name": "William Hill",
           "home": 1.95,
           "draw": 3.25,
-          "away": 3.8
+          "away": 4
         },
         {
           "name": "Betfair",
-          "home": 2.04,
+          "home": 1.99,
           "draw": 3.55,
-          "away": 4.3
+          "away": 4.5
         },
         {
           "name": "Pinnacle",
-          "home": 2,
-          "draw": 3.5,
-          "away": 4
+          "home": 1.94,
+          "draw": 3.49,
+          "away": 4.28
         }
       ]
     },
@@ -115,13 +115,13 @@
         {
           "name": "Betfair",
           "home": 16.5,
-          "draw": 7.2,
+          "draw": 7.4,
           "away": 1.24
         },
         {
           "name": "Pinnacle",
-          "home": 12.82,
-          "draw": 6.83,
+          "home": 12.81,
+          "draw": 6.82,
           "away": 1.23
         }
       ]
@@ -140,14 +140,14 @@
         {
           "name": "Betfair",
           "home": 1.72,
-          "draw": 4,
-          "away": 5.7
+          "draw": 3.95,
+          "away": 5.8
         },
         {
           "name": "Pinnacle",
-          "home": 1.7,
-          "draw": 3.73,
-          "away": 5.57
+          "home": 1.68,
+          "draw": 3.77,
+          "away": 5.6
         }
       ]
     },
@@ -164,15 +164,15 @@
         },
         {
           "name": "Betfair",
-          "home": 6.4,
+          "home": 6.6,
           "draw": 4.4,
           "away": 1.6
         },
         {
           "name": "Pinnacle",
-          "home": 6.06,
-          "draw": 4.29,
-          "away": 1.56
+          "home": 6.02,
+          "draw": 4.28,
+          "away": 1.57
         }
       ]
     },
@@ -191,13 +191,13 @@
           "name": "Betfair",
           "home": 5.6,
           "draw": 3.9,
-          "away": 1.75
+          "away": 1.76
         },
         {
           "name": "Pinnacle",
-          "home": 5.15,
-          "draw": 3.86,
-          "away": 1.71
+          "home": 5.11,
+          "draw": 3.84,
+          "away": 1.72
         }
       ]
     },
@@ -210,19 +210,19 @@
           "name": "William Hill",
           "home": 1.05,
           "draw": 15,
-          "away": 51
+          "away": 46
         },
         {
           "name": "Betfair",
           "home": 1.06,
           "draw": 24,
-          "away": 46
+          "away": 55
         },
         {
           "name": "Marathon Bet",
           "home": 1.05,
-          "draw": 16.75,
-          "away": 58
+          "draw": 16.25,
+          "away": 56
         }
       ]
     },
@@ -233,21 +233,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 2,
+          "home": 1.95,
           "draw": 3.4,
           "away": 3.6
         },
         {
           "name": "Betfair",
-          "home": 2.14,
+          "home": 2.1,
           "draw": 3.7,
-          "away": 3.75
+          "away": 3.85
         },
         {
           "name": "Pinnacle",
-          "home": 2.08,
-          "draw": 3.57,
-          "away": 3.65
+          "home": 2.1,
+          "draw": 3.56,
+          "away": 3.61
         }
       ]
     },
@@ -270,9 +270,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 3.65,
-          "draw": 2.83,
-          "away": 2.47
+          "home": 3.64,
+          "draw": 2.82,
+          "away": 2.48
         }
       ]
     },
@@ -296,8 +296,8 @@
         {
           "name": "Pinnacle",
           "home": 1.93,
-          "draw": 3.49,
-          "away": 4.36
+          "draw": 3.48,
+          "away": 4.34
         }
       ]
     },
@@ -314,15 +314,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.11,
-          "draw": 14.5,
-          "away": 30
+          "home": 1.1,
+          "draw": 15,
+          "away": 29
         },
         {
           "name": "Pinnacle",
           "home": 1.08,
           "draw": 11.68,
-          "away": 28.45
+          "away": 28.46
         }
       ]
     },
@@ -345,9 +345,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 1.67,
-          "draw": 3.94,
-          "away": 5.4
+          "home": 1.66,
+          "draw": 3.96,
+          "away": 5.46
         }
       ]
     },
@@ -359,20 +359,20 @@
         {
           "name": "William Hill",
           "home": 7.5,
-          "draw": 4.2,
-          "away": 1.4
+          "draw": 4,
+          "away": 1.44
         },
         {
           "name": "Betfair",
-          "home": 9,
+          "home": 8.8,
           "draw": 4.7,
           "away": 1.47
         },
         {
           "name": "Pinnacle",
-          "home": 8.03,
-          "draw": 4.55,
-          "away": 1.44
+          "home": 7.75,
+          "draw": 4.47,
+          "away": 1.46
         }
       ]
     },
@@ -385,19 +385,19 @@
           "name": "William Hill",
           "home": 1.8,
           "draw": 3.5,
-          "away": 4.2
+          "away": 4.33
         },
         {
           "name": "Betfair",
-          "home": 1.92,
+          "home": 1.93,
           "draw": 3.55,
-          "away": 4.8
+          "away": 4.9
         },
         {
           "name": "Pinnacle",
-          "home": 1.9,
-          "draw": 3.49,
-          "away": 4.5
+          "home": 1.89,
+          "draw": 3.5,
+          "away": 4.51
         }
       ]
     },
@@ -416,7 +416,7 @@
           "name": "Betfair",
           "home": 1.5,
           "draw": 4.6,
-          "away": 8.2
+          "away": 8
         },
         {
           "name": "Pinnacle",
@@ -434,7 +434,7 @@
         {
           "name": "William Hill",
           "home": 13,
-          "draw": 6,
+          "draw": 6.5,
           "away": 1.2
         },
         {
@@ -445,8 +445,8 @@
         },
         {
           "name": "Pinnacle",
-          "home": 14.16,
-          "draw": 7.24,
+          "home": 14.23,
+          "draw": 7.26,
           "away": 1.21
         }
       ]
@@ -490,14 +490,14 @@
         {
           "name": "Betfair",
           "home": 1.35,
-          "draw": 5.9,
+          "draw": 6,
           "away": 10
         },
         {
           "name": "Pinnacle",
           "home": 1.33,
-          "draw": 5.6,
-          "away": 9.44
+          "draw": 5.57,
+          "away": 9.39
         }
       ]
     },
@@ -508,21 +508,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.29,
+          "home": 1.25,
           "draw": 5,
           "away": 10
         },
         {
           "name": "Betfair",
           "home": 1.3,
-          "draw": 6.2,
+          "draw": 6,
           "away": 13.5
         },
         {
           "name": "Pinnacle",
           "home": 1.29,
-          "draw": 5.71,
-          "away": 11.2
+          "draw": 5.76,
+          "away": 11.47
         }
       ]
     },
@@ -539,9 +539,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.78,
+          "home": 1.77,
           "draw": 3.9,
-          "away": 5.3
+          "away": 5.4
         },
         {
           "name": "Pinnacle",
@@ -564,9 +564,9 @@
         },
         {
           "name": "Betfair",
-          "home": 2.14,
+          "home": 2.16,
           "draw": 3.55,
-          "away": 3.85
+          "away": 3.8
         },
         {
           "name": "Pinnacle",
@@ -595,8 +595,8 @@
         },
         {
           "name": "Pinnacle",
-          "home": 8.57,
-          "draw": 4.56,
+          "home": 8.67,
+          "draw": 4.6,
           "away": 1.42
         }
       ]
@@ -614,15 +614,15 @@
         },
         {
           "name": "Betfair",
-          "home": 2.02,
+          "home": 2,
           "draw": 3.45,
           "away": 4.3
         },
         {
           "name": "Pinnacle",
           "home": 1.93,
-          "draw": 3.29,
-          "away": 4.06
+          "draw": 3.3,
+          "away": 4.07
         }
       ]
     },
@@ -646,8 +646,8 @@
         {
           "name": "Pinnacle",
           "home": 1.6,
-          "draw": 3.94,
-          "away": 5.15
+          "draw": 3.95,
+          "away": 5.18
         }
       ]
     },
@@ -664,14 +664,14 @@
         },
         {
           "name": "Betfair",
-          "home": 1.34,
-          "draw": 5.6,
+          "home": 1.33,
+          "draw": 5.7,
           "away": 11.5
         },
         {
           "name": "Pinnacle",
           "home": 1.29,
-          "draw": 5.06,
+          "draw": 5.05,
           "away": 9.68
         }
       ]
@@ -689,15 +689,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.84,
+          "home": 1.85,
           "draw": 3.7,
-          "away": 4.8
+          "away": 4.9
         },
         {
           "name": "Pinnacle",
-          "home": 1.77,
-          "draw": 3.57,
-          "away": 4.44
+          "home": 1.75,
+          "draw": 3.6,
+          "away": 4.49
         }
       ]
     },
@@ -714,15 +714,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.81,
+          "home": 1.77,
           "draw": 4,
-          "away": 4.7
+          "away": 4.6
         },
         {
           "name": "Pinnacle",
           "home": 1.71,
-          "draw": 3.94,
-          "away": 4.28
+          "draw": 3.95,
+          "away": 4.3
         }
       ]
     },
@@ -740,8 +740,8 @@
         {
           "name": "Betfair",
           "home": 4.4,
-          "draw": 3.45,
-          "away": 1.99
+          "draw": 3.5,
+          "away": 2
         },
         {
           "name": "Pinnacle",
@@ -759,8 +759,8 @@
         {
           "name": "William Hill",
           "home": 1.08,
-          "draw": 11,
-          "away": 29
+          "draw": 10,
+          "away": 26
         },
         {
           "name": "Betfair",
@@ -770,9 +770,9 @@
         },
         {
           "name": "Marathon Bet",
-          "home": 1.06,
+          "home": 1.07,
           "draw": 10.25,
-          "away": 28
+          "away": 27
         }
       ]
     },
@@ -791,7 +791,7 @@
           "name": "Betfair",
           "home": 2.22,
           "draw": 3.1,
-          "away": 3.5
+          "away": 3.6
         },
         {
           "name": "Pinnacle",
@@ -814,9 +814,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.63,
+          "home": 1.67,
           "draw": 4.2,
-          "away": 5.5
+          "away": 5.4
         },
         {
           "name": "Pinnacle",
@@ -839,14 +839,14 @@
         },
         {
           "name": "Betfair",
-          "home": 1.56,
+          "home": 1.58,
           "draw": 4.5,
-          "away": 5.7
+          "away": 5.6
         },
         {
           "name": "Pinnacle",
-          "home": 1.53,
-          "draw": 4.29,
+          "home": 1.54,
+          "draw": 4.27,
           "away": 5.29
         }
       ]
@@ -858,21 +858,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.18,
+          "home": 1.2,
           "draw": 6,
           "away": 15
         },
         {
           "name": "Betfair",
-          "home": 1.21,
+          "home": 1.24,
           "draw": 7.2,
-          "away": 16
+          "away": 15
         },
         {
           "name": "Pinnacle",
-          "home": 1.18,
-          "draw": 7.07,
-          "away": 11.52
+          "home": 1.19,
+          "draw": 6.96,
+          "away": 11.21
         }
       ]
     },
@@ -890,8 +890,8 @@
         {
           "name": "Betfair",
           "home": 5.7,
-          "draw": 3.65,
-          "away": 1.7
+          "draw": 3.55,
+          "away": 1.72
         },
         {
           "name": "Pinnacle",
@@ -908,21 +908,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.1,
-          "draw": 9.5,
+          "home": 1.11,
+          "draw": 9,
           "away": 23
         },
         {
           "name": "Betfair",
           "home": 1.13,
           "draw": 10.5,
-          "away": 26
+          "away": 24
         },
         {
           "name": "Pinnacle",
           "home": 1.09,
-          "draw": 10.21,
-          "away": 21.53
+          "draw": 10.22,
+          "away": 21.55
         }
       ]
     },
@@ -939,15 +939,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.43,
+          "home": 1.42,
           "draw": 4.9,
-          "away": 8.6
+          "away": 8.8
         },
         {
           "name": "Pinnacle",
           "home": 1.37,
-          "draw": 4.59,
-          "away": 7.65
+          "draw": 4.61,
+          "away": 7.67
         }
       ]
     },
@@ -960,19 +960,19 @@
           "name": "William Hill",
           "home": 1.44,
           "draw": 4.2,
-          "away": 7
+          "away": 6.5
         },
         {
           "name": "Betfair",
-          "home": 1.45,
-          "draw": 4.8,
-          "away": 8.2
+          "home": 1.46,
+          "draw": 4.6,
+          "away": 8
         },
         {
           "name": "Pinnacle",
-          "home": 1.39,
-          "draw": 4.5,
-          "away": 7.53
+          "home": 1.41,
+          "draw": 4.4,
+          "away": 7.26
         }
       ]
     },
@@ -995,9 +995,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 4.32,
-          "draw": 3.8,
-          "away": 1.74
+          "home": 4.33,
+          "draw": 3.81,
+          "away": 1.73
         }
       ]
     },
@@ -1014,8 +1014,8 @@
         },
         {
           "name": "Betfair",
-          "home": 1.66,
-          "draw": 4,
+          "home": 1.64,
+          "draw": 4.1,
           "away": 6
         },
         {
@@ -1035,19 +1035,19 @@
           "name": "William Hill",
           "home": 1.12,
           "draw": 8,
-          "away": 23
+          "away": 26
         },
         {
           "name": "Betfair",
-          "home": 1.14,
-          "draw": 9.2,
-          "away": 21
+          "home": 1.15,
+          "draw": 9.4,
+          "away": 25
         },
         {
           "name": "Pinnacle",
-          "home": 1.12,
-          "draw": 7.78,
-          "away": 22.99
+          "home": 1.11,
+          "draw": 8.01,
+          "away": 23.71
         }
       ]
     },
@@ -1060,13 +1060,13 @@
           "name": "William Hill",
           "home": 2.1,
           "draw": 3.3,
-          "away": 3.4
+          "away": 3.3
         },
         {
           "name": "Betfair",
-          "home": 2.26,
-          "draw": 3.6,
-          "away": 3.4
+          "home": 2.24,
+          "draw": 3.55,
+          "away": 3.45
         },
         {
           "name": "Pinnacle",
@@ -1089,15 +1089,15 @@
         },
         {
           "name": "Betfair",
-          "home": 6.6,
-          "draw": 4.4,
+          "home": 7,
+          "draw": 4.7,
           "away": 1.5
         },
         {
           "name": "Pinnacle",
-          "home": 6.12,
-          "draw": 4.15,
-          "away": 1.49
+          "home": 6.2,
+          "draw": 4.17,
+          "away": 1.48
         }
       ]
     },
@@ -1141,7 +1141,7 @@
           "name": "Betfair",
           "home": 1.35,
           "draw": 5.8,
-          "away": 9.4
+          "away": 9.6
         },
         {
           "name": "Pinnacle",
@@ -1166,12 +1166,12 @@
           "name": "Betfair",
           "home": 6.6,
           "draw": 4.1,
-          "away": 1.57
+          "away": 1.58
         },
         {
           "name": "Pinnacle",
-          "home": 6.23,
-          "draw": 3.66,
+          "home": 6.25,
+          "draw": 3.67,
           "away": 1.56
         }
       ]
@@ -1190,8 +1190,8 @@
         {
           "name": "Betfair",
           "home": 1.51,
-          "draw": 4.3,
-          "away": 8.6
+          "draw": 4.4,
+          "away": 8.2
         },
         {
           "name": "Pinnacle",
@@ -1214,7 +1214,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.55,
+          "home": 1.56,
           "draw": 4.1,
           "away": 6.6
         },
@@ -1239,15 +1239,15 @@
         },
         {
           "name": "Betfair",
-          "home": 2.26,
+          "home": 2.24,
           "draw": 3.1,
           "away": 3.35
         },
         {
           "name": "Pinnacle",
-          "home": 2.09,
-          "draw": 3.35,
-          "away": 3.45
+          "home": 2.1,
+          "draw": 3.33,
+          "away": 3.44
         }
       ]
     },
@@ -1270,9 +1270,9 @@
         },
         {
           "name": "Marathon Bet",
-          "home": 6.55,
-          "draw": 4.65,
-          "away": 1.42
+          "home": 6.5,
+          "draw": 4.55,
+          "away": 1.43
         }
       ]
     },
@@ -1345,9 +1345,9 @@
         },
         {
           "name": "Marathon Bet",
-          "home": 3.86,
+          "home": 3.82,
           "draw": 3.3,
-          "away": 1.96
+          "away": 1.97
         }
       ]
     },
@@ -1359,7 +1359,7 @@
         {
           "name": "William Hill",
           "home": 15,
-          "draw": 6,
+          "draw": 5.8,
           "away": 1.2
         },
         {
@@ -1396,8 +1396,8 @@
         {
           "name": "Marathon Bet",
           "home": 4.7,
-          "draw": 3.74,
-          "away": 1.69
+          "draw": 3.68,
+          "away": 1.7
         }
       ]
     },
@@ -1514,15 +1514,15 @@
         },
         {
           "name": "Pinnacle",
-          "home": 4.2,
-          "draw": 3.56,
-          "away": 1.81
+          "home": 4.16,
+          "draw": 3.54,
+          "away": 1.83
         },
         {
           "name": "Marathon Bet",
-          "home": 4.35,
-          "draw": 3.6,
-          "away": 1.77
+          "home": 4.33,
+          "draw": 3.58,
+          "away": 1.78
         }
       ]
     },
@@ -1539,15 +1539,15 @@
         },
         {
           "name": "Pinnacle",
-          "home": 1.39,
-          "draw": 4.48,
-          "away": 7.51
+          "home": 1.38,
+          "draw": 4.55,
+          "away": 7.6
         },
         {
           "name": "Marathon Bet",
-          "home": 1.41,
-          "draw": 4.33,
-          "away": 7.6
+          "home": 1.4,
+          "draw": 4.4,
+          "away": 7.7
         }
       ]
     },
@@ -1589,15 +1589,15 @@
         },
         {
           "name": "Pinnacle",
-          "home": 5.22,
-          "draw": 3.89,
-          "away": 1.6
+          "home": 5.15,
+          "draw": 3.86,
+          "away": 1.61
         },
         {
           "name": "Marathon Bet",
-          "home": 5.3,
-          "draw": 3.88,
-          "away": 1.6
+          "home": 5.25,
+          "draw": 3.84,
+          "away": 1.61
         }
       ]
     },
@@ -1609,8 +1609,8 @@
         {
           "name": "William Hill",
           "home": 10,
-          "draw": 5.5,
-          "away": 1.25
+          "draw": 5,
+          "away": 1.29
         },
         {
           "name": "Pinnacle",
@@ -1646,7 +1646,7 @@
         {
           "name": "Marathon Bet",
           "home": 2.22,
-          "draw": 2.97,
+          "draw": 2.98,
           "away": 3.5
         }
       ]
@@ -1696,8 +1696,8 @@
         {
           "name": "Marathon Bet",
           "home": 10,
-          "draw": 5.8,
-          "away": 1.25
+          "draw": 5.6,
+          "away": 1.26
         }
       ]
     },
@@ -1720,8 +1720,8 @@
         },
         {
           "name": "Marathon Bet",
-          "home": 3.48,
-          "draw": 3.22,
+          "home": 3.5,
+          "draw": 3.2,
           "away": 2.11
         }
       ]
@@ -1796,8 +1796,8 @@
         {
           "name": "Marathon Bet",
           "home": 14,
-          "draw": 6.75,
-          "away": 1.17
+          "draw": 6.65,
+          "away": 1.18
         }
       ]
     }
