@@ -203,6 +203,19 @@ body{
   border:1px solid rgba(255,107,107,.45);color:#FF6B6B;font-family:var(--fb);font-weight:700;font-size:10.5px;letter-spacing:.5px}
 .fx-livebadge .dot{width:6px;height:6px;border-radius:50%;background:#FF6B6B;animation:blink 1s infinite}
 
+/* group standings table */
+.st-card{background:var(--glass);border:1px solid var(--glassB);border-radius:13px;padding:4px 10px 6px;margin-top:9px;overflow:hidden}
+.st-table{width:100%;border-collapse:collapse;font-family:var(--fb)}
+.st-table th{font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--faint);text-transform:uppercase;padding:8px 3px;text-align:center}
+.st-table td{font-size:12px;color:var(--ink);padding:8px 3px;text-align:center;border-top:1px solid rgba(255,255,255,.05)}
+.st-table th.tm,.st-table td.tm{text-align:left}
+.st-table td.tm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:118px;font-weight:600}
+.st-table td.tm img{vertical-align:-2px;margin-right:7px;border-radius:2px}
+.st-table .pos{color:var(--faint);font-size:10px;width:18px}
+.st-table td.pts{font-family:var(--fd);font-weight:800;font-size:13px;color:var(--neon)}
+.st-table tr.me td{background:rgba(70,227,154,.07)}
+.st-table tr.me td.tm{color:var(--neon)}
+
 /* overall tournament next-match bar (shown when a team is selected) */
 .next-overall{display:flex;align-items:center;gap:8px;margin:0 0 2px;padding:10px 13px;border-radius:13px;
   background:var(--glass);border:1px solid var(--glassB);font-family:var(--fb);font-weight:500;font-size:11.5px;color:var(--faint);flex-wrap:wrap}
@@ -454,6 +467,9 @@ body{
   <!-- LIST -->
   <div id="listWrap"></div>
 
+  <!-- Group standings for the selected team -->
+  <div id="standings" style="display:none"></div>
+
   <details class="seo">
     <summary id="seoTitle">World Cup 2026 — schedule info &amp; FAQ</summary>
     <div class="seo-body" id="seoBody">
@@ -614,6 +630,11 @@ const MATCHES=RAW.trim().split('\n').map(line=>{
   return{id:+id,utc:new Date(dt),home,away,group,venue,city};
 });
 
+// declared early — used by renderStandings/buildGroupsGrid, which run on the first render()
+const GROUP_NAMES=['Group A','Group B','Group C','Group D','Group E','Group F','Group G','Group H','Group I','Group J','Group K','Group L'];
+const groupTeams={};
+MATCHES.forEach(m=>{if(!GROUP_NAMES.includes(m.group))return;if(!groupTeams[m.group])groupTeams[m.group]=new Set();if(m.home!=='TBD')groupTeams[m.group].add(m.home);if(m.away!=='TBD')groupTeams[m.group].add(m.away);});
+
 let userTZ=Intl.DateTimeFormat().resolvedOptions().timeZone;
 let channel=getChannel(userTZ);
 
@@ -634,6 +655,8 @@ Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según
 Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto',share:'Partilhar',copied:'Link copiado',copyLink:'Copiar link',shareText:'Copa do Mundo 2026 — todos os jogos no seu fuso horário, adicione ao calendário num toque:',oddsExplainL:'Probabilidades calculadas a partir das odds',oddsExplainS:'Calculadas a partir das odds',seoTitle:'Copa do Mundo 2026 — info & FAQ'});
 T.en.toWin='to win the World Cup';T.fr.toWin='de gagner la Coupe du Monde';T.de.toWin='den WM-Titel zu holen';T.it.toWin='di vincere i Mondiali';T.es.toWin='de ganar el Mundial';T.pt.toWin='de vencer a Copa';
 T.en.nextOverall='Next in the tournament';T.fr.nextOverall='Prochain match du tournoi';T.de.nextOverall='Nächstes Turnierspiel';T.it.nextOverall='Prossima partita del torneo';T.es.nextOverall='Próximo partido del torneo';T.pt.nextOverall='Próximo jogo do torneio';
+T.en.standings='Standings';T.fr.standings='Classement';T.de.standings='Tabelle';T.it.standings='Classifica';T.es.standings='Clasificación';T.pt.standings='Classificação';
+T.en.tblHead=['P','W','D','L','+/-','Pts'];T.fr.tblHead=['J','V','N','D','+/-','Pts'];T.de.tblHead=['Sp','S','U','N','+/-','Pkt'];T.it.tblHead=['G','V','N','P','+/-','Pti'];T.es.tblHead=['PJ','G','E','P','+/-','Pts'];T.pt.tblHead=['J','V','E','D','+/-','Pts'];
 
 // Localized FAQ content (visible section). English stays as the static crawler fallback.
 const FAQ={
@@ -892,8 +915,47 @@ function onTeamChange(save){
 
 let nextMatch=null;
 // score lookup: live or final score for a fixture, from the scores feed
-function scoreFor(home,away){
-  return (oddsData.scores||[]).find(s=>oddsKey(s.home,s.away)===oddsKey(home,away))||null;
+// (optional utc: when the same two teams meet twice, pick the score closest to the fixture date)
+function scoreFor(home,away,utc){
+  const list=(oddsData.scores||[]).filter(s=>oddsKey(s.home,s.away)===oddsKey(home,away));
+  if(!list.length)return null;
+  if(!utc||list.length===1)return list[0];
+  return [...list].sort((a,b)=>Math.abs(new Date(a.commence)-utc)-Math.abs(new Date(b.commence)-utc))[0];
+}
+
+// ── GROUP STANDINGS (computed from completed results) ─────────────────────────
+function computeStandings(group){
+  const teams=[...(groupTeams[group]||[])];
+  const st={};teams.forEach(t=>st[t]={team:t,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0});
+  MATCHES.filter(m=>m.group===group).forEach(m=>{
+    const sc=scoreFor(m.home,m.away,m.utc);
+    if(!sc||!sc.completed)return;
+    const h=st[m.home],a=st[m.away];if(!h||!a)return;
+    h.p++;a.p++;h.gf+=sc.hs;h.ga+=sc.as;a.gf+=sc.as;a.ga+=sc.hs;
+    if(sc.hs>sc.as){h.w++;a.l++;h.pts+=3;}
+    else if(sc.hs<sc.as){a.w++;h.l++;a.pts+=3;}
+    else{h.d++;a.d++;h.pts++;a.pts++;}
+  });
+  return Object.values(st).sort((x,y)=>y.pts-x.pts||(y.gf-y.ga)-(x.gf-x.ga)||y.gf-x.gf||teamName(x.team).localeCompare(teamName(y.team),LOCALE));
+}
+
+function renderStandings(){
+  const el=document.getElementById('standings');
+  const team=tSel.value;
+  const group=team?GROUP_NAMES.find(g=>groupTeams[g]&&groupTeams[g].has(team)):null;
+  if(!group){el.style.display='none';el.innerHTML='';return;}
+  const rows=computeStandings(group);
+  const H=tt().tblHead;
+  el.style.display='block';
+  el.innerHTML=`
+  <div class="sec-head" style="margin-top:18px"><span class="sec-name">${tt().standings} — ${groupLabel(group)}</span><span class="sec-rule"></span></div>
+  <div class="st-card"><table class="st-table">
+    <thead><tr><th class="pos">#</th><th class="tm"></th><th>${H[0]}</th><th>${H[1]}</th><th>${H[2]}</th><th>${H[3]}</th><th>${H[4]}</th><th>${H[5]}</th></tr></thead>
+    <tbody>${rows.map((r,i)=>{
+      const gd=r.gf-r.ga;
+      return `<tr class="${r.team===team?'me':''}"><td class="pos">${i+1}</td><td class="tm">${flagImg(r.team,16)}${teamName(r.team)}</td><td>${r.p}</td><td>${r.w}</td><td>${r.d}</td><td>${r.l}</td><td>${gd>0?'+':''}${gd}</td><td class="pts">${r.pts}</td></tr>`;
+    }).join('')}</tbody>
+  </table></div>`;
 }
 // next upcoming match, optionally filtered to a team (includes in-play window)
 function nextUpcoming(team){
@@ -980,6 +1042,7 @@ function render(){
   updateHero();
   updateWinBadge();
   updateOverallBar();
+  renderStandings();
   const teamF=tSel.value;
   document.getElementById('groupsSection').style.display=teamF?'none':'block';
   let matches=MATCHES;
@@ -1004,7 +1067,7 @@ function render(){
     }
     ms.forEach(m=>{
       const isTBD=m.home==='TBD';
-      const sc=isTBD?null:scoreFor(m.home,m.away);
+      const sc=isTBD?null:scoreFor(m.home,m.away,m.utc);
       // right-hand control: FT for finished, LIVE while playing, +Cal otherwise
       const control=sc
         ? (sc.completed
@@ -1142,9 +1205,7 @@ async function loadOdds(){
 }
 
 // ── GROUPS OVERVIEW ──
-const GROUP_NAMES=['Group A','Group B','Group C','Group D','Group E','Group F','Group G','Group H','Group I','Group J','Group K','Group L'];
-const groupTeams={};
-MATCHES.forEach(m=>{if(!GROUP_NAMES.includes(m.group))return;if(!groupTeams[m.group])groupTeams[m.group]=new Set();if(m.home!=='TBD')groupTeams[m.group].add(m.home);if(m.away!=='TBD')groupTeams[m.group].add(m.away);});
+// (GROUP_NAMES + groupTeams are declared near MATCHES, before the first render)
 function buildGroupsGrid(){
   const grid=document.getElementById('groupsGrid');
   grid.innerHTML=GROUP_NAMES.map(g=>{

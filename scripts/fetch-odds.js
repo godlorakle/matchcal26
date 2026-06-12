@@ -167,6 +167,17 @@ async function main() {
     }
   } catch (e) { console.log('Scores fetch skipped:', e.message); }
 
+  // Merge with previously saved scores: the API only returns ~3 days, but standings
+  // need every completed result of the tournament to persist.
+  try {
+    const prev = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'odds.json'), 'utf8')).scores || [];
+    const key = s => `${s.home}__${s.away}__${(s.commence || '').slice(0, 10)}`;
+    const map = new Map(prev.filter(s => s.completed).map(s => [key(s), s]));
+    scores.forEach(s => map.set(key(s), s));
+    scores = [...map.values()];
+    console.log(`Scores after merge with history: ${scores.length}`);
+  } catch (e) { console.log('Score merge skipped:', e.message); }
+
   saveOdds(matches, winner, scores);
 }
 
