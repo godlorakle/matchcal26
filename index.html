@@ -196,6 +196,19 @@ body{
 .fx-tname{font-family:var(--fd);font-weight:800;font-size:13.5px;color:var(--ink);letter-spacing:.2px;line-height:1.08;white-space:normal;overflow-wrap:break-word}
 .fx-side.away .fx-tname{text-align:right}
 .fx-dash{font-family:var(--fb);font-weight:600;font-size:10px;color:var(--faint);flex-shrink:0;margin-top:2px}
+.fx-score{font-family:var(--fd);font-weight:800;font-size:17px;line-height:1;color:var(--yellow);letter-spacing:1px;white-space:nowrap;flex-shrink:0;padding:0 2px}
+.fx-ft{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:7px;border:1px solid var(--glassB);
+  color:var(--faint);font-family:var(--fb);font-weight:700;font-size:10.5px;letter-spacing:.5px}
+.fx-livebadge{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 9px;border-radius:7px;
+  border:1px solid rgba(255,107,107,.45);color:#FF6B6B;font-family:var(--fb);font-weight:700;font-size:10.5px;letter-spacing:.5px}
+.fx-livebadge .dot{width:6px;height:6px;border-radius:50%;background:#FF6B6B;animation:blink 1s infinite}
+
+/* overall tournament next-match bar (shown when a team is selected) */
+.next-overall{display:flex;align-items:center;gap:8px;margin:0 0 2px;padding:10px 13px;border-radius:13px;
+  background:var(--glass);border:1px solid var(--glassB);font-family:var(--fb);font-weight:500;font-size:11.5px;color:var(--faint);flex-wrap:wrap}
+.next-overall .no-match{display:inline-flex;align-items:center;gap:6px;font-family:var(--fd);font-weight:800;font-size:12.5px;color:var(--ink);letter-spacing:.2px}
+.next-overall .no-match img{border-radius:2px}
+.next-overall .no-cd{margin-left:auto;font-family:var(--fd);font-weight:800;font-size:13px;color:var(--yellow);letter-spacing:.5px;white-space:nowrap}
 .fx-odds{display:flex;gap:6px}
 .odd{flex:1;text-align:center;border-radius:9px;padding:6px 4px;background:var(--glass);border:1px solid var(--glassB)}
 .odd.fav{background:rgba(70,227,154,.10);border-color:rgba(70,227,154,.35)}
@@ -429,6 +442,9 @@ body{
   <!-- Tournament-winner probability (separate bar) -->
   <div class="win-badge" id="winBadge" style="display:none"></div>
 
+  <!-- Overall tournament next-match countdown (independent of team) -->
+  <div class="next-overall" id="nextOverall" style="display:none"></div>
+
   <!-- GROUPS OVERVIEW (browse mode only) -->
   <div class="groups" id="groupsSection">
     <div class="sec-head"><span class="sec-name" id="groupsLabel">Groups</span><span class="sec-rule"></span></div>
@@ -617,6 +633,7 @@ Object.assign(T.it,{whoWins:'Chi è il favorito?',basedOn:'Basato sulle quote de
 Object.assign(T.es,{whoWins:'¿Quién tiene más posibilidades?',basedOn:'Según las cuotas de las casas',tooClose:'Demasiado parejo',tossUp:'Reñido',share:'Compartir',copied:'Enlace copiado',copyLink:'Copiar enlace',shareText:'Mundial 2026 — todos los partidos en tu zona horaria, añádelos al calendario con un toque:',oddsExplainL:'Probabilidades calculadas a partir de las cuotas',oddsExplainS:'Calculadas a partir de las cuotas',seoTitle:'Mundial 2026 — info & FAQ'});
 Object.assign(T.pt,{whoWins:'Quem tem mais chances de ganhar?',basedOn:'Com base nas odds das casas',tooClose:'Muito equilibrado',tossUp:'Em aberto',share:'Partilhar',copied:'Link copiado',copyLink:'Copiar link',shareText:'Copa do Mundo 2026 — todos os jogos no seu fuso horário, adicione ao calendário num toque:',oddsExplainL:'Probabilidades calculadas a partir das odds',oddsExplainS:'Calculadas a partir das odds',seoTitle:'Copa do Mundo 2026 — info & FAQ'});
 T.en.toWin='to win the World Cup';T.fr.toWin='de gagner la Coupe du Monde';T.de.toWin='den WM-Titel zu holen';T.it.toWin='di vincere i Mondiali';T.es.toWin='de ganar el Mundial';T.pt.toWin='de vencer a Copa';
+T.en.nextOverall='Next in the tournament';T.fr.nextOverall='Prochain match du tournoi';T.de.nextOverall='Nächstes Turnierspiel';T.it.nextOverall='Prossima partita del torneo';T.es.nextOverall='Próximo partido del torneo';T.pt.nextOverall='Próximo jogo do torneio';
 
 // Localized FAQ content (visible section). English stays as the static crawler fallback.
 const FAQ={
@@ -874,22 +891,58 @@ function onTeamChange(save){
 }
 
 let nextMatch=null;
+// score lookup: live or final score for a fixture, from the scores feed
+function scoreFor(home,away){
+  return (oddsData.scores||[]).find(s=>oddsKey(s.home,s.away)===oddsKey(home,away))||null;
+}
+// next upcoming match, optionally filtered to a team (includes in-play window)
+function nextUpcoming(team){
+  const now=Date.now();
+  return MATCHES.filter(m=>(!team||m.home===team||m.away===team)&&(!team||m.home!=='TBD')&&m.utc.getTime()>now-105*60000)
+    .sort((a,b)=>a.utc-b.utc)[0]||null;
+}
+
 function updateHero(){
   const team=tSel.value;
   const card=document.getElementById('hero');
-  if(!team){card.style.display='none';return;}
-  const now=Date.now();
-  const next=MATCHES.filter(m=>(m.home===team||m.away===team)&&m.home!=='TBD'&&m.utc.getTime()>now-105*60000).sort((a,b)=>a.utc-b.utc)[0];
-  if(!next){card.style.display='none';return;}
+  // with a team: their next match; without: the tournament's next match
+  const next=nextUpcoming(team||null);
+  if(!next){card.style.display='none';nextMatch=null;return;}
   nextMatch=next;card.style.display='block';
-  document.getElementById('heroFlagH').src=flagSrc(next.home,80);
-  document.getElementById('heroFlagA').src=flagSrc(next.away,80);
+  const fH=document.getElementById('heroFlagH'),fA=document.getElementById('heroFlagA');
+  const sH=flagSrc(next.home,80),sA=flagSrc(next.away,80);
+  fH.src=sH;fH.style.display=sH?'':'none';
+  fA.src=sA;fA.style.display=sA?'':'none';
   document.getElementById('heroHome').textContent=teamName(next.home).toUpperCase();
   document.getElementById('heroAway').textContent=teamName(next.away).toUpperCase();
   document.getElementById('heroDate').textContent=`${localDateLabel(next.utc)} · ${localStr(next.utc)}`;
   document.getElementById('heroVenue').textContent=`${next.venue} · ${next.city}, ${countryDisplay(next.city)}`;
   document.getElementById('heroGcal').href=makeGCalURL(next);
   document.getElementById('heroIcal').onclick=()=>downloadICS(next.id);
+}
+
+// slim overall-tournament bar — only when a team is selected and its match differs from the overall next
+let overallNext=null;
+function updateOverallBar(){
+  const el=document.getElementById('nextOverall');
+  const team=tSel.value;
+  overallNext=nextUpcoming(null);
+  if(!team||!overallNext||(nextMatch&&overallNext.id===nextMatch.id)){el.style.display='none';overallNext=team?overallNext:null;return;}
+  el.style.display='flex';
+  el.innerHTML=`<span>${tt().nextOverall}</span>
+    <span class="no-match">${flagImg(overallNext.home,14)}${teamName(overallNext.home)} – ${teamName(overallNext.away)}${flagImg(overallNext.away,14)}</span>
+    <span class="no-cd" id="overallCd"></span>`;
+  tickOverall();
+}
+function tickOverall(){
+  if(!overallNext)return;
+  const el=document.getElementById('overallCd');if(!el)return;
+  const sc=scoreFor(overallNext.home,overallNext.away);
+  const diff=overallNext.utc.getTime()-Date.now();
+  if(diff<=0&&diff>-105*60000){el.textContent=sc?`${sc.hs}–${sc.as} · LIVE`:'LIVE';return;}
+  if(diff<=0){updateOverallBar();return;}
+  const s=Math.floor(diff/1000),d=Math.floor(s/86400),h=Math.floor((s%86400)/3600),mi=Math.floor((s%3600)/60),sec=s%60;
+  el.textContent=d>0?`${d}d ${pad(h)}h ${pad(mi)}m`:`${pad(h)}:${pad(mi)}:${pad(sec)}`;
 }
 
 // Picked team's odds-implied chance to WIN THE TOURNAMENT (separate bar, outright winner market)
@@ -908,11 +961,13 @@ function updateWinBadge(){
 }
 
 function tickCountdown(){
+  tickOverall();
   if(!nextMatch)return;
   const diff=nextMatch.utc.getTime()-Date.now();
   if(diff<=0&&diff>-105*60000){
+    const sc=scoreFor(nextMatch.home,nextMatch.away);
     document.getElementById('heroDate').textContent=tt().live;
-    document.getElementById('heroCd').innerHTML=`<div class="live-now">${tt().kickoffLive}</div>`;return;
+    document.getElementById('heroCd').innerHTML=`<div class="live-now">${sc?`${sc.hs} – ${sc.as} · LIVE`:tt().kickoffLive}</div>`;return;
   }
   if(diff<=0){nextMatch=null;updateHero();render();return;}
   const s=Math.floor(diff/1000);
@@ -924,6 +979,7 @@ function tickCountdown(){
 function render(){
   updateHero();
   updateWinBadge();
+  updateOverallBar();
   const teamF=tSel.value;
   document.getElementById('groupsSection').style.display=teamF?'none':'block';
   let matches=MATCHES;
@@ -948,6 +1004,17 @@ function render(){
     }
     ms.forEach(m=>{
       const isTBD=m.home==='TBD';
+      const sc=isTBD?null:scoreFor(m.home,m.away);
+      // right-hand control: FT for finished, LIVE while playing, +Cal otherwise
+      const control=sc
+        ? (sc.completed
+            ? `<span class="fx-ft">FT</span>`
+            : `<span class="fx-livebadge"><span class="dot"></span>LIVE</span>`)
+        : `<button class="fx-cal" onclick="downloadICS(${m.id})">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+            + Cal
+          </button>`;
+      const centre=sc?`<span class="fx-score">${sc.hs} – ${sc.as}</span>`:`<span class="fx-dash">—</span>`;
       html+=`
       <div class="fx">
         <div class="fx-bar"></div>
@@ -956,18 +1023,15 @@ function render(){
           <div class="fx-main">
             <div class="fx-meta">
               <span class="fx-time"><b>${localStr(m.utc)}</b><span> · ${(m.group.startsWith('Group ')?groupLabel(m.group):tPhase(m.group)).toUpperCase()}</span></span>
-              <button class="fx-cal" onclick="downloadICS(${m.id})">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
-                + Cal
-              </button>
+              ${control}
             </div>
             <div class="fx-teams">
               <div class="fx-side">${flagImg(m.home,22)}<span class="fx-tname">${teamName(m.home).toUpperCase()}</span></div>
-              <span class="fx-dash">—</span>
+              ${centre}
               <div class="fx-side away"><span class="fx-tname">${teamName(m.away).toUpperCase()}</span>${flagImg(m.away,22)}</div>
             </div>
             <div class="fx-venue">${pinSvg}<span>${m.city}, ${countryDisplay(m.city)}</span></div>
-            ${isTBD?'':oddsHtml(m.home,m.away,teamF)}
+            ${(isTBD||sc)?'':oddsHtml(m.home,m.away,teamF)}
           </div>
         </div>
       </div>`;
@@ -1095,6 +1159,7 @@ applyI18n();
 render();
 loadOdds();
 setInterval(tickCountdown,1000);
+setInterval(loadOdds,5*60*1000); // refresh odds + live scores while the page is open
 </script>
 </body>
 </html>

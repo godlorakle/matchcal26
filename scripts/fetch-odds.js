@@ -150,14 +150,32 @@ async function main() {
     }
   } catch (e) { console.log('Outright fetch skipped:', e.message); }
 
-  saveOdds(matches, winner);
+  // ── Scores: live + recently completed matches (same key, /scores endpoint) ──
+  let scores = [];
+  try {
+    const sUrl = `https://api.the-odds-api.com/v4/sports/${wcSport.key}/scores/` +
+      `?apiKey=${API_KEY}&daysFrom=3&dateFormat=iso`;
+    const sRaw = await get(sUrl);
+    if (Array.isArray(sRaw)) {
+      scores = sRaw.filter(g => Array.isArray(g.scores)).map(g => {
+        const home = normalize(g.home_team), away = normalize(g.away_team);
+        const find = n => g.scores.find(s => normalize(s.name) === n)?.score;
+        const hs = find(home), as = find(away);
+        return { home, away, commence: g.commence_time, completed: !!g.completed, hs, as };
+      }).filter(s => s.hs != null && s.as != null);
+      console.log(`Got scores for ${scores.length} matches (live + completed)`);
+    }
+  } catch (e) { console.log('Scores fetch skipped:', e.message); }
+
+  saveOdds(matches, winner, scores);
 }
 
-function saveOdds(matches, winner = {}) {
+function saveOdds(matches, winner = {}, scores = []) {
   const out = {
     updated: new Date().toISOString(),
     matches,
     winner,
+    scores,
   };
   const outPath = path.join(__dirname, '..', 'odds.json');
   fs.writeFileSync(outPath, JSON.stringify(out, null, 2));
