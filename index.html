@@ -216,9 +216,18 @@ body{
 .st-table tr.me td{background:rgba(70,227,154,.07)}
 .st-table tr.me td.tm{color:var(--neon)}
 
+/* back bar (returns from a group view opened via the overall bar) */
+.back-bar{display:flex;align-items:center;gap:7px;margin:0 0 10px;padding:8px 13px;border-radius:11px;width:100%;
+  background:rgba(70,227,154,.10);border:1px solid rgba(70,227,154,.32);cursor:pointer;
+  font-family:var(--fb);font-weight:700;font-size:12px;color:var(--neon);transition:opacity .15s}
+.back-bar:hover{opacity:.85}
+
 /* overall tournament next-match bar (shown when a team is selected) */
 .next-overall{display:flex;align-items:center;gap:8px;margin:0 0 2px;padding:10px 13px;border-radius:13px;
-  background:var(--glass);border:1px solid var(--glassB);font-family:var(--fb);font-weight:500;font-size:11.5px;color:var(--faint);flex-wrap:wrap}
+  background:var(--glass);border:1px solid var(--glassB);font-family:var(--fb);font-weight:500;font-size:11.5px;color:var(--faint);flex-wrap:wrap;
+  cursor:pointer;transition:border-color .15s}
+.next-overall:hover{border-color:rgba(70,227,154,.4)}
+.next-overall .no-go{color:var(--neon);font-family:var(--fd);font-weight:800;font-size:14px;line-height:1;margin-left:2px}
 .next-overall .no-match{display:inline-flex;align-items:center;gap:6px;font-family:var(--fd);font-weight:800;font-size:12.5px;color:var(--ink);letter-spacing:.2px}
 .next-overall .no-match img{border-radius:2px}
 .next-overall .no-cd{margin-left:auto;font-family:var(--fd);font-weight:800;font-size:13px;color:var(--yellow);letter-spacing:.5px;white-space:nowrap}
@@ -374,6 +383,9 @@ body{
 </div>
 
 <div class="wrap">
+  <!-- back from group view -->
+  <button class="back-bar" id="backBar" style="display:none" onclick="goBack()">←&nbsp;<span id="backLabel"></span></button>
+
   <!-- HERO -->
   <div id="hero" class="hero" style="display:none">
     <svg class="hero-pitch" viewBox="0 0 340 220" preserveAspectRatio="none">
@@ -657,6 +669,7 @@ T.en.toWin='to win the World Cup';T.fr.toWin='de gagner la Coupe du Monde';T.de.
 T.en.nextOverall='Next in the tournament';T.fr.nextOverall='Prochain match du tournoi';T.de.nextOverall='Nächstes Turnierspiel';T.it.nextOverall='Prossima partita del torneo';T.es.nextOverall='Próximo partido del torneo';T.pt.nextOverall='Próximo jogo do torneio';
 T.en.standings='Standings';T.fr.standings='Classement';T.de.standings='Tabelle';T.it.standings='Classifica';T.es.standings='Clasificación';T.pt.standings='Classificação';
 T.en.tblHead=['P','W','D','L','+/-','Pts'];T.fr.tblHead=['J','V','N','D','+/-','Pts'];T.de.tblHead=['Sp','S','U','N','+/-','Pkt'];T.it.tblHead=['G','V','N','P','+/-','Pti'];T.es.tblHead=['PJ','G','E','P','+/-','Pts'];T.pt.tblHead=['J','V','E','D','+/-','Pts'];
+T.en.back='Back';T.fr.back='Retour';T.de.back='Zurück';T.it.back='Indietro';T.es.back='Volver';T.pt.back='Voltar';
 
 // Localized FAQ content (visible section). English stays as the static crawler fallback.
 const FAQ={
@@ -899,7 +912,7 @@ teams.forEach(t=>{const o=document.createElement('option');o.value=t;o.textConte
 
 function onTeamChange(save){
   const team=tSel.value;
-  if(save)PREFS.set('team',team);
+  if(save){PREFS.set('team',team);prevView=null;document.getElementById('backBar').style.display='none';}
   const chip=document.getElementById('teamChip');
   const pf=document.getElementById('chipFlag'),pt=document.getElementById('chipTeamText');
   if(team&&FLAGS[team]){pf.src=flagSrc(team,18);pf.classList.add('visible');}
@@ -943,7 +956,9 @@ function computeStandings(group){
 function renderStandings(){
   const el=document.getElementById('standings');
   const team=tSel.value;
-  const group=team?GROUP_NAMES.find(g=>groupTeams[g]&&groupTeams[g].has(team)):null;
+  // team selected → their group; group view (browse + group filter) → that group
+  const group=team?GROUP_NAMES.find(g=>groupTeams[g]&&groupTeams[g].has(team))
+                  :(GROUP_NAMES.includes(activeGroup)?activeGroup:null);
   if(!group){el.style.display='none';el.innerHTML='';return;}
   const rows=computeStandings(group);
   const H=tt().tblHead;
@@ -990,12 +1005,37 @@ function updateOverallBar(){
   const el=document.getElementById('nextOverall');
   const team=tSel.value;
   overallNext=nextUpcoming(null);
-  if(!team||!overallNext||(nextMatch&&overallNext.id===nextMatch.id)){el.style.display='none';overallNext=team?overallNext:null;return;}
+  if(!team||!overallNext||(nextMatch&&overallNext.id===nextMatch.id)){el.style.display='none';el.onclick=null;overallNext=team?overallNext:null;return;}
   el.style.display='flex';
   el.innerHTML=`<span>${tt().nextOverall}</span>
     <span class="no-match">${flagImg(overallNext.home,14)}${teamName(overallNext.home)} – ${teamName(overallNext.away)}${flagImg(overallNext.away,14)}</span>
-    <span class="no-cd" id="overallCd"></span>`;
+    <span class="no-cd" id="overallCd"></span><span class="no-go">›</span>`;
+  const grp=overallNext.group;
+  el.onclick=()=>openGroupView(grp);
   tickOverall();
+}
+
+// ── group view navigation (from the overall bar) with back-to-previous ────────
+let prevView=null;
+function openGroupView(group){
+  prevView={team:tSel.value,group:activeGroup,scroll:window.scrollY};
+  tSel.value='';
+  activeGroup=group;
+  buildGroupsGrid();
+  onTeamChange(false); // re-renders everything; no pref overwrite
+  document.getElementById('backLabel').textContent=tt().back+(prevView.team?' · '+teamName(prevView.team):'');
+  document.getElementById('backBar').style.display='flex';
+  window.scrollTo(0,0);
+}
+function goBack(){
+  if(!prevView)return;
+  const v=prevView;prevView=null;
+  document.getElementById('backBar').style.display='none';
+  tSel.value=v.team;
+  activeGroup=v.group;
+  buildGroupsGrid();
+  onTeamChange(false);
+  window.scrollTo(0,v.scroll||0);
 }
 function tickOverall(){
   if(!overallNext)return;
