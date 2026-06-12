@@ -919,8 +919,9 @@ let nextMatch=null;
 function scoreFor(home,away,utc){
   const list=(oddsData.scores||[]).filter(s=>oddsKey(s.home,s.away)===oddsKey(home,away));
   if(!list.length)return null;
-  if(!utc||list.length===1)return list[0];
-  return [...list].sort((a,b)=>Math.abs(new Date(a.commence)-utc)-Math.abs(new Date(b.commence)-utc))[0];
+  const pick=(!utc||list.length===1)?list[0]
+    :[...list].sort((a,b)=>Math.abs(new Date(a.commence)-utc)-Math.abs(new Date(b.commence)-utc))[0];
+  return {...pick,hs:+pick.hs,as:+pick.as}; // scores may arrive as strings
 }
 
 // ── GROUP STANDINGS (computed from completed results) ─────────────────────────

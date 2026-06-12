@@ -161,8 +161,10 @@ async function main() {
         const home = normalize(g.home_team), away = normalize(g.away_team);
         const find = n => g.scores.find(s => normalize(s.name) === n)?.score;
         const hs = find(home), as = find(away);
-        return { home, away, commence: g.commence_time, completed: !!g.completed, hs, as };
-      }).filter(s => s.hs != null && s.as != null);
+        // API returns scores as strings — store as numbers
+        return { home, away, commence: g.commence_time, completed: !!g.completed,
+                 hs: hs != null ? +hs : null, as: as != null ? +as : null };
+      }).filter(s => s.hs != null && s.as != null && !isNaN(s.hs) && !isNaN(s.as));
       console.log(`Got scores for ${scores.length} matches (live + completed)`);
     }
   } catch (e) { console.log('Scores fetch skipped:', e.message); }
@@ -170,7 +172,8 @@ async function main() {
   // Merge with previously saved scores: the API only returns ~3 days, but standings
   // need every completed result of the tournament to persist.
   try {
-    const prev = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'odds.json'), 'utf8')).scores || [];
+    const prev = (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'odds.json'), 'utf8')).scores || [])
+      .map(s => ({ ...s, hs: +s.hs, as: +s.as })); // older entries may still be strings
     const key = s => `${s.home}__${s.away}__${(s.commence || '').slice(0, 10)}`;
     const map = new Map(prev.filter(s => s.completed).map(s => [key(s), s]));
     scores.forEach(s => map.set(key(s), s));
