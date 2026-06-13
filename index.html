@@ -165,6 +165,29 @@ body{
 .sec-name{font-family:var(--fd);font-weight:800;font-size:14px;letter-spacing:1px;color:var(--ink);white-space:nowrap;text-transform:uppercase}
 .sec-rule{flex:1;height:1px;background:var(--glassB)}
 .sec-count{font-family:var(--fb);font-weight:600;font-size:11.5px;color:var(--neon);white-space:nowrap}
+/* knockout overview */
+.roadto{margin:10px 0 2px;border:1px solid var(--glassB);border-radius:14px;background:var(--glass);overflow:hidden}
+.roadto>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 14px}
+.roadto>summary::-webkit-details-marker{display:none}
+.roadto-title{font-family:var(--fd);font-weight:800;font-size:13px;letter-spacing:.8px;color:var(--ink);text-transform:uppercase}
+.roadto-range{font-family:var(--fb);font-weight:600;font-size:9.5px;color:var(--faint);margin-left:auto;white-space:nowrap}
+.roadto-car{color:var(--faint);flex-shrink:0;transition:transform .2s}
+.roadto[open] .roadto-car{transform:rotate(180deg)}
+.roadto-body{padding:0 14px 14px;display:flex;flex-direction:column;gap:6px}
+.ko-row{display:flex;align-items:stretch;gap:9px}
+.ko-bar{width:3px;border-radius:2px;flex-shrink:0}
+.ko-card{flex:1;background:var(--glass);border:1px solid var(--glassB);border-radius:11px;padding:10px 12px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:border-color .15s,background .15s}
+.ko-card:hover{border-color:rgba(70,227,154,.4);background:rgba(255,255,255,.08)}
+.ko-card:active{transform:scale(.99)}
+@keyframes secFlash{0%{background:rgba(70,227,154,.16)}100%{background:transparent}}
+.sec-head.flash{animation:secFlash 1.1s ease-out;border-radius:8px}
+.ko-name{font-family:var(--fb);font-weight:700;font-size:12.5px;color:var(--ink)}
+.ko-sub{font-family:var(--fb);font-weight:500;font-size:9px;color:var(--faint);margin-top:2px;letter-spacing:.3px}
+.ko-count{font-family:var(--fb);font-weight:700;font-size:9.5px;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.ko-link{display:flex;justify-content:center;color:rgba(234,246,240,.2)}
+.ko-trophy{font-size:18px;line-height:1;flex-shrink:0}
+.ko-final .ko-card{border-color:rgba(70,227,154,.35);background:rgba(70,227,154,.10)}
+.ko-final .ko-name{font-family:var(--fd);font-weight:800;font-size:14px;letter-spacing:.5px}
 
 /* ── FIXTURE CARD ── */
 .add-all{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;
@@ -470,6 +493,16 @@ body{
   <!-- Overall tournament next-match countdown (independent of team) -->
   <div class="next-overall" id="nextOverall" style="display:none"></div>
 
+  <!-- KNOCKOUT OVERVIEW (collapsed by default) -->
+  <details class="roadto" id="roadto">
+    <summary>
+      <span class="roadto-title" id="roadtoTitle">Road to the final</span>
+      <span class="roadto-range" id="roadtoRange"></span>
+      <svg class="roadto-car" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="roadto-body" id="roadtoBody"></div>
+  </details>
+
   <!-- GROUPS OVERVIEW (browse mode only) -->
   <div class="groups" id="groupsSection">
     <div class="sec-head"><span class="sec-name" id="groupsLabel">Groups</span><span class="sec-rule"></span></div>
@@ -652,12 +685,12 @@ let channel=getChannel(userTZ);
 
 // ── i18n ──────────────────────────────────────────────────────────────────────
 const T={
- en:{yourTeam:'Your team',allTeams:'All teams',timezone:'Timezone',nextMatch:'NEXT MATCH',days:'DAYS',hrs:'HRS',min:'MIN',sec:'SEC',groups:'Groups','Group Stage':'Group Stage','Round of 32':'Round of 32','Round of 16':'Round of 16','Quarter-final':'Quarter-finals','Semi-final':'Semi-finals','Third Place':'Third place','Final':'Final',group:'Group',matches:'matches',match:'match',showOdds:"Show bookmakers' odds",hideOdds:"Hide bookmakers' odds",draw:'Draw',bookmakers:"Bookmakers' odds",live:'🔴 LIVE NOW',kickoffLive:'KICK-OFF · LIVE NOW',notAffiliated:'Not affiliated with FIFA',oddsUpdated:'odds updated',justNow:'just now',minAgo:' min ago',hrAgo:'h ago',addedOne:'✓ Added to Apple / Outlook Calendar',noMatches:'No matches for this selection.',addAll:(n,t)=>`Add all ${n} ${t} matches to calendar`,addedAll:(n,t)=>`✓ Added all ${n} ${t} group matches`},
- fr:{yourTeam:'Votre équipe',allTeams:'Toutes les équipes',timezone:'Fuseau',nextMatch:'PROCHAIN MATCH',days:'JOURS',hrs:'H',min:'MIN',sec:'SEC',groups:'Groupes','Group Stage':'Phase de groupes','Round of 32':'16es de finale','Round of 16':'8es de finale','Quarter-final':'Quarts de finale','Semi-final':'Demi-finales','Third Place':'Petite finale','Final':'Finale',group:'Groupe',matches:'matchs',match:'match',showOdds:'Voir les cotes',hideOdds:'Masquer les cotes',draw:'Nul',bookmakers:'Cotes des bookmakers',live:'🔴 EN DIRECT',kickoffLive:'COUP D’ENVOI · EN DIRECT',notAffiliated:'Non affilié à la FIFA',oddsUpdated:'cotes mises à jour il y a',justNow:"à l'instant",minAgo:' min',hrAgo:' h',addedOne:'✓ Ajouté au calendrier',noMatches:'Aucun match pour cette sélection.',addAll:(n,t)=>`Ajouter les ${n} matchs de ${t} au calendrier`,addedAll:(n,t)=>`✓ ${n} matchs de groupe de ${t} ajoutés`},
- de:{yourTeam:'Dein Team',allTeams:'Alle Teams',timezone:'Zeitzone',nextMatch:'NÄCHSTES SPIEL',days:'TAGE',hrs:'STD',min:'MIN',sec:'SEK',groups:'Gruppen','Group Stage':'Gruppenphase','Round of 32':'Sechzehntelfinale','Round of 16':'Achtelfinale','Quarter-final':'Viertelfinale','Semi-final':'Halbfinale','Third Place':'Spiel um Platz 3','Final':'Finale',group:'Gruppe',matches:'Spiele',match:'Spiel',showOdds:'Wettquoten anzeigen',hideOdds:'Wettquoten ausblenden',draw:'Unent.',bookmakers:'Wettquoten',live:'🔴 LIVE',kickoffLive:'ANPFIFF · LIVE',notAffiliated:'Nicht mit der FIFA verbunden',oddsUpdated:'Quoten aktualisiert vor',justNow:'gerade eben',minAgo:' Min',hrAgo:' Std',addedOne:'✓ Zum Kalender hinzugefügt',noMatches:'Keine Spiele für diese Auswahl.',addAll:(n,t)=>`Alle ${n} ${t}-Spiele zum Kalender hinzufügen`,addedAll:(n,t)=>`✓ Alle ${n} ${t}-Gruppenspiele hinzugefügt`},
- it:{yourTeam:'La tua squadra',allTeams:'Tutte le squadre',timezone:'Fuso orario',nextMatch:'PROSSIMA PARTITA',days:'GIORNI',hrs:'ORE',min:'MIN',sec:'SEC',groups:'Gironi','Group Stage':'Fase a gironi','Round of 32':'Sedicesimi','Round of 16':'Ottavi','Quarter-final':'Quarti di finale','Semi-final':'Semifinali','Third Place':'Finale 3° posto','Final':'Finale',group:'Girone',matches:'partite',match:'partita',showOdds:'Mostra quote',hideOdds:'Nascondi quote',draw:'Pareggio',bookmakers:'Quote dei bookmaker',live:'🔴 IN DIRETTA',kickoffLive:'FISCHIO D’INIZIO · LIVE',notAffiliated:'Non affiliato alla FIFA',oddsUpdated:'quote aggiornate',justNow:'adesso',minAgo:' min fa',hrAgo:' h fa',addedOne:'✓ Aggiunto al calendario',noMatches:'Nessuna partita per questa selezione.',addAll:(n,t)=>`Aggiungi le ${n} partite di ${t} al calendario`,addedAll:(n,t)=>`✓ Aggiunte ${n} partite del girone di ${t}`},
- es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`},
- pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`},
+ en:{yourTeam:'Your team',allTeams:'All teams',timezone:'Timezone',nextMatch:'NEXT MATCH',days:'DAYS',hrs:'HRS',min:'MIN',sec:'SEC',groups:'Groups','Group Stage':'Group Stage','Round of 32':'Round of 32','Round of 16':'Round of 16','Quarter-final':'Quarter-finals','Semi-final':'Semi-finals','Third Place':'Third place','Final':'Final',group:'Group',matches:'matches',match:'match',showOdds:"Show bookmakers' odds",hideOdds:"Hide bookmakers' odds",draw:'Draw',bookmakers:"Bookmakers' odds",live:'🔴 LIVE NOW',kickoffLive:'KICK-OFF · LIVE NOW',notAffiliated:'Not affiliated with FIFA',oddsUpdated:'odds updated',justNow:'just now',minAgo:' min ago',hrAgo:'h ago',addedOne:'✓ Added to Apple / Outlook Calendar',noMatches:'No matches for this selection.',addAll:(n,t)=>`Add all ${n} ${t} matches to calendar`,addedAll:(n,t)=>`✓ Added all ${n} ${t} group matches`,roadTo:'Road to the final'},
+ fr:{yourTeam:'Votre équipe',allTeams:'Toutes les équipes',timezone:'Fuseau',nextMatch:'PROCHAIN MATCH',days:'JOURS',hrs:'H',min:'MIN',sec:'SEC',groups:'Groupes','Group Stage':'Phase de groupes','Round of 32':'16es de finale','Round of 16':'8es de finale','Quarter-final':'Quarts de finale','Semi-final':'Demi-finales','Third Place':'Petite finale','Final':'Finale',group:'Groupe',matches:'matchs',match:'match',showOdds:'Voir les cotes',hideOdds:'Masquer les cotes',draw:'Nul',bookmakers:'Cotes des bookmakers',live:'🔴 EN DIRECT',kickoffLive:'COUP D’ENVOI · EN DIRECT',notAffiliated:'Non affilié à la FIFA',oddsUpdated:'cotes mises à jour il y a',justNow:"à l'instant",minAgo:' min',hrAgo:' h',addedOne:'✓ Ajouté au calendrier',noMatches:'Aucun match pour cette sélection.',addAll:(n,t)=>`Ajouter les ${n} matchs de ${t} au calendrier`,addedAll:(n,t)=>`✓ ${n} matchs de groupe de ${t} ajoutés`,roadTo:'La route vers la finale'},
+ de:{yourTeam:'Dein Team',allTeams:'Alle Teams',timezone:'Zeitzone',nextMatch:'NÄCHSTES SPIEL',days:'TAGE',hrs:'STD',min:'MIN',sec:'SEK',groups:'Gruppen','Group Stage':'Gruppenphase','Round of 32':'Sechzehntelfinale','Round of 16':'Achtelfinale','Quarter-final':'Viertelfinale','Semi-final':'Halbfinale','Third Place':'Spiel um Platz 3','Final':'Finale',group:'Gruppe',matches:'Spiele',match:'Spiel',showOdds:'Wettquoten anzeigen',hideOdds:'Wettquoten ausblenden',draw:'Unent.',bookmakers:'Wettquoten',live:'🔴 LIVE',kickoffLive:'ANPFIFF · LIVE',notAffiliated:'Nicht mit der FIFA verbunden',oddsUpdated:'Quoten aktualisiert vor',justNow:'gerade eben',minAgo:' Min',hrAgo:' Std',addedOne:'✓ Zum Kalender hinzugefügt',noMatches:'Keine Spiele für diese Auswahl.',addAll:(n,t)=>`Alle ${n} ${t}-Spiele zum Kalender hinzufügen`,addedAll:(n,t)=>`✓ Alle ${n} ${t}-Gruppenspiele hinzugefügt`,roadTo:'Der Weg zum Finale'},
+ it:{yourTeam:'La tua squadra',allTeams:'Tutte le squadre',timezone:'Fuso orario',nextMatch:'PROSSIMA PARTITA',days:'GIORNI',hrs:'ORE',min:'MIN',sec:'SEC',groups:'Gironi','Group Stage':'Fase a gironi','Round of 32':'Sedicesimi','Round of 16':'Ottavi','Quarter-final':'Quarti di finale','Semi-final':'Semifinali','Third Place':'Finale 3° posto','Final':'Finale',group:'Girone',matches:'partite',match:'partita',showOdds:'Mostra quote',hideOdds:'Nascondi quote',draw:'Pareggio',bookmakers:'Quote dei bookmaker',live:'🔴 IN DIRETTA',kickoffLive:'FISCHIO D’INIZIO · LIVE',notAffiliated:'Non affiliato alla FIFA',oddsUpdated:'quote aggiornate',justNow:'adesso',minAgo:' min fa',hrAgo:' h fa',addedOne:'✓ Aggiunto al calendario',noMatches:'Nessuna partita per questa selezione.',addAll:(n,t)=>`Aggiungi le ${n} partite di ${t} al calendario`,addedAll:(n,t)=>`✓ Aggiunte ${n} partite del girone di ${t}`,roadTo:'La strada verso la finale'},
+ es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`,roadTo:'Camino a la final'},
+ pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`,roadTo:'Caminho até a final'},
 };
 Object.assign(T.en,{whoWins:"Who's most likely to win?",basedOn:"Based on bookmakers' odds",tooClose:'Too close to call',tossUp:'Toss-up',share:'Share',copied:'Link copied',copyLink:'Copy link',shareText:'World Cup 2026 — every match in your timezone, add to your calendar in one tap:',oddsExplainL:"Probabilities calculated from bookmakers' odds",oddsExplainS:"Calculated from bookmakers' odds",seoTitle:'World Cup 2026 — schedule info & FAQ'});
 Object.assign(T.fr,{whoWins:'Qui a le plus de chances de gagner ?',basedOn:"D'après les cotes des bookmakers",tooClose:'Trop serré pour trancher',tossUp:'Indécis',share:'Partager',copied:'Lien copié',copyLink:'Copier le lien',shareText:'Coupe du Monde 2026 — tous les matchs à ton fuseau horaire, à ajouter au calendrier en un clic :',oddsExplainL:'Probabilités calculées à partir des cotes des bookmakers',oddsExplainS:'Calculées à partir des cotes des bookmakers',seoTitle:'Coupe du Monde 2026 — infos & FAQ'});
@@ -795,7 +828,7 @@ if(!TZ_LIST.some(t=>t.tz===detected)) TZ_LIST.unshift({tz:detected,label:`⚙️
 TZ_LIST.forEach(({tz,label})=>{const o=document.createElement('option');o.value=tz;o.textContent=`${label}  (${utcLabel(tz)})`;if(tz===detected)o.selected=true;tzSel.appendChild(o);});
 channel=getChannel(userTZ);
 function updateTzPill(){document.getElementById('tzPill').textContent=utcLabel(userTZ);}
-function onTzChange(){userTZ=tzSel.value;channel=getChannel(userTZ);PREFS.set('tz',userTZ);updateTzPill();render();}
+function onTzChange(){userTZ=tzSel.value;channel=getChannel(userTZ);PREFS.set('tz',userTZ);updateTzPill();buildRoadToFinal();render();}
 updateTzPill();
 
 function updateFooter(){
@@ -860,7 +893,7 @@ document.addEventListener('click',e=>{const m=document.getElementById('shareMenu
 function setLang(l){
   if(!SUPPORTED.includes(l))l='en';
   LANG=l;LOCALE=LOCALES[l];
-  applyI18n();buildGroupsGrid();render();
+  applyI18n();buildGroupsGrid();buildRoadToFinal();render();
 }
 function onLangChange(){const l=document.getElementById('langSelect').value;PREFS.set('lang',l);setLang(l);}
 
@@ -1099,7 +1132,7 @@ function render(){
   ['Group Stage',...KO].forEach(phase=>{
     const ms=sec[phase];if(!ms)return;
     const cnt=`${ms.length} ${ms.length>1?tt().matches:tt().match}`;
-    html+=`<div class="sec-head" style="margin-top:18px"><span class="sec-name">${tPhase(phase)}</span><span class="sec-rule"></span><span class="sec-count">${cnt}</span></div>`;
+    html+=`<div class="sec-head" id="sec-${phase.replace(/\s+/g,'-')}" style="margin-top:18px;scroll-margin-top:12px"><span class="sec-name">${tPhase(phase)}</span><span class="sec-rule"></span><span class="sec-count">${cnt}</span></div>`;
     if(phase==='Group Stage'&&teamF){
       html+=`<button class="add-all" onclick="downloadAllICS()">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
@@ -1247,6 +1280,58 @@ async function loadOdds(){
 
 // ── GROUPS OVERVIEW ──
 // (GROUP_NAMES + groupTeams are declared near MATCHES, before the first render)
+// ── KNOCKOUT OVERVIEW ──
+const KO_OVERVIEW=[
+  {key:'Round of 32',  bar:'var(--neon)',   tint:'rgba(70,227,154,.14)',  txt:'var(--neon)'},
+  {key:'Round of 16',  bar:'var(--lime)',   tint:'rgba(199,249,75,.14)',  txt:'var(--lime)'},
+  {key:'Quarter-final',bar:'var(--yellow)', tint:'rgba(255,225,77,.14)',  txt:'var(--yellow)'},
+  {key:'Semi-final',   bar:'var(--amber)',  tint:'rgba(255,184,77,.14)',  txt:'var(--amber)'},
+  {key:'Third Place',  bar:'rgba(234,246,240,.3)', tint:'rgba(255,255,255,.06)', txt:'var(--soft)'},
+  {key:'Final',        bar:'var(--neon)',   tint:'rgba(70,227,154,.14)',  txt:'var(--neon)'},
+];
+function koRange(ms){
+  const ds=ms.map(m=>m.utc).sort((a,b)=>a-b);
+  const a=ds[0],b=ds[ds.length-1];
+  const fa=`${localMon(a)} ${localDay(a)}`;
+  if(localMon(a)===localMon(b)&&localDay(a)===localDay(b))return fa;
+  return `${fa} – ${localMon(b)} ${localDay(b)}`;
+}
+const koChev='<svg class="ko-link" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+function buildRoadToFinal(){
+  document.getElementById('roadtoTitle').textContent=tt().roadTo;
+  const body=document.getElementById('roadtoBody');
+  let html='',allKO=[];
+  KO_OVERVIEW.forEach((p,i)=>{
+    const ms=MATCHES.filter(m=>m.group===p.key);
+    if(!ms.length)return;
+    allKO=allKO.concat(ms);
+    const isFinal=p.key==='Final';
+    const cnt=`${ms.length} ${ms.length>1?tt().matches:tt().match}`;
+    let sub=koRange(ms);
+    if(isFinal||p.key==='Third Place')sub+=` · ${ms[0].city}`;
+    if(i>0)html+=koChev;
+    html+=`<div class="ko-row${isFinal?' ko-final':''}">
+      <div class="ko-bar" style="background:${p.bar}"></div>
+      <div class="ko-card" onclick="jumpToPhase('${p.key}')">
+        ${isFinal?'<span class="ko-trophy">🏆</span>':''}
+        <div style="flex:1;min-width:0">
+          <div class="ko-name">${tPhase(p.key)}</div>
+          <div class="ko-sub">${sub}</div>
+        </div>
+        <span class="ko-count" style="background:${p.tint};color:${p.txt}">${cnt}</span>
+      </div>
+    </div>`;
+  });
+  body.innerHTML=html;
+  document.getElementById('roadtoRange').textContent=allKO.length?koRange(allKO).toUpperCase():'';
+}
+function jumpToPhase(key){
+  const el=document.getElementById('sec-'+key.replace(/\s+/g,'-'));
+  if(!el)return;
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+  el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');
+}
+
 function buildGroupsGrid(){
   const grid=document.getElementById('groupsGrid');
   grid.innerHTML=GROUP_NAMES.map(g=>{
@@ -1256,6 +1341,7 @@ function buildGroupsGrid(){
 }
 function onGroupClick(group){activeGroup=activeGroup===group?null:group;buildGroupsGrid();render();}
 buildGroupsGrid();
+buildRoadToFinal();
 
 applyI18n();
 render();
