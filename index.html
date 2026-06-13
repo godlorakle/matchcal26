@@ -195,6 +195,12 @@ body{
 .ko-pos-btn{font-family:var(--fb);font-size:11px;font-weight:700;color:var(--soft);background:var(--glass);border:1px solid var(--glassB);border-radius:8px;padding:3px 10px;cursor:pointer;transition:all .15s}
 .ko-pos-btn:hover{border-color:rgba(70,227,154,.4)}
 .ko-pos-btn.on{background:var(--neon);color:var(--on-accent);border-color:var(--neon)}
+.ko-card.ko-static{cursor:default}
+.ko-card.ko-static:hover{border-color:var(--glassB);background:var(--glass)}
+.ko-note{font-family:var(--fb);font-size:9.5px;font-weight:500;color:var(--faint);line-height:1.4;padding:2px 2px 0}
+.ko-addpath{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;margin-top:4px;padding:11px;border:none;border-radius:12px;background:var(--neon);color:var(--on-accent);font-family:var(--fd);font-weight:800;font-size:12px;letter-spacing:.3px;cursor:pointer}
+.ko-addpath:active{transform:scale(.99)}
+.ko-addpath svg{flex-shrink:0}
 .ko-mtag{font-family:var(--fb);font-size:8px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--on-accent);background:var(--neon);border-radius:10px;padding:2px 6px;white-space:nowrap;flex-shrink:0}
 .ko-name{font-family:var(--fb);font-weight:700;font-size:12.5px;color:var(--ink)}
 .ko-sub{font-family:var(--fb);font-weight:500;font-size:9px;color:var(--faint);margin-top:2px;letter-spacing:.3px}
@@ -701,12 +707,12 @@ let channel=getChannel(userTZ);
 
 // ── i18n ──────────────────────────────────────────────────────────────────────
 const T={
- en:{yourTeam:'Your team',allTeams:'All teams',timezone:'Timezone',nextMatch:'NEXT MATCH',days:'DAYS',hrs:'HRS',min:'MIN',sec:'SEC',groups:'Groups','Group Stage':'Group Stage','Round of 32':'Round of 32','Round of 16':'Round of 16','Quarter-final':'Quarter-finals','Semi-final':'Semi-finals','Third Place':'Third place','Final':'Final',group:'Group',matches:'matches',match:'match',showOdds:"Show bookmakers' odds",hideOdds:"Hide bookmakers' odds",draw:'Draw',bookmakers:"Bookmakers' odds",live:'🔴 LIVE NOW',kickoffLive:'KICK-OFF · LIVE NOW',notAffiliated:'Not affiliated with FIFA',oddsUpdated:'odds updated',justNow:'just now',minAgo:' min ago',hrAgo:'h ago',addedOne:'✓ Added to Apple / Outlook Calendar',noMatches:'No matches for this selection.',addAll:(n,t)=>`Add all ${n} ${t} matches to calendar`,addedAll:(n,t)=>`✓ Added all ${n} ${t} group matches`,roadTo:'Road to the final',seedW:'1st',seedR:'2nd',seedT:'3rd',seedL:'Loser',finishes:'finishes'},
- fr:{yourTeam:'Votre équipe',allTeams:'Toutes les équipes',timezone:'Fuseau',nextMatch:'PROCHAIN MATCH',days:'JOURS',hrs:'H',min:'MIN',sec:'SEC',groups:'Groupes','Group Stage':'Phase de groupes','Round of 32':'16es de finale','Round of 16':'8es de finale','Quarter-final':'Quarts de finale','Semi-final':'Demi-finales','Third Place':'Petite finale','Final':'Finale',group:'Groupe',matches:'matchs',match:'match',showOdds:'Voir les cotes',hideOdds:'Masquer les cotes',draw:'Nul',bookmakers:'Cotes des bookmakers',live:'🔴 EN DIRECT',kickoffLive:'COUP D’ENVOI · EN DIRECT',notAffiliated:'Non affilié à la FIFA',oddsUpdated:'cotes mises à jour il y a',justNow:"à l'instant",minAgo:' min',hrAgo:' h',addedOne:'✓ Ajouté au calendrier',noMatches:'Aucun match pour cette sélection.',addAll:(n,t)=>`Ajouter les ${n} matchs de ${t} au calendrier`,addedAll:(n,t)=>`✓ ${n} matchs de groupe de ${t} ajoutés`,roadTo:'La route vers la finale',seedW:'1er',seedR:'2e',seedT:'3e',seedL:'Perdant',finishes:'termine'},
- de:{yourTeam:'Dein Team',allTeams:'Alle Teams',timezone:'Zeitzone',nextMatch:'NÄCHSTES SPIEL',days:'TAGE',hrs:'STD',min:'MIN',sec:'SEK',groups:'Gruppen','Group Stage':'Gruppenphase','Round of 32':'Sechzehntelfinale','Round of 16':'Achtelfinale','Quarter-final':'Viertelfinale','Semi-final':'Halbfinale','Third Place':'Spiel um Platz 3','Final':'Finale',group:'Gruppe',matches:'Spiele',match:'Spiel',showOdds:'Wettquoten anzeigen',hideOdds:'Wettquoten ausblenden',draw:'Unent.',bookmakers:'Wettquoten',live:'🔴 LIVE',kickoffLive:'ANPFIFF · LIVE',notAffiliated:'Nicht mit der FIFA verbunden',oddsUpdated:'Quoten aktualisiert vor',justNow:'gerade eben',minAgo:' Min',hrAgo:' Std',addedOne:'✓ Zum Kalender hinzugefügt',noMatches:'Keine Spiele für diese Auswahl.',addAll:(n,t)=>`Alle ${n} ${t}-Spiele zum Kalender hinzufügen`,addedAll:(n,t)=>`✓ Alle ${n} ${t}-Gruppenspiele hinzugefügt`,roadTo:'Der Weg zum Finale',seedW:'1.',seedR:'2.',seedT:'3.',seedL:'Verlierer',finishes:'wird'},
- it:{yourTeam:'La tua squadra',allTeams:'Tutte le squadre',timezone:'Fuso orario',nextMatch:'PROSSIMA PARTITA',days:'GIORNI',hrs:'ORE',min:'MIN',sec:'SEC',groups:'Gironi','Group Stage':'Fase a gironi','Round of 32':'Sedicesimi','Round of 16':'Ottavi','Quarter-final':'Quarti di finale','Semi-final':'Semifinali','Third Place':'Finale 3° posto','Final':'Finale',group:'Girone',matches:'partite',match:'partita',showOdds:'Mostra quote',hideOdds:'Nascondi quote',draw:'Pareggio',bookmakers:'Quote dei bookmaker',live:'🔴 IN DIRETTA',kickoffLive:'FISCHIO D’INIZIO · LIVE',notAffiliated:'Non affiliato alla FIFA',oddsUpdated:'quote aggiornate',justNow:'adesso',minAgo:' min fa',hrAgo:' h fa',addedOne:'✓ Aggiunto al calendario',noMatches:'Nessuna partita per questa selezione.',addAll:(n,t)=>`Aggiungi le ${n} partite di ${t} al calendario`,addedAll:(n,t)=>`✓ Aggiunte ${n} partite del girone di ${t}`,roadTo:'La strada verso la finale',seedW:'1º',seedR:'2º',seedT:'3º',seedL:'Perdente',finishes:'finisce'},
- es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`,roadTo:'Camino a la final',seedW:'1º',seedR:'2º',seedT:'3º',seedL:'Perdedor',finishes:'termina'},
- pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`,roadTo:'Caminho até a final',seedW:'1º',seedR:'2º',seedT:'3º',seedL:'Perdedor',finishes:'termina'},
+ en:{yourTeam:'Your team',allTeams:'All teams',timezone:'Timezone',nextMatch:'NEXT MATCH',days:'DAYS',hrs:'HRS',min:'MIN',sec:'SEC',groups:'Groups','Group Stage':'Group Stage','Round of 32':'Round of 32','Round of 16':'Round of 16','Quarter-final':'Quarter-finals','Semi-final':'Semi-finals','Third Place':'Third place','Final':'Final',group:'Group',matches:'matches',match:'match',showOdds:"Show bookmakers' odds",hideOdds:"Hide bookmakers' odds",draw:'Draw',bookmakers:"Bookmakers' odds",live:'🔴 LIVE NOW',kickoffLive:'KICK-OFF · LIVE NOW',notAffiliated:'Not affiliated with FIFA',oddsUpdated:'odds updated',justNow:'just now',minAgo:' min ago',hrAgo:'h ago',addedOne:'✓ Added to Apple / Outlook Calendar',noMatches:'No matches for this selection.',addAll:(n,t)=>`Add all ${n} ${t} matches to calendar`,addedAll:(n,t)=>`✓ Added all ${n} ${t} group matches`,roadTo:'Road to the final',seedW:'1st',seedR:'2nd',seedT:'3rd',seedL:'Loser',finishes:'finishes',winnerOf:'Winner of',addPath:'Add this path to my calendar',pathNote:'From the Round of 16 the path depends on which slot the 3rd place is assigned to.'},
+ fr:{yourTeam:'Votre équipe',allTeams:'Toutes les équipes',timezone:'Fuseau',nextMatch:'PROCHAIN MATCH',days:'JOURS',hrs:'H',min:'MIN',sec:'SEC',groups:'Groupes','Group Stage':'Phase de groupes','Round of 32':'16es de finale','Round of 16':'8es de finale','Quarter-final':'Quarts de finale','Semi-final':'Demi-finales','Third Place':'Petite finale','Final':'Finale',group:'Groupe',matches:'matchs',match:'match',showOdds:'Voir les cotes',hideOdds:'Masquer les cotes',draw:'Nul',bookmakers:'Cotes des bookmakers',live:'🔴 EN DIRECT',kickoffLive:'COUP D’ENVOI · EN DIRECT',notAffiliated:'Non affilié à la FIFA',oddsUpdated:'cotes mises à jour il y a',justNow:"à l'instant",minAgo:' min',hrAgo:' h',addedOne:'✓ Ajouté au calendrier',noMatches:'Aucun match pour cette sélection.',addAll:(n,t)=>`Ajouter les ${n} matchs de ${t} au calendrier`,addedAll:(n,t)=>`✓ ${n} matchs de groupe de ${t} ajoutés`,roadTo:'La route vers la finale',seedW:'1er',seedR:'2e',seedT:'3e',seedL:'Perdant',finishes:'termine',winnerOf:'Vainqueur de',addPath:'Ajouter ce parcours à mon calendrier',pathNote:'À partir des 8es, le parcours dépend du créneau attribué au 3e.'},
+ de:{yourTeam:'Dein Team',allTeams:'Alle Teams',timezone:'Zeitzone',nextMatch:'NÄCHSTES SPIEL',days:'TAGE',hrs:'STD',min:'MIN',sec:'SEK',groups:'Gruppen','Group Stage':'Gruppenphase','Round of 32':'Sechzehntelfinale','Round of 16':'Achtelfinale','Quarter-final':'Viertelfinale','Semi-final':'Halbfinale','Third Place':'Spiel um Platz 3','Final':'Finale',group:'Gruppe',matches:'Spiele',match:'Spiel',showOdds:'Wettquoten anzeigen',hideOdds:'Wettquoten ausblenden',draw:'Unent.',bookmakers:'Wettquoten',live:'🔴 LIVE',kickoffLive:'ANPFIFF · LIVE',notAffiliated:'Nicht mit der FIFA verbunden',oddsUpdated:'Quoten aktualisiert vor',justNow:'gerade eben',minAgo:' Min',hrAgo:' Std',addedOne:'✓ Zum Kalender hinzugefügt',noMatches:'Keine Spiele für diese Auswahl.',addAll:(n,t)=>`Alle ${n} ${t}-Spiele zum Kalender hinzufügen`,addedAll:(n,t)=>`✓ Alle ${n} ${t}-Gruppenspiele hinzugefügt`,roadTo:'Der Weg zum Finale',seedW:'1.',seedR:'2.',seedT:'3.',seedL:'Verlierer',finishes:'wird',winnerOf:'Sieger aus',addPath:'Diesen Weg zum Kalender hinzufügen',pathNote:'Ab dem Achtelfinale hängt der Weg vom zugewiesenen Platz des Gruppendritten ab.'},
+ it:{yourTeam:'La tua squadra',allTeams:'Tutte le squadre',timezone:'Fuso orario',nextMatch:'PROSSIMA PARTITA',days:'GIORNI',hrs:'ORE',min:'MIN',sec:'SEC',groups:'Gironi','Group Stage':'Fase a gironi','Round of 32':'Sedicesimi','Round of 16':'Ottavi','Quarter-final':'Quarti di finale','Semi-final':'Semifinali','Third Place':'Finale 3° posto','Final':'Finale',group:'Girone',matches:'partite',match:'partita',showOdds:'Mostra quote',hideOdds:'Nascondi quote',draw:'Pareggio',bookmakers:'Quote dei bookmaker',live:'🔴 IN DIRETTA',kickoffLive:'FISCHIO D’INIZIO · LIVE',notAffiliated:'Non affiliato alla FIFA',oddsUpdated:'quote aggiornate',justNow:'adesso',minAgo:' min fa',hrAgo:' h fa',addedOne:'✓ Aggiunto al calendario',noMatches:'Nessuna partita per questa selezione.',addAll:(n,t)=>`Aggiungi le ${n} partite di ${t} al calendario`,addedAll:(n,t)=>`✓ Aggiunte ${n} partite del girone di ${t}`,roadTo:'La strada verso la finale',seedW:'1º',seedR:'2º',seedT:'3º',seedL:'Perdente',finishes:'finisce',winnerOf:'Vincente di',addPath:'Aggiungi questo percorso al calendario',pathNote:'Dagli ottavi, il percorso dipende dallo slot assegnato alla terza.'},
+ es:{yourTeam:'Tu equipo',allTeams:'Todos los equipos',timezone:'Zona horaria',nextMatch:'PRÓXIMO PARTIDO',days:'DÍAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'Dieciseisavos','Round of 16':'Octavos','Quarter-final':'Cuartos de final','Semi-final':'Semifinales','Third Place':'Tercer puesto','Final':'Final',group:'Grupo',matches:'partidos',match:'partido',showOdds:'Ver cuotas',hideOdds:'Ocultar cuotas',draw:'Empate',bookmakers:'Cuotas de casas',live:'🔴 EN VIVO',kickoffLive:'INICIO · EN VIVO',notAffiliated:'No afiliado a la FIFA',oddsUpdated:'cuotas actualizadas hace',justNow:'ahora',minAgo:' min',hrAgo:' h',addedOne:'✓ Añadido al calendario',noMatches:'No hay partidos para esta selección.',addAll:(n,t)=>`Añadir los ${n} partidos de ${t} al calendario`,addedAll:(n,t)=>`✓ Añadidos ${n} partidos de grupo de ${t}`,roadTo:'Camino a la final',seedW:'1º',seedR:'2º',seedT:'3º',seedL:'Perdedor',finishes:'termina',winnerOf:'Ganador de',addPath:'Añadir este camino a mi calendario',pathNote:'Desde octavos, el camino depende del hueco asignado al 3.º.'},
+ pt:{yourTeam:'Sua seleção',allTeams:'Todas as seleções',timezone:'Fuso horário',nextMatch:'PRÓXIMO JOGO',days:'DIAS',hrs:'H',min:'MIN',sec:'SEG',groups:'Grupos','Group Stage':'Fase de grupos','Round of 32':'16-avos','Round of 16':'Oitavas','Quarter-final':'Quartas de final','Semi-final':'Semifinais','Third Place':'Disputa do 3º','Final':'Final',group:'Grupo',matches:'jogos',match:'jogo',showOdds:'Ver odds',hideOdds:'Ocultar odds',draw:'Empate',bookmakers:'Odds das casas',live:'🔴 AO VIVO',kickoffLive:'APITO INICIAL · AO VIVO',notAffiliated:'Não afiliado à FIFA',oddsUpdated:'odds atualizadas há',justNow:'agora',minAgo:' min',hrAgo:' h',addedOne:'✓ Adicionado ao calendário',noMatches:'Nenhum jogo para esta seleção.',addAll:(n,t)=>`Adicionar os ${n} jogos de ${t} ao calendário`,addedAll:(n,t)=>`✓ ${n} jogos de grupo de ${t} adicionados`,roadTo:'Caminho até a final',seedW:'1º',seedR:'2º',seedT:'3º',seedL:'Perdedor',finishes:'termina',winnerOf:'Vencedor de',addPath:'Adicionar este caminho ao calendário',pathNote:'A partir das oitavas, o caminho depende da vaga atribuída ao 3º.'},
 };
 Object.assign(T.en,{whoWins:"Who's most likely to win?",basedOn:"Based on bookmakers' odds",tooClose:'Too close to call',tossUp:'Toss-up',share:'Share',copied:'Link copied',copyLink:'Copy link',shareText:'World Cup 2026 — every match in your timezone, add to your calendar in one tap:',oddsExplainL:"Probabilities calculated from bookmakers' odds",oddsExplainS:"Calculated from bookmakers' odds",seoTitle:'World Cup 2026 — schedule info & FAQ'});
 Object.assign(T.fr,{whoWins:'Qui a le plus de chances de gagner ?',basedOn:"D'après les cotes des bookmakers",tooClose:'Trop serré pour trancher',tossUp:'Indécis',share:'Partager',copied:'Lien copié',copyLink:'Copier le lien',shareText:'Coupe du Monde 2026 — tous les matchs à ton fuseau horaire, à ajouter au calendrier en un clic :',oddsExplainL:'Probabilités calculées à partir des cotes des bookmakers',oddsExplainS:'Calculées à partir des cotes des bookmakers',seoTitle:'Coupe du Monde 2026 — infos & FAQ'});
@@ -1224,6 +1230,33 @@ const KO_OVERVIEW=[
   {key:'Final',        bar:'var(--neon)',   tint:'rgba(70,227,154,.14)',  txt:'var(--neon)'},
 ];
 const koChev='<svg class="ko-link" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+// Verified knockout bracket tree (Wikipedia 2026 KO article). FIFA match# -> our row id;
+// FEEDERS[fifa]=the two earlier FIFA matches that feed it. The whole tree above R32 is
+// fixed (no re-draw), so a team's path is determined once its R32 slot is known.
+const F2O={73:73,74:75,75:76,76:74,77:78,78:77,79:79,80:80,81:82,82:81,83:84,84:83,85:85,86:87,87:88,88:86,89:90,90:89,91:91,92:92,93:93,94:94,95:95,96:96,97:97,98:98,99:99,100:100,101:101,102:102,103:103,104:104};
+const O2F={};for(const f in F2O)O2F[F2O[f]]=+f;
+const FEEDERS={89:[74,77],90:[73,75],91:[76,78],92:[79,80],93:[83,84],94:[81,82],95:[86,88],96:[85,87],97:[89,90],98:[93,94],99:[91,92],100:[95,96],101:[97,98],102:[99,100],104:[101,102]};
+const KO_NEXT={};for(const m in FEEDERS)FEEDERS[m].forEach(f=>KO_NEXT[f]=+m);
+const KO_COLOR={};KO_OVERVIEW.forEach(p=>KO_COLOR[p.key]=p);
+// teamPath: the single fixed R32->Final path for a team in `letter` finishing W=1st/R=2nd.
+// posCode T (3rd) branches across slots, so no single path — returns {branching, scen}.
+function teamPath(letter,posCode){
+  const r32=MATCHES.filter(m=>m.group==='Round of 32');
+  const scen=teamR32Scenarios(letter,r32).filter(s=>s.o==={W:0,R:1,T:2}[posCode]);
+  if(posCode==='T')return {branching:true,scen};
+  if(!scen.length)return {path:[]};
+  const entry=scen[0],fifaPath=[O2F[entry.m.id]];
+  let cur=fifaPath[0];
+  while(KO_NEXT[cur]){cur=KO_NEXT[cur];fifaPath.push(cur);}
+  const path=fifaPath.map((f,k)=>{
+    const m=MATCHES[F2O[f]-1];
+    let opp;
+    if(k===0)opp=seedName(entry.opp);
+    else{const fe=FEEDERS[f],prev=fifaPath[k-1],of=fe[0]===prev?fe[1]:fe[0];opp=`${tt().winnerOf} ${MATCHES[F2O[of]-1].city}`;}
+    return {m,opp};
+  });
+  return {path,scen};
+}
 function applyTeam(code){const team=countryTeam[code];if(!team)return;const opt=[...tSel.options].find(o=>o.value===team);if(!opt)return;tSel.value=team;onTeamChange(false);}
 // If the user has a saved team preference, honour it and skip auto-detection entirely.
 const _savedTeam=PREFS.get('team');
@@ -1371,58 +1404,94 @@ function scenRow(sc,letter){
     <div class="ko-mseed"><span class="ko-own">${own}</span> vs ${seedName(sc.opp)}</div>
   </div>`;
 }
+// one fixed-path card per round for the chosen team/position
+function pathCard(step,i){
+  const m=step.m,key=m.group,c=KO_COLOR[key]||{bar:'var(--neon)'},isFinal=key==='Final';
+  const team=teamName(tSel.value);
+  return (i>0?koChev:'')+`<div class="ko-group open${isFinal?' ko-final':''}">
+    <div class="ko-row">
+      <div class="ko-bar" style="background:${c.bar}"></div>
+      <div class="ko-card ko-static">
+        ${isFinal?'<span class="ko-trophy">🏆</span>':''}
+        <div style="flex:1;min-width:0">
+          <div class="ko-name">${tPhase(key)}</div>
+          <div class="ko-sub">${localDateLabel(m.utc)} · ${localStr(m.utc)} · ${m.city}</div>
+          <div class="ko-mseed"><span class="ko-own">${team}</span> vs ${step.opp}</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
 function buildRoadToFinal(){
-  document.getElementById('roadtoTitle').textContent=tt().roadTo;
+  const L=tt();
+  document.getElementById('roadtoTitle').textContent=L.roadTo;
   const body=document.getElementById('roadtoBody');
   const letter=tSel.value?groupLetterOf(tSel.value):null;
-  const posIdx={W:0,R:1,T:2}[koPos];
-  let html='',allKO=[];
-  // position picker: let the user say where they expect their team to finish
+  const allKO=MATCHES.filter(m=>KO_COLOR[m.group]);
+  let html='';
   if(letter){
-    const L=tt();
+    // position picker
     const chip=(code,lab)=>`<button class="ko-pos-btn${koPos===code?' on':''}" onclick="setKoPos('${code}')">${lab}</button>`;
     html+=`<div class="ko-pos">
       <span class="ko-pos-lbl">${teamName(tSel.value)} ${L.finishes}</span>
       <div class="ko-pos-btns">${chip('W',L.seedW)}${chip('R',L.seedR)}${chip('T',L.seedT)}</div>
     </div>`;
-  }
-  KO_OVERVIEW.forEach((p,i)=>{
-    const ms=MATCHES.filter(m=>m.group===p.key);
-    if(!ms.length)return;
-    allKO=allKO.concat(ms);
-    const isFinal=p.key==='Final';
-    const slug=p.key.replace(/\s+/g,'-');
-    // narrow R32 to the selected team's matches for the chosen finishing position
-    const scen=(p.key==='Round of 32'&&letter)?teamR32Scenarios(letter,ms).filter(s=>s.o===posIdx):null;
-    const rangeMs=scen&&scen.length?scen.map(s=>s.m):ms;
-    const n=scen?scen.length:ms.length;
-    const cnt=`${n} ${n>1?tt().matches:tt().match}`;
-    let sub=koRange(rangeMs);
-    if(isFinal||p.key==='Third Place')sub+=` · ${ms[0].city}`;
-    const rows=scen?scen.map(s=>scenRow(s,letter)).join(''):ms.map(seedRow).join('');
-    // auto-open R32 when a team is picked so the chosen scenario is visible
-    const open=!!scen;
-    if(i>0)html+=koChev;
-    html+=`<div class="ko-group${isFinal?' ko-final':''}${open?' open':''}" id="kog-${slug}">
-      <div class="ko-row">
-        <div class="ko-bar" style="background:${p.bar}"></div>
-        <div class="ko-card" onclick="toggleRound('${slug}')">
-          ${isFinal?'<span class="ko-trophy">🏆</span>':''}
-          <div style="flex:1;min-width:0">
-            <div class="ko-name">${tPhase(p.key)}</div>
-            <div class="ko-sub">${sub}</div>
-          </div>
-          <span class="ko-count" style="background:${p.tint};color:${p.txt}">${cnt}</span>
-          <svg class="ko-car" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    const tp=teamPath(letter,koPos);
+    if(tp.branching){
+      // 3rd place: path branches across slots — show the R32 possibilities + a note
+      const c=KO_COLOR['Round of 32'],scen=tp.scen;
+      html+=`<div class="ko-group open">
+        <div class="ko-row"><div class="ko-bar" style="background:${c.bar}"></div>
+          <div class="ko-card ko-static"><div style="flex:1;min-width:0">
+            <div class="ko-name">${tPhase('Round of 32')}</div><div class="ko-sub">${koRange(scen.map(s=>s.m))}</div>
+          </div><span class="ko-count" style="background:${c.tint};color:${c.txt}">${scen.length} ${scen.length>1?L.matches:L.match}</span></div>
         </div>
+        <div class="ko-sub-list">${scen.map(s=>scenRow(s,letter)).join('')}</div>
       </div>
-      <div class="ko-sub-list"${open?'':' hidden'}>${rows}</div>
-    </div>`;
-  });
+      <div class="ko-note">${L.pathNote}</div>`;
+    }else if(tp.path.length){
+      html+=tp.path.map(pathCard).join('');
+      html+=`<button class="ko-addpath" onclick="downloadPathICS('${letter}','${koPos}')">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.9 4 3 4.9 3 6v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+        ${L.addPath}</button>`;
+    }
+  }else{
+    // no team selected: full overview, all matches per round, collapsed
+    KO_OVERVIEW.forEach((p,i)=>{
+      const ms=MATCHES.filter(m=>m.group===p.key);if(!ms.length)return;
+      const isFinal=p.key==='Final',slug=p.key.replace(/\s+/g,'-');
+      const cnt=`${ms.length} ${ms.length>1?L.matches:L.match}`;
+      let sub=koRange(ms);if(isFinal||p.key==='Third Place')sub+=` · ${ms[0].city}`;
+      if(i>0)html+=koChev;
+      html+=`<div class="ko-group${isFinal?' ko-final':''}" id="kog-${slug}">
+        <div class="ko-row"><div class="ko-bar" style="background:${p.bar}"></div>
+          <div class="ko-card" onclick="toggleRound('${slug}')">
+            ${isFinal?'<span class="ko-trophy">🏆</span>':''}
+            <div style="flex:1;min-width:0"><div class="ko-name">${tPhase(p.key)}</div><div class="ko-sub">${sub}</div></div>
+            <span class="ko-count" style="background:${p.tint};color:${p.txt}">${cnt}</span>
+            <svg class="ko-car" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </div></div>
+        <div class="ko-sub-list" hidden>${ms.map(seedRow).join('')}</div>
+      </div>`;
+    });
+  }
   body.innerHTML=html;
   document.getElementById('roadtoRange').textContent=allKO.length?koRange(allKO).toUpperCase():'';
 }
 function setKoPos(code){koPos=code;buildRoadToFinal();document.getElementById('roadto').open=true;}
+function downloadPathICS(letter,posCode){
+  const tp=teamPath(letter,posCode);if(!tp.path||!tp.path.length)return;
+  const team=teamName(tSel.value),pos=tt()[{W:'seedW',R:'seedR',T:'seedT'}[posCode]];
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//matchcal26//EN','CALSCALE:GREGORIAN'];
+  tp.path.forEach(step=>{
+    const m=step.m,s=icsDate(m.utc),e=icsDate(new Date(m.utc.getTime()+105*60000));
+    lines.push('BEGIN:VEVENT',`DTSTART:${s}`,`DTEND:${e}`,`SUMMARY:⚽ ${team} (${pos}) · ${tPhase(m.group)} | WC2026`,`DESCRIPTION:${tPhase(m.group)} · ${team} vs ${step.opp}\\n${m.venue}, ${m.city}\\nWatch: ${channel}`,`LOCATION:${m.venue}, ${m.city}`,'BEGIN:VALARM','TRIGGER:-PT60M','ACTION:DISPLAY','DESCRIPTION:Match in 1 hour','END:VALARM','END:VEVENT');
+  });
+  lines.push('END:VCALENDAR');
+  const blob=new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`WC2026_${tSel.value}_path.ics`;a.click();URL.revokeObjectURL(url);
+  showToast(tt().addedOne);
+}
 function toggleRound(slug){
   const g=document.getElementById('kog-'+slug);
   if(!g)return;
