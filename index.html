@@ -1207,6 +1207,15 @@ const KO_SLOTS={
   97:['WR16','WR16'],98:['WR16','WR16'],99:['WR16','WR16'],100:['WR16','WR16'],
   101:['WQF','WQF'],102:['WQF','WQF'],103:['LSF','LSF'],104:['WSF','WSF'],
 };
+const KO_OVERVIEW=[
+  {key:'Round of 32',  bar:'var(--neon)',   tint:'rgba(70,227,154,.14)',  txt:'var(--neon)'},
+  {key:'Round of 16',  bar:'var(--lime)',   tint:'rgba(199,249,75,.14)',  txt:'var(--lime)'},
+  {key:'Quarter-final',bar:'var(--yellow)', tint:'rgba(255,225,77,.14)',  txt:'var(--yellow)'},
+  {key:'Semi-final',   bar:'var(--amber)',  tint:'rgba(255,184,77,.14)',  txt:'var(--amber)'},
+  {key:'Third Place',  bar:'rgba(234,246,240,.3)', tint:'rgba(255,255,255,.06)', txt:'var(--soft)'},
+  {key:'Final',        bar:'var(--neon)',   tint:'rgba(70,227,154,.14)',  txt:'var(--neon)'},
+];
+const koChev='<svg class="ko-link" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
 function applyTeam(code){const team=countryTeam[code];if(!team)return;const opt=[...tSel.options].find(o=>o.value===team);if(!opt)return;tSel.value=team;onTeamChange(false);}
 // If the user has a saved team preference, honour it and skip auto-detection entirely.
 const _savedTeam=PREFS.get('team');
@@ -1306,15 +1315,6 @@ async function loadOdds(){
 
 // ── GROUPS OVERVIEW ──
 // (GROUP_NAMES + groupTeams are declared near MATCHES, before the first render)
-// ── KNOCKOUT OVERVIEW ──
-const KO_OVERVIEW=[
-  {key:'Round of 32',  bar:'var(--neon)',   tint:'rgba(70,227,154,.14)',  txt:'var(--neon)'},
-  {key:'Round of 16',  bar:'var(--lime)',   tint:'rgba(199,249,75,.14)',  txt:'var(--lime)'},
-  {key:'Quarter-final',bar:'var(--yellow)', tint:'rgba(255,225,77,.14)',  txt:'var(--yellow)'},
-  {key:'Semi-final',   bar:'var(--amber)',  tint:'rgba(255,184,77,.14)',  txt:'var(--amber)'},
-  {key:'Third Place',  bar:'rgba(234,246,240,.3)', tint:'rgba(255,255,255,.06)', txt:'var(--soft)'},
-  {key:'Final',        bar:'var(--neon)',   tint:'rgba(70,227,154,.14)',  txt:'var(--neon)'},
-];
 function seedName(code){
   const L=tt();
   if(code.startsWith('T:'))return `${L.seedT} ${code.slice(2).split('').join('/')}`;
@@ -1333,7 +1333,6 @@ function koRange(ms){
   if(localMon(a)===localMon(b)&&localDay(a)===localDay(b))return fa;
   return `${fa} – ${localMon(b)} ${localDay(b)}`;
 }
-const koChev='<svg class="ko-link" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
 // the R32 matches a team in group `letter` could play, by finishing position
 function teamR32Scenarios(letter,r32){
   const L=tt(),out=[];
