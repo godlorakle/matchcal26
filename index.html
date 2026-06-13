@@ -185,9 +185,9 @@ body{
 .ko-sub-list[hidden]{display:none}
 .ko-mrow{display:flex;flex-direction:column;gap:2px}
 .ko-mtop{display:flex;align-items:baseline;gap:8px}
-.ko-mdate{font-family:var(--fb);font-size:10.5px;font-weight:600;color:var(--soft);white-space:nowrap}
-.ko-mven{font-family:var(--fb);font-size:10px;font-weight:500;color:var(--faint);margin-left:auto;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ko-mseed{font-family:var(--fb);font-size:9.5px;font-weight:600;color:var(--soft);opacity:.85}
+.ko-mdate{font-family:var(--fb);font-size:11.5px;font-weight:600;color:var(--soft);white-space:nowrap}
+.ko-mven{font-family:var(--fb);font-size:11px;font-weight:500;color:var(--faint);margin-left:auto;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ko-mseed{font-family:var(--fb);font-size:11px;font-weight:600;color:var(--soft);opacity:.9}
 .ko-own{color:var(--neon);font-weight:700;opacity:1}
 .ko-pos{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
 .ko-pos-lbl{font-family:var(--fb);font-size:10px;font-weight:600;color:var(--soft)}
@@ -203,7 +203,7 @@ body{
 .ko-addpath svg{flex-shrink:0}
 .ko-mtag{font-family:var(--fb);font-size:8px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--on-accent);background:var(--neon);border-radius:10px;padding:2px 6px;white-space:nowrap;flex-shrink:0}
 .ko-name{font-family:var(--fb);font-weight:700;font-size:12.5px;color:var(--ink)}
-.ko-sub{font-family:var(--fb);font-weight:500;font-size:9px;color:var(--faint);margin-top:2px;letter-spacing:.3px}
+.ko-sub{font-family:var(--fb);font-weight:500;font-size:10.5px;color:var(--faint);margin-top:3px;letter-spacing:.3px}
 .ko-count{font-family:var(--fb);font-weight:700;font-size:9.5px;padding:3px 8px;border-radius:20px;white-space:nowrap}
 .ko-link{display:flex;justify-content:center;color:rgba(234,246,240,.2)}
 .ko-trophy{font-size:18px;line-height:1;flex-shrink:0}
@@ -1252,7 +1252,7 @@ function teamPath(letter,posCode){
     const m=MATCHES[F2O[f]-1];
     let opp;
     if(k===0)opp=seedName(entry.opp);
-    else{const fe=FEEDERS[f],prev=fifaPath[k-1],of=fe[0]===prev?fe[1]:fe[0];opp=`${tt().winnerOf} ${MATCHES[F2O[of]-1].city}`;}
+    else{const fe=FEEDERS[f],prev=fifaPath[k-1],of=fe[0]===prev?fe[1]:fe[0],oc=MATCHES[F2O[of]-1].city;opp=`${tt().winnerOf} ${oc}, ${countryDisplay(oc)}`;}
     return {m,opp};
   });
   return {path,scen};
@@ -1393,14 +1393,14 @@ function seedRow(m){
   const s=KO_SLOTS[m.id];
   const pairing=s?`${seedName(s[0])} — ${seedName(s[1])}`:'';
   return `<div class="ko-mrow">
-    <div class="ko-mtop"><span class="ko-mdate">${localDateLabel(m.utc)} · ${localStr(m.utc)}</span><span class="ko-mven">${m.city}</span></div>
+    <div class="ko-mtop"><span class="ko-mdate">${localDateLabel(m.utc)} · ${localStr(m.utc)}</span><span class="ko-mven">${m.city}, ${countryDisplay(m.city)}</span></div>
     ${pairing?`<div class="ko-mseed">${pairing}</div>`:''}
   </div>`;
 }
 function scenRow(sc,letter){
   const own=`${sc.tag} ${tt().group} ${letter}`;
   return `<div class="ko-mrow">
-    <div class="ko-mtop"><span class="ko-mdate">${localDateLabel(sc.m.utc)} · ${localStr(sc.m.utc)}</span><span class="ko-mven">${sc.m.city}</span></div>
+    <div class="ko-mtop"><span class="ko-mdate">${localDateLabel(sc.m.utc)} · ${localStr(sc.m.utc)}</span><span class="ko-mven">${sc.m.city}, ${countryDisplay(sc.m.city)}</span></div>
     <div class="ko-mseed"><span class="ko-own">${own}</span> vs ${seedName(sc.opp)}</div>
   </div>`;
 }
@@ -1415,7 +1415,7 @@ function pathCard(step,i){
         ${isFinal?'<span class="ko-trophy">🏆</span>':''}
         <div style="flex:1;min-width:0">
           <div class="ko-name">${tPhase(key)}</div>
-          <div class="ko-sub">${localDateLabel(m.utc)} · ${localStr(m.utc)} · ${m.city}</div>
+          <div class="ko-sub">${localDateLabel(m.utc)} · ${localStr(m.utc)} · ${m.city}, ${countryDisplay(m.city)}</div>
           <div class="ko-mseed"><span class="ko-own">${team}</span> vs ${step.opp}</div>
         </div>
       </div>
