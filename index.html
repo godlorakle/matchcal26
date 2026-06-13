@@ -189,11 +189,11 @@ body{
 .ko-mven{font-family:var(--fb);font-size:11px;font-weight:500;color:var(--faint);margin-left:auto;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ko-mseed{font-family:var(--fb);font-size:11px;font-weight:600;color:var(--soft);opacity:.9}
 .ko-own{color:var(--neon);font-weight:700;opacity:1}
-.ko-pos{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
-.ko-pos-lbl{font-family:var(--fb);font-size:10px;font-weight:600;color:var(--soft)}
-.ko-pos-btns{display:flex;gap:5px;margin-left:auto}
-.ko-pos-btn{font-family:var(--fb);font-size:11px;font-weight:700;color:var(--soft);background:var(--glass);border:1px solid var(--glassB);border-radius:8px;padding:3px 10px;cursor:pointer;transition:all .15s}
-.ko-pos-btn:hover{border-color:rgba(70,227,154,.4)}
+.ko-pos{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.ko-pos-lbl{font-family:var(--fd);font-size:13px;font-weight:800;color:var(--ink);letter-spacing:.2px}
+.ko-pos-btns{display:flex;gap:6px;margin-left:auto}
+.ko-pos-btn{font-family:var(--fd);font-size:13px;font-weight:800;color:var(--ink);background:var(--glass);border:1px solid var(--glassB);border-radius:9px;padding:6px 13px;cursor:pointer;transition:all .15s}
+.ko-pos-btn:hover{border-color:rgba(70,227,154,.5)}
 .ko-pos-btn.on{background:var(--neon);color:var(--on-accent);border-color:var(--neon)}
 .ko-card.ko-static{cursor:default}
 .ko-card.ko-static:hover{border-color:var(--glassB);background:var(--glass)}
@@ -1451,7 +1451,7 @@ function buildRoadToFinal(){
     // position picker
     const chip=(code,lab)=>`<button class="ko-pos-btn${koPos===code?' on':''}" onclick="setKoPos('${code}')">${lab}</button>`;
     html+=`<div class="ko-pos">
-      <span class="ko-pos-lbl">${teamName(tSel.value)} ${L.finishes}</span>
+      <span class="ko-pos-lbl">${teamName(tSel.value)} ${L.finishes}:</span>
       <div class="ko-pos-btns">${chip('W',L.seedW)}${chip('R',L.seedR)}${chip('T',L.seedT)}</div>
     </div>`;
     const tp=teamPath(letter,koPos);
