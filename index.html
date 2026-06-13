@@ -1422,6 +1422,24 @@ function pathCard(step,i){
     </div>
   </div>`;
 }
+// generic collapsed round card (all matches of a round) — used for browse mode
+// and for the rounds beyond R32 when a 3rd-place finish is picked (path not yet fixed)
+function genericKoCard(key){
+  const p=KO_COLOR[key],L=tt(),ms=MATCHES.filter(m=>m.group===key);if(!ms.length)return '';
+  const isFinal=key==='Final',slug=key.replace(/\s+/g,'-');
+  let sub=koRange(ms);if(isFinal||key==='Third Place')sub+=` · ${ms[0].city}, ${countryDisplay(ms[0].city)}`;
+  const cnt=`${ms.length} ${ms.length>1?L.matches:L.match}`;
+  return `<div class="ko-group${isFinal?' ko-final':''}" id="kog-${slug}">
+    <div class="ko-row"><div class="ko-bar" style="background:${p.bar}"></div>
+      <div class="ko-card" onclick="toggleRound('${slug}')">
+        ${isFinal?'<span class="ko-trophy">🏆</span>':''}
+        <div style="flex:1;min-width:0"><div class="ko-name">${tPhase(key)}</div><div class="ko-sub">${sub}</div></div>
+        <span class="ko-count" style="background:${p.tint};color:${p.txt}">${cnt}</span>
+        <svg class="ko-car" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div></div>
+    <div class="ko-sub-list" hidden>${ms.map(seedRow).join('')}</div>
+  </div>`;
+}
 function buildRoadToFinal(){
   const L=tt();
   document.getElementById('roadtoTitle').textContent=L.roadTo;
@@ -1438,7 +1456,8 @@ function buildRoadToFinal(){
     </div>`;
     const tp=teamPath(letter,koPos);
     if(tp.branching){
-      // 3rd place: path branches across slots — show the R32 possibilities + a note
+      // 3rd place: path branches across slots — show the R32 possibilities, then the
+      // later rounds generically (date ranges), plus a note explaining the branch
       const c=KO_COLOR['Round of 32'],scen=tp.scen;
       html+=`<div class="ko-group open">
         <div class="ko-row"><div class="ko-bar" style="background:${c.bar}"></div>
@@ -1447,8 +1466,9 @@ function buildRoadToFinal(){
           </div><span class="ko-count" style="background:${c.tint};color:${c.txt}">${scen.length} ${scen.length>1?L.matches:L.match}</span></div>
         </div>
         <div class="ko-sub-list">${scen.map(s=>scenRow(s,letter)).join('')}</div>
-      </div>
-      <div class="ko-note">${L.pathNote}</div>`;
+      </div>`;
+      ['Round of 16','Quarter-final','Semi-final','Final'].forEach(key=>{html+=koChev+genericKoCard(key);});
+      html+=`<div class="ko-note">${L.pathNote}</div>`;
     }else if(tp.path.length){
       html+=tp.path.map(pathCard).join('');
       html+=`<button class="ko-addpath" onclick="downloadPathICS('${letter}','${koPos}')">
