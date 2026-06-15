@@ -1,28 +1,28 @@
 {
-  "updated": "2026-06-15T16:01:13.220Z",
+  "updated": "2026-06-15T16:29:47.170Z",
   "matches": [
     {
       "home": "Spain",
       "away": "Cape Verde",
-      "commence": "2026-06-15T16:05:00Z",
+      "commence": "2026-06-15T16:01:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 1.1,
-          "draw": 10,
-          "away": 23
-        },
-        {
           "name": "Betfair",
-          "home": 1.1,
-          "draw": 14,
-          "away": 36
+          "home": 1.19,
+          "draw": 8,
+          "away": 26
         },
         {
-          "name": "Pinnacle",
-          "home": 1.11,
-          "draw": 11.5,
-          "away": 21
+          "name": "Coolbet",
+          "home": 1.22,
+          "draw": 6.25,
+          "away": 18.5
+        },
+        {
+          "name": "888sport",
+          "home": 1.17,
+          "draw": 6.5,
+          "away": 15
         }
       ]
     },
@@ -39,15 +39,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.63,
-          "draw": 4.3,
+          "home": 1.64,
+          "draw": 4.2,
           "away": 6.4
         },
         {
           "name": "Pinnacle",
           "home": 1.62,
-          "draw": 4.14,
-          "away": 6.06
+          "draw": 4.13,
+          "away": 6.01
         }
       ]
     },
@@ -89,15 +89,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.83,
-          "draw": 3.7,
+          "home": 1.84,
+          "draw": 3.65,
           "away": 5.3
         },
         {
           "name": "Pinnacle",
-          "home": 1.79,
-          "draw": 3.63,
-          "away": 5.27
+          "home": 1.81,
+          "draw": 3.61,
+          "away": 5.15
         }
       ]
     },
@@ -139,7 +139,7 @@
         },
         {
           "name": "Betfair",
-          "home": 18,
+          "home": 18.5,
           "draw": 8.2,
           "away": 1.2
         },
@@ -264,7 +264,7 @@
         },
         {
           "name": "Betfair",
-          "home": 2.26,
+          "home": 2.28,
           "draw": 3.45,
           "away": 3.6
         },
@@ -295,8 +295,8 @@
         },
         {
           "name": "Pinnacle",
-          "home": 9.4,
-          "draw": 4.81,
+          "home": 9.5,
+          "draw": 4.84,
           "away": 1.38
         }
       ]
@@ -395,9 +395,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 2,
-          "draw": 3.4,
-          "away": 4.15
+          "home": 2.02,
+          "draw": 3.39,
+          "away": 4.1
         }
       ]
     },
@@ -466,7 +466,7 @@
           "name": "Betfair",
           "home": 1.13,
           "draw": 12,
-          "away": 25
+          "away": 24
         },
         {
           "name": "Pinnacle",
@@ -521,7 +521,7 @@
         {
           "name": "Pinnacle",
           "home": 1.71,
-          "draw": 4.1,
+          "draw": 4.11,
           "away": 4.8
         }
       ]
@@ -615,14 +615,14 @@
         {
           "name": "Betfair",
           "home": 1.11,
-          "draw": 14.5,
-          "away": 25
+          "draw": 14,
+          "away": 26
         },
         {
           "name": "Pinnacle",
-          "home": 1.08,
-          "draw": 10.24,
-          "away": 21.07
+          "home": 1.09,
+          "draw": 10.1,
+          "away": 20.86
         }
       ]
     },
@@ -641,13 +641,13 @@
           "name": "Betfair",
           "home": 1.43,
           "draw": 5,
-          "away": 8.4
+          "away": 8.6
         },
         {
           "name": "Pinnacle",
           "home": 1.36,
-          "draw": 4.68,
-          "away": 7.89
+          "draw": 4.7,
+          "away": 7.93
         }
       ]
     },
@@ -664,8 +664,8 @@
         },
         {
           "name": "Betfair",
-          "home": 1.46,
-          "draw": 4.8,
+          "home": 1.48,
+          "draw": 4.7,
           "away": 8.2
         },
         {
@@ -714,7 +714,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.6,
+          "home": 1.62,
           "draw": 4.3,
           "away": 6
         },
@@ -814,7 +814,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.24,
+          "home": 1.25,
           "draw": 6.8,
           "away": 13
         },
@@ -864,7 +864,7 @@
         },
         {
           "name": "Betfair",
-          "home": 6.4,
+          "home": 6.6,
           "draw": 3.85,
           "away": 1.57
         },
@@ -989,7 +989,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.3,
+          "home": 1.31,
           "draw": 6,
           "away": 10.5
         },
@@ -1091,13 +1091,13 @@
           "name": "Betfair",
           "home": 4.7,
           "draw": 3.85,
-          "away": 1.75
+          "away": 1.73
         },
         {
           "name": "Pinnacle",
-          "home": 4.46,
-          "draw": 3.64,
-          "away": 1.75
+          "home": 4.52,
+          "draw": 3.63,
+          "away": 1.74
         }
       ]
     },
@@ -1140,7 +1140,7 @@
         {
           "name": "Betfair",
           "home": 8.8,
-          "draw": 5.7,
+          "draw": 5.6,
           "away": 1.34
         },
         {
@@ -1164,7 +1164,7 @@
         },
         {
           "name": "Betfair",
-          "home": 2.22,
+          "home": 2.24,
           "draw": 3.35,
           "away": 3.3
         },
@@ -1214,7 +1214,7 @@
         },
         {
           "name": "Betfair",
-          "home": 4.3,
+          "home": 4.4,
           "draw": 3.95,
           "away": 1.85
         },
@@ -1648,6 +1648,14 @@
       "completed": true,
       "hs": 5,
       "as": 1
+    },
+    {
+      "home": "Spain",
+      "away": "Cape Verde",
+      "commence": "2026-06-15T16:01:00Z",
+      "completed": false,
+      "hs": 0,
+      "as": 0
     }
   ]
 }
