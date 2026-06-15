@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-15T18:01:01.745Z",
+  "updated": "2026-06-15T18:03:23.686Z",
   "matches": [
     {
       "home": "Spain",
@@ -39,7 +39,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.58,
+          "home": 1.57,
           "draw": 4.4,
           "away": 7
         },
@@ -664,7 +664,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.49,
+          "home": 1.5,
           "draw": 4.6,
           "away": 8.2
         },
@@ -865,7 +865,7 @@
         {
           "name": "Betfair",
           "home": 6.6,
-          "draw": 3.9,
+          "draw": 3.85,
           "away": 1.57
         },
         {
@@ -915,7 +915,7 @@
         {
           "name": "Betfair",
           "home": 1.6,
-          "draw": 4.3,
+          "draw": 4.2,
           "away": 6.4
         },
         {
@@ -1263,16 +1263,16 @@
           "away": 2.62
         },
         {
+          "name": "Betfair",
+          "home": 2.44,
+          "draw": 3.8,
+          "away": 2.82
+        },
+        {
           "name": "Pinnacle",
           "home": 2.44,
           "draw": 3.62,
           "away": 2.64
-        },
-        {
-          "name": "Tipico",
-          "home": 2.5,
-          "draw": 3.5,
-          "away": 2.5
         }
       ]
     },
