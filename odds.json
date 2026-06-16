@@ -1,31 +1,6 @@
 {
-  "updated": "2026-06-16T18:14:29.576Z",
+  "updated": "2026-06-16T19:57:55.150Z",
   "matches": [
-    {
-      "home": "England",
-      "away": "Ireland",
-      "commence": "2026-06-16T17:30:00Z",
-      "books": [
-        {
-          "name": "William Hill",
-          "home": 1.01,
-          "draw": null,
-          "away": 17
-        },
-        {
-          "name": "Betfair",
-          "home": 1.03,
-          "draw": null,
-          "away": 29
-        },
-        {
-          "name": "Matchbook",
-          "home": 1.03,
-          "draw": null,
-          "away": 29
-        }
-      ]
-    },
     {
       "home": "Australia",
       "away": "Bangladesh",
@@ -83,21 +58,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.25,
+          "home": 1.22,
           "draw": null,
-          "away": 3.75
+          "away": 4
         },
         {
           "name": "Betfair",
-          "home": 1.24,
+          "home": 1.23,
           "draw": null,
-          "away": 5
+          "away": 5.1
         },
         {
           "name": "888sport",
-          "home": 1.25,
+          "home": 1.22,
           "draw": null,
-          "away": 3.75
+          "away": 4
         }
       ]
     },
@@ -114,7 +89,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.3,
+          "home": 1.32,
           "draw": null,
           "away": 3.75
         },
@@ -128,7 +103,7 @@
     }
   ],
   "winner": {
-    "France": 5.5,
+    "France": 5,
     "Spain": 6,
     "England": 7,
     "Portugal": 8,
