@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16T14:01:04.686Z",
+  "updated": "2026-06-16T16:01:17.321Z",
   "matches": [
     {
       "home": "New Zealand",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 1.28,
+          "home": 1.02,
           "draw": null,
-          "away": 4.4
+          "away": 40
         },
         {
           "name": "888sport",
-          "home": 1.22,
+          "home": 1.05,
           "draw": null,
-          "away": 4
+          "away": 9
         },
         {
           "name": "Matchbook",
-          "home": 1.28,
+          "home": 1.03,
           "draw": null,
-          "away": 4.4
+          "away": 26
         }
       ]
     },
@@ -39,9 +39,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.02,
+          "home": 1.03,
           "draw": null,
-          "away": 36
+          "away": 34
         },
         {
           "name": "888sport",
@@ -114,7 +114,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.22,
+          "home": 1.24,
           "draw": null,
           "away": 4.8
         },
@@ -153,8 +153,8 @@
     }
   ],
   "winner": {
-    "Spain": 5.5,
     "France": 5.5,
+    "Spain": 6,
     "England": 7,
     "Portugal": 8,
     "Argentina": 10,
@@ -168,8 +168,8 @@
     "Japan": 41,
     "Colombia": 41,
     "Mexico": 51,
-    "Switzerland": 51,
     "Uruguay": 67,
+    "Switzerland": 67,
     "Croatia": 81,
     "Sweden": 81,
     "Senegal": 101,
