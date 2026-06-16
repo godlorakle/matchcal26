@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-16T18:01:09.253Z",
+  "updated": "2026-06-16T18:14:29.576Z",
   "matches": [
     {
       "home": "England",
@@ -22,7 +22,7 @@
           "name": "Matchbook",
           "home": 1.03,
           "draw": null,
-          "away": 28
+          "away": 29
         }
       ]
     },
@@ -104,7 +104,7 @@
     {
       "home": "West Indies",
       "away": "Scotland",
-      "commence": "2026-06-18T17:31:00Z",
+      "commence": "2026-06-18T17:30:00Z",
       "books": [
         {
           "name": "William Hill",
