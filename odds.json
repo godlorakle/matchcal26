@@ -1,31 +1,6 @@
 {
-  "updated": "2026-06-16T16:01:17.321Z",
+  "updated": "2026-06-16T18:01:09.253Z",
   "matches": [
-    {
-      "home": "New Zealand",
-      "away": "Sri Lanka",
-      "commence": "2026-06-16T13:30:00Z",
-      "books": [
-        {
-          "name": "Betfair",
-          "home": 1.02,
-          "draw": null,
-          "away": 40
-        },
-        {
-          "name": "888sport",
-          "home": 1.05,
-          "draw": null,
-          "away": 9
-        },
-        {
-          "name": "Matchbook",
-          "home": 1.03,
-          "draw": null,
-          "away": 26
-        }
-      ]
-    },
     {
       "home": "England",
       "away": "Ireland",
@@ -33,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.02,
+          "home": 1.01,
           "draw": null,
-          "away": 15
+          "away": 17
         },
         {
           "name": "Betfair",
           "home": 1.03,
           "draw": null,
-          "away": 34
+          "away": 29
         },
         {
-          "name": "888sport",
-          "home": 1.01,
+          "name": "Matchbook",
+          "home": 1.03,
           "draw": null,
-          "away": 15
+          "away": 28
         }
       ]
     },
@@ -64,7 +39,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.03,
+          "home": 1.02,
           "draw": null,
           "away": 34
         },
@@ -116,7 +91,7 @@
           "name": "Betfair",
           "home": 1.24,
           "draw": null,
-          "away": 4.8
+          "away": 5
         },
         {
           "name": "888sport",
@@ -129,7 +104,7 @@
     {
       "home": "West Indies",
       "away": "Scotland",
-      "commence": "2026-06-18T17:30:00Z",
+      "commence": "2026-06-18T17:31:00Z",
       "books": [
         {
           "name": "William Hill",
@@ -141,7 +116,7 @@
           "name": "Betfair",
           "home": 1.3,
           "draw": null,
-          "away": 3.8
+          "away": 3.75
         },
         {
           "name": "888sport",
