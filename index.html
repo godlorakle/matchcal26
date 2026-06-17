@@ -944,6 +944,7 @@ function downloadICS(id){
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download=`WC2026_${m.home}_vs_${m.away}.ics`;a.click();
   URL.revokeObjectURL(url);
+  track('add_single');
   showToast(tt().addedOne);
 }
 function downloadAllICS(){
@@ -960,9 +961,12 @@ function downloadAllICS(){
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;a.download=`WC2026_${team}_group_matches.ics`;a.click();
   URL.revokeObjectURL(url);
+  track('add_all_group');
   showToast(tt().addedAll(ms.length, teamName(team)));
 }
 function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),2800);}
+// fire-and-forget event counter (Cloudflare Pages Function /api/hit). Never blocks UX.
+function track(e){try{const d=JSON.stringify({e});if(navigator.sendBeacon)navigator.sendBeacon('/api/hit',new Blob([d],{type:'application/json'}));else fetch('/api/hit',{method:'POST',body:d,keepalive:true});}catch{}}
 
 let activeGroup=null;
 let koPos='W'; // expected finishing position for the selected team in Road-to-final: W=1st, R=2nd, T=3rd
@@ -1058,7 +1062,7 @@ function updateHero(){
   document.getElementById('heroAway').textContent=teamName(next.away).toUpperCase();
   document.getElementById('heroDate').textContent=`${localDateLabel(next.utc)} · ${localStr(next.utc)}`;
   document.getElementById('heroVenue').textContent=`${next.venue} · ${next.city}, ${countryDisplay(next.city)}`;
-  document.getElementById('heroGcal').href=makeGCalURL(next);
+  const hg=document.getElementById('heroGcal');hg.href=makeGCalURL(next);hg.onclick=()=>track('add_gcal');
   document.getElementById('heroIcal').onclick=()=>downloadICS(next.id);
 }
 
@@ -1529,6 +1533,7 @@ function downloadPathICS(letter,posCode){
   lines.push('END:VCALENDAR');
   const blob=new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'});
   const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`WC2026_${tSel.value}_path.ics`;a.click();URL.revokeObjectURL(url);
+  track('add_path');
   showToast(tt().addedOne);
 }
 function toggleRound(slug){
