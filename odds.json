@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T12:40:20.469Z",
+  "updated": "2026-06-17T13:01:54.580Z",
   "matches": [
     {
       "home": "India",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.01,
+          "home": 1,
           "draw": null,
-          "away": 17
+          "away": 23
         },
         {
           "name": "Betfair",
-          "home": 1.02,
+          "home": 1.01,
           "draw": null,
-          "away": 42
+          "away": 55
         },
         {
           "name": "888sport",
-          "home": 1.01,
+          "home": 1,
           "draw": null,
-          "away": 17
+          "away": 23
         }
       ]
     },
@@ -39,7 +39,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.24,
+          "home": 1.23,
           "draw": null,
           "away": 5.1
         },
