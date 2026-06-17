@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T10:01:01.080Z",
+  "updated": "2026-06-17T12:00:57.660Z",
   "matches": [
     {
       "home": "India",
@@ -39,9 +39,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.21,
+          "home": 1.22,
           "draw": null,
-          "away": 5.5
+          "away": 5.2
         },
         {
           "name": "888sport",
@@ -89,9 +89,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.13,
+          "home": 1.1,
           "draw": null,
-          "away": 5
+          "away": 6.4
         },
         {
           "name": "888sport",
