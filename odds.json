@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T06:00:53.520Z",
+  "updated": "2026-06-17T08:01:04.336Z",
   "matches": [
     {
       "home": "Australia",
@@ -16,7 +16,7 @@
           "name": "Betfair",
           "home": 1.02,
           "draw": null,
-          "away": 34
+          "away": 36
         },
         {
           "name": "888sport",
@@ -41,7 +41,7 @@
           "name": "Betfair",
           "home": 1.02,
           "draw": null,
-          "away": 36
+          "away": 34
         },
         {
           "name": "888sport",
@@ -64,7 +64,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.22,
+          "home": 1.23,
           "draw": null,
           "away": 5.2
         },
@@ -89,9 +89,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.33,
+          "home": 1.32,
           "draw": null,
-          "away": 3.8
+          "away": 3.85
         },
         {
           "name": "888sport",
@@ -116,7 +116,7 @@
           "name": "Betfair",
           "home": 1.1,
           "draw": null,
-          "away": 4.3
+          "away": 5
         },
         {
           "name": "888sport",
