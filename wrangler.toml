@@ -1,0 +1,6 @@
+name = "matchcal26"
+pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "STATS"
+id = "bc8bbce6df8445b0939b82f336488bac"
