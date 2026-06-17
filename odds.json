@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T18:01:06.639Z",
+  "updated": "2026-06-17T20:01:09.862Z",
   "matches": [
     {
       "home": "South Africa",
@@ -8,21 +8,15 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 1.05,
+          "home": 1.01,
           "draw": null,
-          "away": 18
-        },
-        {
-          "name": "888sport",
-          "home": 1.02,
-          "draw": null,
-          "away": 13
+          "away": 50
         },
         {
           "name": "Matchbook",
-          "home": 1.03,
+          "home": 1.01,
           "draw": null,
-          "away": 26
+          "away": 55
         }
       ]
     },
@@ -33,21 +27,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.29,
+          "home": 1.36,
           "draw": null,
-          "away": 3.5
+          "away": 3
         },
         {
           "name": "Betfair",
-          "home": 1.44,
+          "home": 1.42,
           "draw": null,
-          "away": 3.15
+          "away": 3.25
         },
         {
           "name": "888sport",
-          "home": 1.29,
+          "home": 1.36,
           "draw": null,
-          "away": 3.5
+          "away": 3
         }
       ]
     },
@@ -91,7 +85,7 @@
           "name": "Betfair",
           "home": 1.01,
           "draw": null,
-          "away": 12
+          "away": 50
         },
         {
           "name": "888sport",
@@ -106,8 +100,8 @@
     "France": 5,
     "Spain": 6,
     "England": 7.5,
-    "Portugal": 8,
-    "Argentina": 9,
+    "Argentina": 8.5,
+    "Portugal": 9,
     "Brazil": 11,
     "Germany": 13,
     "Netherlands": 21,
