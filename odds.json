@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T16:01:00.088Z",
+  "updated": "2026-06-17T18:01:06.639Z",
   "matches": [
     {
       "home": "South Africa",
@@ -7,22 +7,22 @@
       "commence": "2026-06-17T17:30:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 1.2,
-          "draw": null,
-          "away": 4.33
-        },
-        {
           "name": "Betfair",
-          "home": 1.2,
+          "home": 1.05,
           "draw": null,
-          "away": 5.7
+          "away": 18
         },
         {
           "name": "888sport",
-          "home": 1.2,
+          "home": 1.02,
           "draw": null,
-          "away": 4.33
+          "away": 13
+        },
+        {
+          "name": "Matchbook",
+          "home": 1.03,
+          "draw": null,
+          "away": 26
         }
       ]
     },
@@ -39,9 +39,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.35,
+          "home": 1.44,
           "draw": null,
-          "away": 3.6
+          "away": 3.15
         },
         {
           "name": "888sport",
@@ -66,13 +66,38 @@
           "name": "Betfair",
           "home": 1.1,
           "draw": null,
-          "away": 6.4
+          "away": 8
         },
         {
           "name": "888sport",
           "home": 1.11,
           "draw": null,
           "away": 6
+        }
+      ]
+    },
+    {
+      "home": "Australia",
+      "away": "Netherlands",
+      "commence": "2026-06-20T09:30:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 1.01,
+          "draw": null,
+          "away": 17
+        },
+        {
+          "name": "Betfair",
+          "home": 1.01,
+          "draw": null,
+          "away": 12
+        },
+        {
+          "name": "888sport",
+          "home": 1.01,
+          "draw": null,
+          "away": 17
         }
       ]
     }
