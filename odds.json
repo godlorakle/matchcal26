@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T12:31:30.289Z",
+  "updated": "2026-06-18T14:00:55.498Z",
   "matches": [
     {
       "home": "West Indies",
@@ -14,9 +14,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.43,
+          "home": 1.45,
           "draw": null,
-          "away": 3.2
+          "away": 3.15
         },
         {
           "name": "888sport",
@@ -89,7 +89,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.66,
+          "home": 1.63,
           "draw": null,
           "away": 2.3
         },
@@ -169,13 +169,13 @@
     "Qatar": 1001,
     "New Zealand": 1001,
     "Cape Verde": 1001,
+    "Curaçao": 1001,
     "Iraq": 1501,
     "South Africa": 1501,
     "Panama": 1501,
     "Uzbekistan": 1501,
     "Jordan": 2001,
-    "Haiti": 2501,
-    "Curaçao": 2501
+    "Haiti": 2501
   },
   "scores": [
     {
