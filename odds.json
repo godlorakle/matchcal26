@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T16:01:41.877Z",
+  "updated": "2026-06-18T18:00:58.204Z",
   "matches": [
     {
       "home": "West Indies",
@@ -7,22 +7,22 @@
       "commence": "2026-06-18T17:30:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 1.4,
-          "draw": null,
-          "away": 2.75
-        },
-        {
           "name": "Betfair",
-          "home": 1.44,
+          "home": 1.69,
           "draw": null,
-          "away": 3.2
+          "away": 2.42
         },
         {
           "name": "888sport",
-          "home": 1.4,
+          "home": 1.6,
           "draw": null,
-          "away": 2.75
+          "away": 2.25
+        },
+        {
+          "name": "Matchbook",
+          "home": 1.71,
+          "draw": null,
+          "away": 2.34
         }
       ]
     },
@@ -33,21 +33,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.11,
+          "home": 1.08,
           "draw": null,
-          "away": 6
+          "away": 7
         },
         {
           "name": "Betfair",
-          "home": 1.11,
+          "home": 1.12,
           "draw": null,
           "away": 8.6
         },
         {
           "name": "888sport",
-          "home": 1.11,
+          "home": 1.08,
           "draw": null,
-          "away": 6
+          "away": 7
         }
       ]
     },
@@ -61,12 +61,6 @@
           "home": 1,
           "draw": null,
           "away": 21
-        },
-        {
-          "name": "Betfair",
-          "home": 1.01,
-          "draw": null,
-          "away": 75
         },
         {
           "name": "888sport",
@@ -89,9 +83,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.63,
+          "home": 1.73,
           "draw": null,
-          "away": 2.3
+          "away": 2.28
         },
         {
           "name": "888sport",
@@ -114,7 +108,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.55,
+          "home": 2,
           "draw": null,
           "away": 1.57
         },
@@ -157,11 +151,11 @@
     "Scotland": 201,
     "Egypt": 251,
     "South Korea": 251,
-    "Czechia": 351,
     "Bosnia & Herzegovina": 351,
     "Paraguay": 351,
     "Ghana": 351,
     "Algeria": 351,
+    "Czechia": 501,
     "Tunisia": 501,
     "Iran": 501,
     "DR Congo": 751,
@@ -169,9 +163,9 @@
     "Qatar": 1001,
     "New Zealand": 1001,
     "Cape Verde": 1001,
+    "South Africa": 1001,
     "Curaçao": 1001,
     "Iraq": 1501,
-    "South Africa": 1501,
     "Panama": 1501,
     "Uzbekistan": 1501,
     "Jordan": 2001,
