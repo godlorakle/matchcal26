@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T14:00:55.498Z",
+  "updated": "2026-06-18T16:01:41.877Z",
   "matches": [
     {
       "home": "West Indies",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.36,
+          "home": 1.4,
           "draw": null,
-          "away": 3
+          "away": 2.75
         },
         {
           "name": "Betfair",
-          "home": 1.45,
+          "home": 1.44,
           "draw": null,
-          "away": 3.15
+          "away": 3.2
         },
         {
           "name": "888sport",
-          "home": 1.36,
+          "home": 1.4,
           "draw": null,
-          "away": 3
+          "away": 2.75
         }
       ]
     },
@@ -66,7 +66,7 @@
           "name": "Betfair",
           "home": 1.01,
           "draw": null,
-          "away": 80
+          "away": 75
         },
         {
           "name": "888sport",
@@ -114,9 +114,9 @@
         },
         {
           "name": "Betfair",
-          "home": 2.74,
+          "home": 1.55,
           "draw": null,
-          "away": 1.49
+          "away": 1.57
         },
         {
           "name": "888sport",
