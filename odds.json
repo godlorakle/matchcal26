@@ -1,31 +1,6 @@
 {
-  "updated": "2026-06-18T20:00:58.033Z",
+  "updated": "2026-06-18T22:00:59.409Z",
   "matches": [
-    {
-      "home": "West Indies",
-      "away": "Scotland",
-      "commence": "2026-06-18T17:30:00Z",
-      "books": [
-        {
-          "name": "Betfair",
-          "home": 1.15,
-          "draw": null,
-          "away": 7.2
-        },
-        {
-          "name": "888sport",
-          "home": 1.12,
-          "draw": null,
-          "away": 5.5
-        },
-        {
-          "name": "Matchbook",
-          "home": 1.15,
-          "draw": null,
-          "away": 7.2
-        }
-      ]
-    },
     {
       "home": "New Zealand",
       "away": "Ireland",
@@ -39,9 +14,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.12,
+          "home": 1.1,
           "draw": null,
-          "away": 8.6
+          "away": 10
         },
         {
           "name": "888sport",
@@ -83,15 +58,65 @@
         },
         {
           "name": "Betfair",
-          "home": 1.62,
+          "home": 1.6,
           "draw": null,
-          "away": 2.28
+          "away": 2.4
         },
         {
           "name": "888sport",
           "home": 1.6,
           "draw": null,
           "away": 2.25
+        }
+      ]
+    },
+    {
+      "home": "England",
+      "away": "Scotland",
+      "commence": "2026-06-20T17:30:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 1.06,
+          "draw": null,
+          "away": 8.5
+        },
+        {
+          "name": "Betfair",
+          "home": 1.1,
+          "draw": null,
+          "away": 8.6
+        },
+        {
+          "name": "888sport",
+          "home": 1.06,
+          "draw": null,
+          "away": 8.5
+        }
+      ]
+    },
+    {
+      "home": "West Indies",
+      "away": "Sri Lanka",
+      "commence": "2026-06-21T09:30:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 1.67,
+          "draw": null,
+          "away": 2.1
+        },
+        {
+          "name": "Betfair",
+          "home": 1.48,
+          "draw": null,
+          "away": 1.48
+        },
+        {
+          "name": "888sport",
+          "home": 1.67,
+          "draw": null,
+          "away": 2.1
         }
       ]
     },
@@ -108,9 +133,9 @@
         },
         {
           "name": "Betfair",
-          "home": 2.04,
+          "home": 2.16,
           "draw": null,
-          "away": 1.57
+          "away": 1.49
         },
         {
           "name": "888sport",
