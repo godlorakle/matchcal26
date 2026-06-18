@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T06:00:55.423Z",
+  "updated": "2026-06-18T08:00:57.499Z",
   "matches": [
     {
       "home": "West Indies",
@@ -14,9 +14,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.42,
+          "home": 1.41,
           "draw": null,
-          "away": 3.3
+          "away": 3.4
         },
         {
           "name": "888sport",
@@ -66,7 +66,7 @@
           "name": "Betfair",
           "home": 1.01,
           "draw": null,
-          "away": 70
+          "away": 80
         },
         {
           "name": "888sport",
@@ -89,9 +89,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.32,
+          "home": 1.61,
           "draw": null,
-          "away": 2.16
+          "away": 2.2
         },
         {
           "name": "888sport",
@@ -116,7 +116,7 @@
           "name": "Betfair",
           "home": 1.55,
           "draw": null,
-          "away": 1.47
+          "away": 1.48
         },
         {
           "name": "888sport",
@@ -135,22 +135,22 @@
     "Portugal": 10,
     "Brazil": 12,
     "Germany": 15,
-    "Netherlands": 23,
+    "Netherlands": 21,
     "Norway": 26,
+    "Morocco": 34,
+    "Colombia": 34,
     "United States": 41,
     "Belgium": 41,
-    "Morocco": 41,
     "Japan": 41,
-    "Colombia": 41,
     "Mexico": 51,
-    "Uruguay": 67,
     "Switzerland": 67,
     "Croatia": 81,
-    "Sweden": 81,
-    "Senegal": 101,
+    "Uruguay": 81,
+    "Sweden": 101,
     "Austria": 101,
     "Australia": 101,
     "Canada": 126,
+    "Senegal": 126,
     "Ecuador": 151,
     "Ivory Coast": 151,
     "Türkiye": 151,
