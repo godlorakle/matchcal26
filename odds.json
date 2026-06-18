@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T18:00:58.204Z",
+  "updated": "2026-06-18T18:12:38.858Z",
   "matches": [
     {
       "home": "West Indies",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 1.69,
+          "home": 2.16,
           "draw": null,
-          "away": 2.42
+          "away": 1.84
         },
         {
           "name": "888sport",
-          "home": 1.6,
+          "home": 2,
           "draw": null,
-          "away": 2.25
+          "away": 1.73
         },
         {
           "name": "Matchbook",
-          "home": 1.71,
+          "home": 2.12,
           "draw": null,
-          "away": 2.34
+          "away": 1.88
         }
       ]
     },
