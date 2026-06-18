@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T12:01:02.437Z",
+  "updated": "2026-06-18T12:31:30.289Z",
   "matches": [
     {
       "home": "West Indies",
@@ -16,7 +16,7 @@
           "name": "Betfair",
           "home": 1.43,
           "draw": null,
-          "away": 3.25
+          "away": 3.2
         },
         {
           "name": "888sport",
@@ -41,7 +41,7 @@
           "name": "Betfair",
           "home": 1.11,
           "draw": null,
-          "away": 9.2
+          "away": 8.6
         },
         {
           "name": "888sport",
@@ -89,7 +89,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.63,
+          "home": 1.66,
           "draw": null,
           "away": 2.3
         },
@@ -132,50 +132,50 @@
     "Spain": 6,
     "England": 7,
     "Argentina": 9,
-    "Portugal": 10,
+    "Portugal": 11,
     "Brazil": 12,
     "Germany": 15,
     "Netherlands": 21,
-    "Norway": 26,
+    "Norway": 29,
     "Morocco": 34,
-    "Colombia": 34,
     "United States": 41,
     "Belgium": 41,
     "Japan": 41,
+    "Colombia": 41,
     "Mexico": 51,
-    "Switzerland": 67,
     "Croatia": 81,
     "Uruguay": 81,
+    "Switzerland": 81,
     "Sweden": 101,
     "Austria": 101,
     "Australia": 101,
+    "Ecuador": 126,
     "Canada": 126,
     "Senegal": 126,
-    "Ecuador": 151,
     "Ivory Coast": 151,
     "Türkiye": 151,
-    "Scotland": 151,
-    "Egypt": 201,
-    "Bosnia & Herzegovina": 251,
+    "Scotland": 201,
+    "Egypt": 251,
     "South Korea": 251,
-    "Ghana": 251,
-    "Czechia": 301,
-    "Algeria": 301,
+    "Czechia": 351,
+    "Bosnia & Herzegovina": 351,
     "Paraguay": 351,
-    "Saudi Arabia": 501,
+    "Ghana": 351,
+    "Algeria": 351,
     "Tunisia": 501,
     "Iran": 501,
     "DR Congo": 751,
+    "Saudi Arabia": 751,
     "Qatar": 1001,
-    "Iraq": 1001,
+    "New Zealand": 1001,
     "Cape Verde": 1001,
-    "New Zealand": 1501,
+    "Iraq": 1501,
     "South Africa": 1501,
     "Panama": 1501,
     "Uzbekistan": 1501,
-    "Haiti": 2001,
-    "Curaçao": 2001,
-    "Jordan": 2001
+    "Jordan": 2001,
+    "Haiti": 2501,
+    "Curaçao": 2501
   },
   "scores": [
     {
