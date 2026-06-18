@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-17T22:00:56.294Z",
+  "updated": "2026-06-18T00:00:56.713Z",
   "matches": [
     {
       "home": "West Indies",
@@ -16,7 +16,7 @@
           "name": "Betfair",
           "home": 1.4,
           "draw": null,
-          "away": 3.45
+          "away": 3.4
         },
         {
           "name": "888sport",
@@ -66,7 +66,7 @@
           "name": "Betfair",
           "home": 1.01,
           "draw": null,
-          "away": 50
+          "away": 70
         },
         {
           "name": "888sport",
@@ -75,18 +75,68 @@
           "away": 17
         }
       ]
+    },
+    {
+      "home": "Pakistan",
+      "away": "Bangladesh",
+      "commence": "2026-06-20T13:30:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 1.73,
+          "draw": null,
+          "away": 2
+        },
+        {
+          "name": "Betfair",
+          "home": 1.3,
+          "draw": null,
+          "away": 1.4
+        },
+        {
+          "name": "888sport",
+          "home": 1.73,
+          "draw": null,
+          "away": 2
+        }
+      ]
+    },
+    {
+      "home": "South Africa",
+      "away": "India",
+      "commence": "2026-06-21T13:30:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 2.38,
+          "draw": null,
+          "away": 1.53
+        },
+        {
+          "name": "Betfair",
+          "home": 2,
+          "draw": null,
+          "away": 1.5
+        },
+        {
+          "name": "888sport",
+          "home": 2.38,
+          "draw": null,
+          "away": 1.53
+        }
+      ]
     }
   ],
   "winner": {
     "France": 5,
     "Spain": 6,
-    "England": 7.5,
-    "Argentina": 8.5,
-    "Portugal": 9,
-    "Brazil": 11,
-    "Germany": 13,
-    "Netherlands": 21,
-    "Norway": 29,
+    "England": 7,
+    "Argentina": 9,
+    "Portugal": 10,
+    "Brazil": 12,
+    "Germany": 15,
+    "Netherlands": 23,
+    "Norway": 26,
     "United States": 41,
     "Belgium": 41,
     "Morocco": 41,
