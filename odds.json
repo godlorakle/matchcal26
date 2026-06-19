@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T18:01:05.162Z",
+  "updated": "2026-06-19T19:17:25.555Z",
   "matches": [
     {
       "home": "New Zealand",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.29,
+          "home": 1.4,
           "draw": null,
-          "away": 3.5
+          "away": 2.75
         },
         {
           "name": "Betfair",
-          "home": 1.36,
+          "home": 1.42,
           "draw": null,
-          "away": 3.7
+          "away": 3.3
         },
         {
           "name": "Matchbook",
-          "home": 1.29,
+          "home": 1.26,
           "draw": null,
-          "away": 4.3
+          "away": 4.5
         }
       ]
     },
@@ -58,21 +58,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.5,
+          "home": 1.44,
           "draw": null,
-          "away": 2.5
+          "away": 2.62
         },
         {
           "name": "Betfair",
-          "home": 1.55,
+          "home": 1.39,
           "draw": null,
-          "away": 2.78
+          "away": 3.5
         },
         {
           "name": "888sport",
-          "home": 1.5,
+          "home": 1.44,
           "draw": null,
-          "away": 2.5
+          "away": 2.62
         }
       ]
     },
@@ -91,7 +91,7 @@
           "name": "Betfair",
           "home": 1.08,
           "draw": null,
-          "away": 12
+          "away": 10.5
         },
         {
           "name": "888sport",
@@ -116,7 +116,7 @@
           "name": "Betfair",
           "home": 1.65,
           "draw": null,
-          "away": 2.24
+          "away": 2.22
         },
         {
           "name": "888sport",
@@ -139,7 +139,7 @@
         },
         {
           "name": "Betfair",
-          "home": 2.56,
+          "home": 2.38,
           "draw": null,
           "away": 1.61
         },
