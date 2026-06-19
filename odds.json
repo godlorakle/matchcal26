@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-18T22:00:59.409Z",
+  "updated": "2026-06-19T00:01:01.742Z",
   "matches": [
     {
       "home": "New Zealand",
@@ -14,9 +14,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.1,
+          "home": 1.11,
           "draw": null,
-          "away": 10
+          "away": 9.6
         },
         {
           "name": "888sport",
@@ -108,9 +108,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.48,
+          "home": 1.54,
           "draw": null,
-          "away": 1.48
+          "away": 1.51
         },
         {
           "name": "888sport",
@@ -133,9 +133,9 @@
         },
         {
           "name": "Betfair",
-          "home": 2.16,
+          "home": 2.42,
           "draw": null,
-          "away": 1.49
+          "away": 1.5
         },
         {
           "name": "888sport",
@@ -165,11 +165,11 @@
     "Croatia": 81,
     "Uruguay": 81,
     "Switzerland": 81,
+    "Canada": 101,
     "Sweden": 101,
     "Austria": 101,
     "Australia": 101,
     "Ecuador": 126,
-    "Canada": 126,
     "Senegal": 126,
     "Ivory Coast": 151,
     "Türkiye": 151,
