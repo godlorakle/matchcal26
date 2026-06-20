@@ -1,31 +1,6 @@
 {
-  "updated": "2026-06-20T18:01:06.659Z",
+  "updated": "2026-06-20T20:01:03.919Z",
   "matches": [
-    {
-      "home": "England",
-      "away": "Scotland",
-      "commence": "2026-06-20T17:30:00Z",
-      "books": [
-        {
-          "name": "William Hill",
-          "home": 1.02,
-          "draw": null,
-          "away": 12
-        },
-        {
-          "name": "Betfair",
-          "home": 1.05,
-          "draw": null,
-          "away": 19.5
-        },
-        {
-          "name": "Matchbook",
-          "home": 1.05,
-          "draw": null,
-          "away": 19
-        }
-      ]
-    },
     {
       "home": "West Indies",
       "away": "Sri Lanka",
@@ -66,7 +41,7 @@
           "name": "Betfair",
           "home": 2.74,
           "draw": null,
-          "away": 1.56
+          "away": 1.55
         },
         {
           "name": "888sport",
@@ -82,42 +57,54 @@
       "commence": "2026-06-23T17:30:00Z",
       "books": [
         {
-          "name": "Betfair",
+          "name": "William Hill",
           "home": 1.04,
           "draw": null,
+          "away": 10
+        },
+        {
+          "name": "Betfair",
+          "home": 1.05,
+          "draw": null,
           "away": 12
+        },
+        {
+          "name": "888sport",
+          "home": 1.04,
+          "draw": null,
+          "away": 10
         }
       ]
     }
   ],
   "winner": {
     "France": 5,
-    "Spain": 6,
+    "Spain": 6.5,
     "England": 7,
     "Argentina": 9,
     "Portugal": 11,
     "Brazil": 12,
     "Germany": 15,
-    "Netherlands": 17,
-    "United States": 29,
+    "Netherlands": 15,
     "Morocco": 29,
     "Norway": 29,
+    "United States": 34,
     "Belgium": 41,
     "Mexico": 41,
     "Colombia": 41,
     "Japan": 51,
-    "Croatia": 81,
     "Uruguay": 81,
     "Switzerland": 81,
+    "Croatia": 101,
     "Canada": 101,
-    "Sweden": 101,
     "Austria": 101,
     "Ecuador": 126,
     "Senegal": 126,
+    "Sweden": 151,
     "Ivory Coast": 151,
-    "Australia": 151,
     "Egypt": 251,
     "South Korea": 251,
+    "Australia": 251,
     "Scotland": 251,
     "Paraguay": 351,
     "Ghana": 351,
