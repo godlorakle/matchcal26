@@ -1,24 +1,11 @@
 {
-  "updated": "2026-06-20T08:34:18.962Z",
+  "updated": "2026-06-20T10:01:01.096Z",
   "matches": [
     {
       "home": "Australia",
       "away": "Netherlands",
       "commence": "2026-06-20T09:30:00Z",
-      "books": [
-        {
-          "name": "William Hill",
-          "home": 1,
-          "draw": null,
-          "away": 21
-        },
-        {
-          "name": "888sport",
-          "home": 1,
-          "draw": null,
-          "away": 21
-        }
-      ]
+      "books": []
     },
     {
       "home": "Pakistan",
@@ -33,9 +20,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.52,
+          "home": 1.51,
           "draw": null,
-          "away": 2.88
+          "away": 2.92
         },
         {
           "name": "888sport",
@@ -60,7 +47,7 @@
           "name": "Betfair",
           "home": 1.13,
           "draw": null,
-          "away": 8.2
+          "away": 8.4
         },
         {
           "name": "888sport",
@@ -85,7 +72,7 @@
           "name": "Betfair",
           "home": 1.68,
           "draw": null,
-          "away": 2.06
+          "away": 1.55
         },
         {
           "name": "888sport",
@@ -108,7 +95,7 @@
         },
         {
           "name": "Betfair",
-          "home": 2.62,
+          "home": 2.68,
           "draw": null,
           "away": 1.54
         },
