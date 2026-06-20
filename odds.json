@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T04:00:53.894Z",
+  "updated": "2026-06-20T06:00:57.284Z",
   "matches": [
     {
       "home": "Australia",
@@ -33,9 +33,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.5,
+          "home": 1.49,
           "draw": null,
-          "away": 2.98
+          "away": 3
         },
         {
           "name": "888sport",
@@ -58,9 +58,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.11,
+          "home": 1.1,
           "draw": null,
-          "away": 9.4
+          "away": 10
         },
         {
           "name": "888sport",
@@ -83,9 +83,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.68,
+          "home": 1.67,
           "draw": null,
-          "away": 2.02
+          "away": 1.9
         },
         {
           "name": "888sport",
@@ -150,7 +150,6 @@
     "Scotland": 201,
     "Egypt": 251,
     "South Korea": 251,
-    "Türkiye": 251,
     "Paraguay": 351,
     "Ghana": 351,
     "Algeria": 351,
@@ -168,8 +167,7 @@
     "Uzbekistan": 1501,
     "Curaçao": 2001,
     "Jordan": 2001,
-    "Qatar": 2501,
-    "Haiti": 2501
+    "Qatar": 2501
   },
   "scores": [
     {
