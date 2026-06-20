@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-19T22:00:59.604Z",
+  "updated": "2026-06-20T00:01:00.522Z",
   "matches": [
     {
       "home": "Australia",
@@ -89,9 +89,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.66,
+          "home": 1.67,
           "draw": null,
-          "away": 2.24
+          "away": 1.21
         },
         {
           "name": "888sport",
@@ -138,8 +138,8 @@
     "Netherlands": 21,
     "United States": 29,
     "Norway": 29,
+    "Morocco": 34,
     "Belgium": 41,
-    "Morocco": 41,
     "Mexico": 41,
     "Colombia": 41,
     "Japan": 51,
