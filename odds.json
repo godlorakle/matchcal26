@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T10:01:01.096Z",
+  "updated": "2026-06-20T10:18:11.602Z",
   "matches": [
     {
       "home": "Australia",
@@ -70,9 +70,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.68,
+          "home": 1.69,
           "draw": null,
-          "away": 1.55
+          "away": 2.08
         },
         {
           "name": "888sport",
