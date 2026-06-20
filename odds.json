@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T06:00:57.284Z",
+  "updated": "2026-06-20T08:03:01.819Z",
   "matches": [
     {
       "home": "Australia",
@@ -33,9 +33,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.49,
+          "home": 1.5,
           "draw": null,
-          "away": 3
+          "away": 2.96
         },
         {
           "name": "888sport",
@@ -58,9 +58,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.1,
+          "home": 1.13,
           "draw": null,
-          "away": 10
+          "away": 8.2
         },
         {
           "name": "888sport",
@@ -83,9 +83,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.67,
+          "home": 1.68,
           "draw": null,
-          "away": 1.9
+          "away": 2.06
         },
         {
           "name": "888sport",
@@ -110,7 +110,7 @@
           "name": "Betfair",
           "home": 2.62,
           "draw": null,
-          "away": 1.55
+          "away": 1.54
         },
         {
           "name": "888sport",
@@ -147,9 +147,9 @@
     "Senegal": 126,
     "Ivory Coast": 151,
     "Australia": 151,
-    "Scotland": 201,
     "Egypt": 251,
     "South Korea": 251,
+    "Scotland": 251,
     "Paraguay": 351,
     "Ghana": 351,
     "Algeria": 351,
