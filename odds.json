@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-20T15:25:12.117Z",
+  "updated": "2026-06-20T16:01:00.642Z",
   "matches": [
     {
       "home": "Pakistan",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.53,
+          "home": 1.2,
           "draw": null,
-          "away": 2.38
+          "away": 4.33
         },
         {
           "name": "Betfair",
-          "home": 1.6,
+          "home": 1.22,
           "draw": null,
-          "away": 2.62
+          "away": 5.4
         },
         {
           "name": "Matchbook",
-          "home": 1.62,
+          "home": 1.17,
           "draw": null,
-          "away": 2.58
+          "away": 6.6
         }
       ]
     },
@@ -39,7 +39,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.11,
+          "home": 1.1,
           "draw": null,
           "away": 10
         },
@@ -64,7 +64,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.71,
+          "home": 1.73,
           "draw": null,
           "away": 2.32
         },
@@ -89,9 +89,9 @@
         },
         {
           "name": "Betfair",
-          "home": 2.8,
+          "home": 2.72,
           "draw": null,
-          "away": 1.51
+          "away": 1.55
         },
         {
           "name": "888sport",
