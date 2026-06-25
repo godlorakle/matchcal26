@@ -125,8 +125,23 @@ async function main() {
   );
 
   if (!wcSport) {
-    console.log('World Cup not listed as active sport yet — saving empty odds.');
-    saveOdds([]);
+    console.log('World Cup not listed as active sport — skipping odds/outright, still fetching ESPN scores.');
+    // Still fetch and persist ESPN scores so standings remain populated.
+    let scores = [];
+    try {
+      scores = await fetchEspnScores();
+      console.log(`Got ${scores.length} scores from ESPN`);
+    } catch (e) { console.log('ESPN scores failed:', e.message); }
+    // Merge with any previously saved completed scores.
+    try {
+      const prev = (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'odds.json'), 'utf8')).scores || [])
+        .map(s => ({ ...s, hs: +s.hs, as: +s.as }));
+      const key = s => `${s.home}__${s.away}__${(s.commence || '').slice(0, 10)}`;
+      const map = new Map(prev.filter(s => s.completed).map(s => [key(s), s]));
+      scores.forEach(s => { if (s.completed) map.set(key(s), s); });
+      scores = [...map.values(), ...scores.filter(s => !s.completed)];
+    } catch (_) {}
+    saveOdds([], {}, scores);
     return;
   }
 
