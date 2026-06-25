@@ -1438,7 +1438,7 @@ async function loadOdds(){
     const res=await fetch('./odds.json?t='+Date.now());
     if(!res.ok)return;
     oddsData=await res.json();
-    resolveKO();
+    try{resolveKO();}catch(e){console.warn('resolveKO failed:',e);}
     render();
     updateFooter();
   }catch{}
