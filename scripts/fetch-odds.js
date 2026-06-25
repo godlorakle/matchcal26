@@ -2,6 +2,7 @@
 // Fetches World Cup odds from The Odds API and saves to odds.json
 
 const https = require('https');
+const zlib  = require('zlib');
 const fs    = require('fs');
 const path  = require('path');
 
@@ -39,13 +40,21 @@ function normalize(name) {
 
 function get(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
+    const opts = new URL(url);
+    opts.headers = { 'Accept-Encoding': 'gzip, deflate', 'User-Agent': 'node/fetch-odds' };
+    https.get(opts, res => {
+      const enc = res.headers['content-encoding'] || '';
+      let stream = res;
+      if (enc === 'gzip') stream = res.pipe(zlib.createGunzip());
+      else if (enc === 'deflate') stream = res.pipe(zlib.createInflate());
+      const chunks = [];
+      stream.on('data', chunk => chunks.push(chunk));
+      stream.on('end', () => {
+        const data = Buffer.concat(chunks).toString('utf8');
         try { resolve(JSON.parse(data)); }
         catch (e) { reject(new Error(`JSON parse error: ${data.slice(0,200)}`)); }
       });
+      stream.on('error', reject);
     }).on('error', reject);
   });
 }
@@ -60,6 +69,7 @@ const ESPN_TEAM_MAP = {
   "Côte d'Ivoire":       'Ivory Coast',
   "Cote d'Ivoire":       'Ivory Coast',
   'Congo, DR':           'DR Congo',
+  'Congo DR':            'DR Congo',
   'DR Congo':            'DR Congo',
   'Bosnia & Herzegovina':'Bosnia & Herzegovina',
   'Bosnia-Herzegovina':  'Bosnia & Herzegovina',

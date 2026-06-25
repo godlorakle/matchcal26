@@ -14,6 +14,7 @@ const ESPN_TEAM_MAP = {
   "Côte d'Ivoire":       'Ivory Coast',
   "Cote d'Ivoire":       'Ivory Coast',
   'Congo, DR':           'DR Congo',
+  'Congo DR':            'DR Congo',
   'DR Congo':            'DR Congo',
   'Bosnia & Herzegovina':'Bosnia & Herzegovina',
   'Bosnia-Herzegovina':  'Bosnia & Herzegovina',
@@ -24,15 +25,24 @@ const ESPN_TEAM_MAP = {
 };
 function espnName(n) { return ESPN_TEAM_MAP[n] || n; }
 
+const zlib = require('zlib');
 function get(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, res => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
+    const opts = new URL(url);
+    opts.headers = { 'Accept-Encoding': 'gzip, deflate', 'User-Agent': 'node/fetch-odds' };
+    https.get(opts, res => {
+      const enc = res.headers['content-encoding'] || '';
+      let stream = res;
+      if (enc === 'gzip') stream = res.pipe(zlib.createGunzip());
+      else if (enc === 'deflate') stream = res.pipe(zlib.createInflate());
+      const chunks = [];
+      stream.on('data', chunk => chunks.push(chunk));
+      stream.on('end', () => {
+        const data = Buffer.concat(chunks).toString('utf8');
         try { resolve(JSON.parse(data)); }
         catch (e) { reject(new Error(`JSON parse error: ${data.slice(0,200)}`)); }
       });
+      stream.on('error', reject);
     }).on('error', reject);
   });
 }
@@ -63,13 +73,10 @@ async function main() {
   }
   console.log(`\nFetched ${fresh.length} completed matches from ESPN`);
 
+  // Replace scores wholesale — we fetch the full history each time so no merge needed.
   const oddsPath = path.join(__dirname, '..', 'odds.json');
   const existing = JSON.parse(fs.readFileSync(oddsPath, 'utf8'));
-  const prev = (existing.scores || []).map(s => ({ ...s, hs: +s.hs, as: +s.as }));
-  const key = s => `${s.home}__${s.away}__${(s.commence || '').slice(0, 10)}`;
-  const map = new Map(prev.filter(s => s.completed).map(s => [key(s), s]));
-  fresh.forEach(s => map.set(key(s), s));
-  existing.scores = [...map.values()];
+  existing.scores = fresh;
   existing.updated = new Date().toISOString();
   fs.writeFileSync(oddsPath, JSON.stringify(existing, null, 2));
   console.log(`Saved odds.json with ${existing.scores.length} scores`);

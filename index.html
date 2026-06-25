@@ -1367,11 +1367,78 @@ function toggleOdds(el){
   }
 }
 
+// ── KNOCKOUT SLOT RESOLUTION ─────────────────────────────────────────────────
+// Patches MATCHES[73+].home/away with real team names once standings are known.
+// Called after every oddsData load so live-score updates propagate automatically.
+function resolveKO(){
+  // group letter → [winner, runner-up, 3rd] when all 3 matchdays are done
+  const gf={};
+  GROUP_NAMES.forEach(g=>{
+    const letter=g.split(' ')[1];
+    const rows=computeStandings(g);
+    if(rows.length===4&&rows.every(r=>r.p===3))
+      gf[letter]=[rows[0].team,rows[1].team,rows[2].team];
+  });
+
+  // Resolve a slot code → team name, or null if still unknown
+  function slotTeam(code){
+    if(!code)return null;
+    if(code.startsWith('T:'))return null; // best-3rd assignment is FIFA's post-GS decision
+    if(code.length===2&&'WR'.includes(code[0])){
+      const fin=gf[code[1]];
+      if(!fin)return null;
+      return code[0]==='W'?fin[0]:fin[1];
+    }
+    return null;
+  }
+
+  // Helper: winner/loser of a completed knockout match
+  function koResult(m){
+    if(!m||m.home==='TBD'||m.away==='TBD')return{w:null,l:null};
+    const sc=scoreFor(m.home,m.away,m.utc);
+    if(!sc||!sc.completed)return{w:null,l:null};
+    const w=sc.hs>sc.as?m.home:sc.as>sc.hs?m.away:null;
+    return{w,l:w?(w===m.home?m.away:m.home):null};
+  }
+
+  // Patch R32 (73-88) from group standings
+  for(let id=73;id<=88;id++){
+    const m=MATCHES.find(x=>x.id===id);
+    const sl=KO_SLOTS[id];
+    if(!m||!sl)continue;
+    const h=slotTeam(sl[0]),a=slotTeam(sl[1]);
+    if(h)m.home=h;
+    if(a)m.away=a;
+  }
+
+  // Patch R16→QF→SF→Final from completed KO match results, in bracket order
+  const koOrder=[89,90,91,92,93,94,95,96,97,98,99,100,101,102,104];
+  for(const id of koOrder){
+    const [f1,f2]=FEEDERS[id]||[];
+    const m=MATCHES.find(x=>x.id===id);
+    if(!m)continue;
+    const{w:w1}=koResult(MATCHES.find(x=>x.id===f1));
+    const{w:w2}=koResult(MATCHES.find(x=>x.id===f2));
+    if(w1)m.home=w1;
+    if(w2)m.away=w2;
+  }
+
+  // Patch 3rd-place (103) from SF losers
+  const m103=MATCHES.find(x=>x.id===103);
+  if(m103){
+    const{l:l1}=koResult(MATCHES.find(x=>x.id===101));
+    const{l:l2}=koResult(MATCHES.find(x=>x.id===102));
+    if(l1)m103.home=l1;
+    if(l2)m103.away=l2;
+  }
+}
+
 async function loadOdds(){
   try{
     const res=await fetch('./odds.json?t='+Date.now());
     if(!res.ok)return;
     oddsData=await res.json();
+    resolveKO();
     render();
     updateFooter();
   }catch{}
