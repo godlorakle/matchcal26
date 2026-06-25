@@ -50,6 +50,51 @@ function get(url) {
   });
 }
 
+const ESPN_TEAM_MAP = {
+  'United States':       'United States',
+  'USA':                 'United States',
+  'Korea Republic':      'South Korea',
+  'South Korea':         'South Korea',
+  'Turkey':              'Türkiye',
+  'Turkiye':             'Türkiye',
+  "Côte d'Ivoire":       'Ivory Coast',
+  "Cote d'Ivoire":       'Ivory Coast',
+  'Congo, DR':           'DR Congo',
+  'DR Congo':            'DR Congo',
+  'Bosnia & Herzegovina':'Bosnia & Herzegovina',
+  'Bosnia-Herzegovina':  'Bosnia & Herzegovina',
+  'Curacao':             'Curaçao',
+  'Czech Republic':      'Czechia',
+  'IR Iran':             'Iran',
+  'Cape Verde Islands':  'Cape Verde',
+};
+function espnName(n) { return ESPN_TEAM_MAP[n] || n; }
+
+async function fetchEspnScores() {
+  const results = [];
+  const start = new Date('2026-06-11');
+  const end   = new Date(); end.setDate(end.getDate() + 1);
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+    const ds = d.toISOString().slice(0, 10).replace(/-/g, '');
+    try {
+      const data = await get(`https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=${ds}`);
+      for (const ev of (data.events || [])) {
+        const comp = ev.competitions?.[0];
+        if (!comp) continue;
+        const homeC = comp.competitors?.find(c => c.homeAway === 'home');
+        const awayC = comp.competitors?.find(c => c.homeAway === 'away');
+        if (!homeC || !awayC) continue;
+        const completed = !!comp.status?.type?.completed;
+        const hs = parseInt(homeC.score, 10);
+        const as = parseInt(awayC.score, 10);
+        if (!completed || isNaN(hs) || isNaN(as)) continue;
+        results.push({ home: espnName(homeC.team?.displayName || ''), away: espnName(awayC.team?.displayName || ''), commence: ev.date, completed: true, hs, as });
+      }
+    } catch (_) {}
+  }
+  return results;
+}
+
 async function main() {
   console.log('Fetching available sports…');
 
@@ -150,35 +195,42 @@ async function main() {
     }
   } catch (e) { console.log('Outright fetch skipped:', e.message); }
 
-  // ── Scores: live + recently completed matches (same key, /scores endpoint) ──
+  // ── Scores: ESPN public API — full WC 2026 coverage, no key needed ──────────
+  // The Odds API /scores only covers matches it priced odds on (~15 of 72).
+  // ESPN returns ALL results for the full tournament.
   let scores = [];
   try {
-    const sUrl = `https://api.the-odds-api.com/v4/sports/${wcSport.key}/scores/` +
-      `?apiKey=${API_KEY}&daysFrom=3&dateFormat=iso`;
-    const sRaw = await get(sUrl);
-    if (Array.isArray(sRaw)) {
-      scores = sRaw.filter(g => Array.isArray(g.scores)).map(g => {
-        const home = normalize(g.home_team), away = normalize(g.away_team);
-        const find = n => g.scores.find(s => normalize(s.name) === n)?.score;
-        const hs = find(home), as = find(away);
-        // API returns scores as strings — store as numbers
-        return { home, away, commence: g.commence_time, completed: !!g.completed,
-                 hs: hs != null ? +hs : null, as: as != null ? +as : null };
-      }).filter(s => s.hs != null && s.as != null && !isNaN(s.hs) && !isNaN(s.as));
-      console.log(`Got scores for ${scores.length} matches (live + completed)`);
-    }
-  } catch (e) { console.log('Scores fetch skipped:', e.message); }
+    scores = await fetchEspnScores();
+    console.log(`Got ${scores.length} scores from ESPN`);
+  } catch (e) {
+    console.log('ESPN scores failed, falling back to Odds API:', e.message);
+    try {
+      const sUrl = `https://api.the-odds-api.com/v4/sports/${wcSport.key}/scores/` +
+        `?apiKey=${API_KEY}&daysFrom=3&dateFormat=iso`;
+      const sRaw = await get(sUrl);
+      if (Array.isArray(sRaw)) {
+        scores = sRaw.filter(g => Array.isArray(g.scores)).map(g => {
+          const home = normalize(g.home_team), away = normalize(g.away_team);
+          const find = n => g.scores.find(s => normalize(s.name) === n)?.score;
+          const hs = find(home), as = find(away);
+          return { home, away, commence: g.commence_time, completed: !!g.completed,
+                   hs: hs != null ? +hs : null, as: as != null ? +as : null };
+        }).filter(s => s.hs != null && s.as != null && !isNaN(s.hs) && !isNaN(s.as));
+        console.log(`Fallback: got ${scores.length} scores from Odds API`);
+      }
+    } catch (e2) { console.log('Scores fetch skipped:', e2.message); }
+  }
 
-  // Merge with previously saved scores: the API only returns ~3 days, but standings
-  // need every completed result of the tournament to persist.
+  // Merge with previously saved completed scores so nothing is lost between runs.
   try {
     const prev = (JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'odds.json'), 'utf8')).scores || [])
-      .map(s => ({ ...s, hs: +s.hs, as: +s.as })); // older entries may still be strings
+      .map(s => ({ ...s, hs: +s.hs, as: +s.as }));
     const key = s => `${s.home}__${s.away}__${(s.commence || '').slice(0, 10)}`;
     const map = new Map(prev.filter(s => s.completed).map(s => [key(s), s]));
-    scores.forEach(s => map.set(key(s), s));
-    scores = [...map.values()];
-    console.log(`Scores after merge with history: ${scores.length}`);
+    scores.forEach(s => { if (s.completed) map.set(key(s), s); });
+    const inProgress = scores.filter(s => !s.completed);
+    scores = [...map.values(), ...inProgress];
+    console.log(`Scores after merge: ${scores.length} (${inProgress.length} live)`);
   } catch (e) { console.log('Score merge skipped:', e.message); }
 
   saveOdds(matches, winner, scores);
