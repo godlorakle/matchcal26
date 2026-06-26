@@ -16,6 +16,14 @@ function loadStoredScores() {
   } catch (_) { return []; }
 }
 
+// Last-known odds.json, so we can preserve matches/winner when the API
+// stops returning World Cup data instead of blanking the app's odds.
+function loadStoredOdds() {
+  try {
+    return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'odds.json'), 'utf8'));
+  } catch (_) { return { matches: [], winner: {} }; }
+}
+
 // Normalize team names from Odds API → our fixture names
 const TEAM_MAP = {
   'United States':      'United States',
@@ -88,8 +96,11 @@ async function main() {
   );
 
   if (!wcSport) {
-    console.log('World Cup not listed as active sport — saving scores only.');
-    saveOdds([], {}, loadStoredScores());
+    // Odds API no longer lists the WC (happened ~June 20). Keep the last-known
+    // odds so the app still shows them, and refresh scores from ESPN/stored.
+    const prevOdds = loadStoredOdds();
+    console.log(`World Cup not listed as active sport — preserving last-known odds (${prevOdds.matches?.length || 0} matches, ${Object.keys(prevOdds.winner || {}).length} outright teams).`);
+    saveOdds(prevOdds.matches || [], prevOdds.winner || {}, loadStoredScores());
     return;
   }
 
@@ -115,7 +126,7 @@ async function main() {
     'Pinnacle', 'Betway', 'Bwin', 'Marathon Bet',
   ];
 
-  const matches = raw.map(match => {
+  let matches = raw.map(match => {
     const home = normalize(match.home_team);
     const away = normalize(match.away_team);
 
@@ -171,6 +182,17 @@ async function main() {
   // Scores come from scores.json (populated by backfill-scores.js, never overwritten here).
   const scores = loadStoredScores();
   console.log(`Loaded ${scores.length} scores from scores.json`);
+
+  // Don't blank good odds if a given fetch came back empty — keep last-known.
+  const prevOdds = loadStoredOdds();
+  if (!matches.length && prevOdds.matches?.length) {
+    console.log(`Odds fetch empty — keeping ${prevOdds.matches.length} stored matches.`);
+    matches = prevOdds.matches;
+  }
+  if (!Object.keys(winner).length && Object.keys(prevOdds.winner || {}).length) {
+    console.log(`Outright fetch empty — keeping ${Object.keys(prevOdds.winner).length} stored outright teams.`);
+    winner = prevOdds.winner;
+  }
 
   saveOdds(matches, winner, scores);
 }
