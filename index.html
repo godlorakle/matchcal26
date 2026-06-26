@@ -1438,6 +1438,11 @@ async function loadOdds(){
     const res=await fetch('./odds.json?t='+Date.now());
     if(!res.ok)return;
     oddsData=await res.json();
+    // scores.json is maintained by backfill-scores.js and never overwritten by the bot.
+    try{
+      const sr=await fetch('./scores.json?t='+Date.now());
+      if(sr.ok) oddsData.scores=await sr.json();
+    }catch{}
     try{resolveKO();}catch(e){console.warn('resolveKO failed:',e);}
     render();
     updateFooter();

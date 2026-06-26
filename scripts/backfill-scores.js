@@ -1,5 +1,6 @@
-// One-shot: pull all WC 2026 scores from ESPN and merge into odds.json.
+// Pull all WC 2026 scores from ESPN and save to scores.json.
 // No API key needed. Run: node scripts/backfill-scores.js
+// scores.json is the source of truth; the bot (fetch-odds.js) never overwrites it.
 const https = require('https');
 const fs    = require('fs');
 const path  = require('path');
@@ -73,12 +74,9 @@ async function main() {
   }
   console.log(`\nFetched ${fresh.length} completed matches from ESPN`);
 
-  // Replace scores wholesale — we fetch the full history each time so no merge needed.
-  const oddsPath = path.join(__dirname, '..', 'odds.json');
-  const existing = JSON.parse(fs.readFileSync(oddsPath, 'utf8'));
-  existing.scores = fresh;
-  existing.updated = new Date().toISOString();
-  fs.writeFileSync(oddsPath, JSON.stringify(existing, null, 2));
-  console.log(`Saved odds.json with ${existing.scores.length} scores`);
+  // Write to scores.json — separate from odds.json so the bot never wipes it.
+  const scoresPath = path.join(__dirname, '..', 'scores.json');
+  fs.writeFileSync(scoresPath, JSON.stringify(fresh, null, 2));
+  console.log(`Saved scores.json with ${fresh.length} scores`);
 }
 main().catch(e => { console.error(e); process.exit(1); });
