@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01T14:00:54.154Z",
+  "updated": "2026-07-01T16:00:59.238Z",
   "matches": [
     {
       "home": "England",
@@ -14,15 +14,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.5,
+          "home": 1.49,
           "draw": null,
-          "away": 2.94
+          "away": 2.96
         },
         {
           "name": "Pinnacle",
-          "home": 1.47,
+          "home": 1.55,
           "draw": null,
-          "away": 2.78
+          "away": 2.52
         }
       ]
     }
@@ -36,9 +36,9 @@
     "Portugal": 13,
     "Morocco": 21,
     "Mexico": 29,
-    "Norway": 29,
     "Colombia": 29,
     "United States": 34,
+    "Norway": 34,
     "Belgium": 51,
     "Switzerland": 81,
     "Canada": 126,
