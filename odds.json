@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01T18:01:04.295Z",
+  "updated": "2026-07-01T20:00:49.981Z",
   "matches": [
     {
       "home": "England",
@@ -14,9 +14,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.49,
+          "home": 1.48,
           "draw": null,
-          "away": 2.98
+          "away": 3
         },
         {
           "name": "Pinnacle",
@@ -31,28 +31,27 @@
     "France": 2.88,
     "Argentina": 5,
     "Spain": 8,
-    "England": 9,
+    "England": 8,
     "Brazil": 12,
-    "Portugal": 13,
-    "Morocco": 21,
+    "Portugal": 15,
+    "Morocco": 26,
     "Mexico": 29,
-    "Colombia": 29,
     "United States": 34,
     "Norway": 34,
+    "Colombia": 34,
     "Belgium": 51,
     "Switzerland": 81,
-    "Canada": 126,
-    "Croatia": 151,
     "Senegal": 151,
-    "Paraguay": 201,
+    "Croatia": 201,
+    "Canada": 201,
     "Egypt": 251,
-    "Austria": 251,
-    "DR Congo": 351,
+    "Paraguay": 351,
+    "Austria": 351,
     "Ghana": 351,
     "Australia": 351,
-    "Algeria": 351,
-    "Cape Verde": 501,
-    "Bosnia & Herzegovina": 501
+    "Bosnia & Herzegovina": 501,
+    "Algeria": 501,
+    "Cape Verde": 751
   },
   "scores": [
     {
