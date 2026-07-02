@@ -1,28 +1,22 @@
 {
-  "updated": "2026-07-02T20:09:59.996Z",
+  "updated": "2026-07-02T22:00:55.891Z",
   "matches": [
     {
       "home": "England",
-      "away": "South Africa",
-      "commence": "2026-07-02T17:26:00Z",
+      "away": "Australia",
+      "commence": "2026-07-05T14:30:00Z",
       "books": [
         {
           "name": "William Hill",
-          "home": 1.02,
+          "home": 2.9,
           "draw": null,
-          "away": 17
+          "away": 1.4
         },
         {
-          "name": "Betfair",
-          "home": 1.04,
+          "name": "888sport",
+          "home": 1.4,
           "draw": null,
-          "away": 24
-        },
-        {
-          "name": "Matchbook",
-          "home": 1.03,
-          "draw": null,
-          "away": 27
+          "away": 2.9
         }
       ]
     }
@@ -30,9 +24,9 @@
   "winner": {
     "France": 2.88,
     "Argentina": 5,
-    "Spain": 7.5,
-    "England": 8,
-    "Brazil": 11,
+    "Spain": 7,
+    "England": 9.5,
+    "Brazil": 13,
     "Portugal": 15,
     "Morocco": 26,
     "United States": 29,
@@ -47,7 +41,6 @@
     "Paraguay": 351,
     "Ghana": 351,
     "Australia": 351,
-    "Austria": 501,
     "Algeria": 501,
     "Cape Verde": 751
   },
