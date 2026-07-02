@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-02T18:01:00.163Z",
+  "updated": "2026-07-02T20:00:57.931Z",
   "matches": [
     {
       "home": "England",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.91,
+          "home": 1.14,
           "draw": null,
-          "away": 1.91
+          "away": 5.5
         },
         {
           "name": "Betfair",
-          "home": 2,
+          "home": 1.14,
           "draw": null,
-          "away": 1.99
+          "away": 7.6
         },
         {
           "name": "Matchbook",
-          "home": 2.08,
+          "home": 1.05,
           "draw": null,
-          "away": 1.91
+          "away": 16.5
         }
       ]
     }
@@ -30,8 +30,8 @@
   "winner": {
     "France": 2.88,
     "Argentina": 5,
+    "Spain": 7.5,
     "England": 8,
-    "Spain": 9,
     "Brazil": 11,
     "Portugal": 15,
     "Morocco": 26,
@@ -45,9 +45,9 @@
     "Canada": 201,
     "Egypt": 251,
     "Paraguay": 351,
-    "Austria": 351,
     "Ghana": 351,
     "Australia": 351,
+    "Austria": 501,
     "Algeria": 501,
     "Cape Verde": 751
   },
