@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-02T08:00:53.473Z",
+  "updated": "2026-07-02T10:00:52.939Z",
   "matches": [
     {
       "home": "England",
@@ -10,11 +10,11 @@
           "name": "William Hill",
           "home": 1.4,
           "draw": null,
-          "away": 2.75
+          "away": 2.9
         },
         {
           "name": "Betfair",
-          "home": 1.46,
+          "home": 1.47,
           "draw": null,
           "away": 3.1
         },
@@ -30,16 +30,16 @@
   "winner": {
     "France": 2.88,
     "Argentina": 5,
-    "Spain": 8,
     "England": 8,
-    "Brazil": 12,
+    "Spain": 9,
+    "Brazil": 11,
     "Portugal": 15,
     "Morocco": 26,
     "United States": 29,
     "Mexico": 29,
+    "Colombia": 29,
     "Belgium": 34,
     "Norway": 34,
-    "Colombia": 34,
     "Switzerland": 81,
     "Croatia": 201,
     "Canada": 201,
