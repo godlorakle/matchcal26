@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T02:00:55.773Z",
+  "updated": "2026-07-03T04:00:58.928Z",
   "matches": [
     {
       "home": "England",
@@ -11,6 +11,12 @@
           "home": 2.9,
           "draw": null,
           "away": 1.4
+        },
+        {
+          "name": "Betfair",
+          "home": 2.24,
+          "draw": null,
+          "away": 1.43
         },
         {
           "name": "888sport",
@@ -34,14 +40,14 @@
     "Colombia": 29,
     "Belgium": 34,
     "Norway": 34,
-    "Switzerland": 81,
+    "Switzerland": 67,
     "Canada": 201,
     "Egypt": 251,
     "Paraguay": 351,
     "Ghana": 351,
     "Australia": 351,
-    "Algeria": 501,
-    "Cape Verde": 751
+    "Cape Verde": 751,
+    "Algeria": 751
   },
   "scores": [
     {
