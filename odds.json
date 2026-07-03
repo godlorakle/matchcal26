@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T20:32:06.178Z",
+  "updated": "2026-07-03T22:01:01.993Z",
   "matches": [
     {
       "home": "England",
@@ -41,9 +41,8 @@
     "Belgium": 34,
     "Norway": 34,
     "Switzerland": 51,
+    "Egypt": 201,
     "Canada": 201,
-    "Egypt": 301,
-    "Australia": 301,
     "Paraguay": 351,
     "Ghana": 351,
     "Cape Verde": 751
@@ -728,6 +727,14 @@
       "completed": true,
       "hs": 2,
       "as": 0
+    },
+    {
+      "home": "Australia",
+      "away": "Egypt",
+      "commence": "2026-07-03T18:00Z",
+      "completed": true,
+      "hs": 1,
+      "as": 1
     }
   ]
 }
