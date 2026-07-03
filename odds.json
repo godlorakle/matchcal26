@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T00:01:03.566Z",
+  "updated": "2026-07-03T02:00:55.773Z",
   "matches": [
     {
       "home": "England",
@@ -26,8 +26,8 @@
     "Argentina": 5,
     "Spain": 7,
     "England": 9.5,
+    "Portugal": 12,
     "Brazil": 13,
-    "Portugal": 15,
     "Morocco": 26,
     "United States": 29,
     "Mexico": 29,
@@ -35,7 +35,6 @@
     "Belgium": 34,
     "Norway": 34,
     "Switzerland": 81,
-    "Croatia": 201,
     "Canada": 201,
     "Egypt": 251,
     "Paraguay": 351,
