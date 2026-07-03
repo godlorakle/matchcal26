@@ -26,18 +26,21 @@ jobs:
         env:
           FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
+      - name: Refresh scores from ESPN
+        run: node scripts/backfill-scores.js
+
       - name: Fetch odds
         run: node scripts/fetch-odds.js
         env:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
 
-      - name: Commit updated odds.json
+      - name: Commit updated odds.json + scores.json
         run: |
           git config user.name  "odds-bot"
           git config user.email "bot@matchcal26.netlify.app"
-          git add odds.json
+          git add odds.json scores.json
           if git diff --staged --quiet; then
-            echo "No odds changes."
+            echo "No odds/scores changes."
             exit 0
           fi
           git commit -m "chore: update odds"
