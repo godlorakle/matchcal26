@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T06:01:01.166Z",
+  "updated": "2026-07-03T08:00:57.390Z",
   "matches": [
     {
       "home": "England",
@@ -14,9 +14,9 @@
         },
         {
           "name": "Betfair",
-          "home": 2.62,
+          "home": 2.74,
           "draw": null,
-          "away": 1.5
+          "away": 1.51
         },
         {
           "name": "888sport",
@@ -31,7 +31,7 @@
     "France": 2.88,
     "Argentina": 5,
     "Spain": 7,
-    "England": 9.5,
+    "England": 10,
     "Portugal": 12,
     "Brazil": 13,
     "Morocco": 26,
@@ -40,7 +40,7 @@
     "Colombia": 29,
     "Belgium": 34,
     "Norway": 34,
-    "Switzerland": 41,
+    "Switzerland": 51,
     "Canada": 201,
     "Egypt": 251,
     "Paraguay": 351,
