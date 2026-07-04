@@ -694,5 +694,13 @@
     "completed": true,
     "hs": 3,
     "as": 2
+  },
+  {
+    "home": "Colombia",
+    "away": "Ghana",
+    "commence": "2026-07-04T01:30Z",
+    "completed": true,
+    "hs": 1,
+    "as": 0
   }
 ]
