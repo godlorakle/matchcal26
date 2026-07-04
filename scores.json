@@ -686,5 +686,13 @@
     "completed": true,
     "hs": 1,
     "as": 1
+  },
+  {
+    "home": "Argentina",
+    "away": "Cape Verde",
+    "commence": "2026-07-03T22:00Z",
+    "completed": true,
+    "hs": 3,
+    "as": 2
   }
 ]
