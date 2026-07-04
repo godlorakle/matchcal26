@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T22:15:04.736Z",
+  "updated": "2026-07-04T00:01:05.058Z",
   "matches": [
     {
       "home": "England",
@@ -29,7 +29,7 @@
   ],
   "winner": {
     "France": 2.88,
-    "Argentina": 5,
+    "Argentina": 5.5,
     "Spain": 7,
     "England": 10,
     "Portugal": 12,
@@ -45,7 +45,7 @@
     "Canada": 201,
     "Paraguay": 351,
     "Ghana": 351,
-    "Cape Verde": 751
+    "Cape Verde": 401
   },
   "scores": [
     {
