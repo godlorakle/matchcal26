@@ -702,5 +702,13 @@
     "completed": true,
     "hs": 1,
     "as": 0
+  },
+  {
+    "home": "Canada",
+    "away": "Morocco",
+    "commence": "2026-07-04T17:00Z",
+    "completed": true,
+    "hs": 0,
+    "as": 3
   }
 ]
