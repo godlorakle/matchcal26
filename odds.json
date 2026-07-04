@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T06:01:00.346Z",
+  "updated": "2026-07-04T08:00:59.915Z",
   "matches": [
     {
       "home": "England",
@@ -16,7 +16,7 @@
           "name": "Betfair",
           "home": 3.05,
           "draw": null,
-          "away": 1.47
+          "away": 1.48
         },
         {
           "name": "Pinnacle",
@@ -29,18 +29,18 @@
   ],
   "winner": {
     "France": 2.88,
-    "Argentina": 5.5,
+    "Argentina": 5,
     "Spain": 7,
     "England": 10,
     "Portugal": 12,
-    "Brazil": 13,
-    "Morocco": 26,
+    "Brazil": 12,
     "Colombia": 26,
     "United States": 29,
+    "Morocco": 29,
     "Mexico": 29,
-    "Belgium": 34,
     "Norway": 34,
-    "Switzerland": 51,
+    "Belgium": 41,
+    "Switzerland": 67,
     "Egypt": 201,
     "Canada": 201,
     "Paraguay": 351
