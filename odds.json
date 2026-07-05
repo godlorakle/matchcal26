@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T20:01:14.625Z",
+  "updated": "2026-07-05T20:20:53.415Z",
   "matches": [
     {
       "home": "Brazil",
@@ -7,22 +7,22 @@
       "commence": "2026-07-05T20:00:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 1.75,
-          "draw": 3.75,
-          "away": 4.2
-        },
-        {
           "name": "Betfair",
-          "home": 1.81,
-          "draw": 3.85,
-          "away": 5.1
+          "home": 1.83,
+          "draw": 3.8,
+          "away": 5
         },
         {
-          "name": "Pinnacle",
-          "home": 1.78,
-          "draw": 3.76,
-          "away": 5.08
+          "name": "Tipico",
+          "home": 1.75,
+          "draw": 3.6,
+          "away": 4.3
+        },
+        {
+          "name": "PMU (FR)",
+          "home": 1.77,
+          "draw": 3.35,
+          "away": 4.75
         }
       ]
     },
@@ -45,9 +45,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 3.11,
+          "home": 3.12,
           "draw": 3.15,
-          "away": 2.61
+          "away": 2.6
         }
       ]
     },
@@ -83,21 +83,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 2.6,
+          "home": 2.62,
           "draw": 3.25,
-          "away": 2.62
+          "away": 2.6
         },
         {
           "name": "Betfair",
-          "home": 2.8,
-          "draw": 3.5,
-          "away": 2.76
+          "home": 2.84,
+          "draw": 3.55,
+          "away": 2.68
         },
         {
           "name": "Pinnacle",
-          "home": 2.67,
+          "home": 2.75,
           "draw": 3.49,
-          "away": 2.69
+          "away": 2.61
         }
       ]
     },
@@ -122,7 +122,7 @@
           "name": "Pinnacle",
           "home": 1.39,
           "draw": 4.71,
-          "away": 9.21
+          "away": 9.23
         }
       ]
     },
@@ -140,7 +140,7 @@
         {
           "name": "Betfair",
           "home": 3.7,
-          "draw": 3.2,
+          "draw": 3.15,
           "away": 2.38
         },
         {
