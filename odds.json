@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T22:01:12.804Z",
+  "updated": "2026-07-05T22:12:16.767Z",
   "matches": [
     {
       "home": "Brazil",
@@ -9,7 +9,7 @@
         {
           "name": "Betfair",
           "home": 1000,
-          "draw": 55,
+          "draw": 75,
           "away": 1.01
         },
         {
@@ -19,10 +19,10 @@
           "away": 1.37
         },
         {
-          "name": "Tipico",
-          "home": 120,
-          "draw": 11,
-          "away": 1.01
+          "name": "Winamax (FR)",
+          "home": 1000,
+          "draw": 110,
+          "away": 1
         }
       ]
     },
@@ -41,12 +41,12 @@
           "name": "Betfair",
           "home": 3.2,
           "draw": 3.15,
-          "away": 2.62
+          "away": 2.64
         },
         {
           "name": "Pinnacle",
-          "home": 3.18,
-          "draw": 3.14,
+          "home": 3.19,
+          "draw": 3.13,
           "away": 2.57
         }
       ]
@@ -166,7 +166,7 @@
           "name": "Betfair",
           "home": 1.61,
           "draw": 4,
-          "away": 7.2
+          "away": 7
         },
         {
           "name": "Pinnacle",
@@ -183,13 +183,12 @@
     "Spain": 6.5,
     "England": 10,
     "Portugal": 12,
-    "Norway": 17,
+    "Norway": 13,
     "Morocco": 23,
-    "Mexico": 23,
+    "Mexico": 26,
     "Colombia": 26,
     "United States": 29,
     "Belgium": 41,
-    "Brazil": 41,
     "Switzerland": 67,
     "Egypt": 201
   },
@@ -913,6 +912,14 @@
       "completed": true,
       "hs": 0,
       "as": 1
+    },
+    {
+      "home": "Brazil",
+      "away": "Norway",
+      "commence": "2026-07-05T20:00Z",
+      "completed": true,
+      "hs": 1,
+      "as": 2
     }
   ]
 }
