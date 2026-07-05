@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T08:01:00.552Z",
+  "updated": "2026-07-05T09:46:15.553Z",
   "matches": [
     {
       "home": "England",
@@ -8,15 +8,15 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 2.6,
+          "home": 2.75,
           "draw": null,
-          "away": 1.5
+          "away": 1.44
         },
         {
           "name": "Betfair",
-          "home": 2.96,
+          "home": 3,
           "draw": null,
-          "away": 1.5
+          "away": 1.49
         },
         {
           "name": "Pinnacle",
