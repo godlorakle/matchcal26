@@ -1,28 +1,178 @@
 {
-  "updated": "2026-07-05T16:17:27.347Z",
+  "updated": "2026-07-05T18:01:11.252Z",
   "matches": [
     {
-      "home": "England",
-      "away": "Australia",
-      "commence": "2026-07-05T14:30:00Z",
+      "home": "Brazil",
+      "away": "Norway",
+      "commence": "2026-07-05T20:00:00Z",
       "books": [
         {
           "name": "William Hill",
-          "home": 3.6,
-          "draw": null,
-          "away": 1.29
+          "home": 1.75,
+          "draw": 3.8,
+          "away": 4
         },
         {
           "name": "Betfair",
-          "home": 4.1,
-          "draw": null,
-          "away": 1.32
+          "home": 1.83,
+          "draw": 3.85,
+          "away": 5
         },
         {
-          "name": "Matchbook",
-          "home": 4.1,
-          "draw": null,
-          "away": 1.32
+          "name": "Pinnacle",
+          "home": 1.81,
+          "draw": 3.74,
+          "away": 4.87
+        }
+      ]
+    },
+    {
+      "home": "Mexico",
+      "away": "England",
+      "commence": "2026-07-06T00:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 3,
+          "draw": 3,
+          "away": 2.4
+        },
+        {
+          "name": "Betfair",
+          "home": 3.2,
+          "draw": 3.25,
+          "away": 2.58
+        },
+        {
+          "name": "Pinnacle",
+          "home": 3.19,
+          "draw": 3.2,
+          "away": 2.52
+        }
+      ]
+    },
+    {
+      "home": "Portugal",
+      "away": "Spain",
+      "commence": "2026-07-06T19:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 3.8,
+          "draw": 3.5,
+          "away": 1.91
+        },
+        {
+          "name": "Betfair",
+          "home": 4.3,
+          "draw": 3.75,
+          "away": 1.97
+        },
+        {
+          "name": "Pinnacle",
+          "home": 3.99,
+          "draw": 3.75,
+          "away": 1.93
+        }
+      ]
+    },
+    {
+      "home": "United States",
+      "away": "Belgium",
+      "commence": "2026-07-07T00:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 2.5,
+          "draw": 3.25,
+          "away": 2.62
+        },
+        {
+          "name": "Betfair",
+          "home": 2.6,
+          "draw": 3.5,
+          "away": 2.94
+        },
+        {
+          "name": "Pinnacle",
+          "home": 2.54,
+          "draw": 3.49,
+          "away": 2.84
+        }
+      ]
+    },
+    {
+      "home": "Argentina",
+      "away": "Egypt",
+      "commence": "2026-07-07T16:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 1.4,
+          "draw": 4.33,
+          "away": 8
+        },
+        {
+          "name": "Betfair",
+          "home": 1.4,
+          "draw": 5,
+          "away": 10.5
+        },
+        {
+          "name": "Pinnacle",
+          "home": 1.39,
+          "draw": 4.71,
+          "away": 9.21
+        }
+      ]
+    },
+    {
+      "home": "Switzerland",
+      "away": "Colombia",
+      "commence": "2026-07-07T20:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 3.4,
+          "draw": 3,
+          "away": 2.2
+        },
+        {
+          "name": "Betfair",
+          "home": 3.75,
+          "draw": 3.2,
+          "away": 2.34
+        },
+        {
+          "name": "Pinnacle",
+          "home": 3.59,
+          "draw": 3.1,
+          "away": 2.31
+        }
+      ]
+    },
+    {
+      "home": "France",
+      "away": "Morocco",
+      "commence": "2026-07-09T20:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 1.57,
+          "draw": 3.75,
+          "away": 6
+        },
+        {
+          "name": "Betfair",
+          "home": 1.62,
+          "draw": 4,
+          "away": 7
+        },
+        {
+          "name": "Pinnacle",
+          "home": 1.6,
+          "draw": 3.88,
+          "away": 6.57
         }
       ]
     }
