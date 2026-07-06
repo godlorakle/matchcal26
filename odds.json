@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T00:01:13.658Z",
+  "updated": "2026-07-06T01:14:52.466Z",
   "matches": [
     {
       "home": "Mexico",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 3,
+          "home": 3.1,
           "draw": 2.9,
-          "away": 2.5
+          "away": 2.45
         },
         {
           "name": "Betfair",
-          "home": 3.2,
-          "draw": 3.2,
-          "away": 2.64
+          "home": 3.4,
+          "draw": 3,
+          "away": 2.6
         },
         {
           "name": "Pinnacle",
           "home": 3.15,
-          "draw": 3.11,
-          "away": 2.61
+          "draw": 2.91,
+          "away": 2.56
         }
       ]
     },
@@ -45,9 +45,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 4.09,
-          "draw": 3.75,
-          "away": 1.91
+          "home": 4.1,
+          "draw": 3.7,
+          "away": 1.92
         }
       ]
     },
@@ -64,15 +64,15 @@
         },
         {
           "name": "Betfair",
-          "home": 2.8,
+          "home": 2.78,
           "draw": 3.55,
           "away": 2.74
         },
         {
           "name": "Pinnacle",
-          "home": 2.73,
+          "home": 2.67,
           "draw": 3.49,
-          "away": 2.63
+          "away": 2.68
         }
       ]
     },
@@ -89,7 +89,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.4,
+          "home": 1.41,
           "draw": 5,
           "away": 10.5
         },
@@ -139,7 +139,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.61,
+          "home": 1.62,
           "draw": 4,
           "away": 7
         },
@@ -147,7 +147,7 @@
           "name": "Pinnacle",
           "home": 1.61,
           "draw": 3.84,
-          "away": 6.45
+          "away": 6.46
         }
       ]
     }
