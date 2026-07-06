@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T10:01:14.804Z",
+  "updated": "2026-07-06T11:43:00.372Z",
   "matches": [
     {
       "home": "Portugal",
@@ -10,18 +10,18 @@
           "name": "William Hill",
           "home": 4,
           "draw": 3.4,
-          "away": 1.85
+          "away": 1.91
         },
         {
           "name": "Betfair",
           "home": 4.4,
-          "draw": 3.75,
-          "away": 1.96
+          "draw": 3.7,
+          "away": 1.97
         },
         {
           "name": "Pinnacle",
-          "home": 4.33,
-          "draw": 3.67,
+          "home": 4.27,
+          "draw": 3.66,
           "away": 1.93
         }
       ]
@@ -34,20 +34,20 @@
         {
           "name": "William Hill",
           "home": 2.45,
-          "draw": 3.3,
-          "away": 2.7
+          "draw": 3.25,
+          "away": 2.8
         },
         {
           "name": "Betfair",
-          "home": 2.62,
+          "home": 2.6,
           "draw": 3.55,
-          "away": 2.9
+          "away": 2.96
         },
         {
           "name": "Pinnacle",
-          "home": 2.59,
+          "home": 2.57,
           "draw": 3.49,
-          "away": 2.86
+          "away": 2.88
         }
       ]
     },
@@ -71,8 +71,8 @@
         {
           "name": "Pinnacle",
           "home": 1.39,
-          "draw": 4.74,
-          "away": 9.3
+          "draw": 4.75,
+          "away": 9.34
         }
       ]
     },
@@ -89,15 +89,15 @@
         },
         {
           "name": "Betfair",
-          "home": 3.65,
+          "home": 3.75,
           "draw": 3.15,
-          "away": 2.4
+          "away": 2.36
         },
         {
           "name": "Pinnacle",
-          "home": 3.53,
-          "draw": 3.09,
-          "away": 2.35
+          "home": 3.65,
+          "draw": 3.11,
+          "away": 2.29
         }
       ]
     },
@@ -114,15 +114,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.61,
+          "home": 1.6,
           "draw": 4.1,
-          "away": 6.8
+          "away": 7
         },
         {
           "name": "Pinnacle",
           "home": 1.6,
-          "draw": 3.86,
-          "away": 6.52
+          "draw": 3.87,
+          "away": 6.53
         }
       ]
     },
@@ -139,15 +139,15 @@
         },
         {
           "name": "Betfair",
-          "home": 4.5,
-          "draw": 3.7,
-          "away": 1.94
+          "home": 4.3,
+          "draw": 3.8,
+          "away": 1.95
         },
         {
           "name": "Pinnacle",
-          "home": 4.09,
-          "draw": 3.65,
-          "away": 1.93
+          "home": 4.17,
+          "draw": 3.74,
+          "away": 1.89
         }
       ]
     }
