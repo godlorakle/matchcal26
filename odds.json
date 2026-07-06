@@ -1,31 +1,6 @@
 {
-  "updated": "2026-07-06T20:59:52.453Z",
+  "updated": "2026-07-06T22:01:14.822Z",
   "matches": [
-    {
-      "home": "Portugal",
-      "away": "Spain",
-      "commence": "2026-07-06T19:00:00Z",
-      "books": [
-        {
-          "name": "Betfair",
-          "home": 420,
-          "draw": 12,
-          "away": 1.08
-        },
-        {
-          "name": "Pinnacle",
-          "home": 7.19,
-          "draw": 1.67,
-          "away": 3.25
-        },
-        {
-          "name": "PMU (FR)",
-          "home": 151,
-          "draw": 10,
-          "away": 1.03
-        }
-      ]
-    },
     {
       "home": "United States",
       "away": "Belgium",
@@ -39,14 +14,14 @@
         },
         {
           "name": "Betfair",
-          "home": 2.62,
-          "draw": 3.55,
+          "home": 2.66,
+          "draw": 3.5,
           "away": 2.94
         },
         {
           "name": "Pinnacle",
-          "home": 2.59,
-          "draw": 3.46,
+          "home": 2.58,
+          "draw": 3.48,
           "away": 2.89
         }
       ]
@@ -64,15 +39,15 @@
         },
         {
           "name": "Betfair",
-          "home": 1.39,
+          "home": 1.4,
           "draw": 5,
-          "away": 11.5
+          "away": 11
         },
         {
           "name": "Pinnacle",
           "home": 1.37,
           "draw": 4.85,
-          "away": 9.69
+          "away": 9.7
         }
       ]
     },
@@ -89,13 +64,13 @@
         },
         {
           "name": "Betfair",
-          "home": 3.75,
-          "draw": 3.15,
+          "home": 3.7,
+          "draw": 3.2,
           "away": 2.36
         },
         {
           "name": "Pinnacle",
-          "home": 3.64,
+          "home": 3.66,
           "draw": 3.11,
           "away": 2.28
         }
@@ -141,20 +116,20 @@
           "name": "Betfair",
           "home": 4.3,
           "draw": 3.8,
-          "away": 1.95
+          "away": 1.96
         },
         {
           "name": "Pinnacle",
-          "home": 4.16,
-          "draw": 3.77,
+          "home": 4.15,
+          "draw": 3.78,
           "away": 1.88
         }
       ]
     }
   ],
   "winner": {
-    "France": 2.5,
-    "Spain": 5.5,
+    "France": 2.75,
+    "Spain": 5,
     "Argentina": 5.5,
     "England": 6.5,
     "Norway": 17,
@@ -163,7 +138,6 @@
     "United States": 34,
     "Belgium": 41,
     "Switzerland": 67,
-    "Portugal": 101,
     "Egypt": 201
   },
   "scores": [
@@ -902,6 +876,14 @@
       "completed": true,
       "hs": 2,
       "as": 3
+    },
+    {
+      "home": "Portugal",
+      "away": "Spain",
+      "commence": "2026-07-06T19:00Z",
+      "completed": true,
+      "hs": 0,
+      "as": 1
     }
   ]
 }
