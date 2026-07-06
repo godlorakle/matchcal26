@@ -726,5 +726,13 @@
     "completed": true,
     "hs": 1,
     "as": 2
+  },
+  {
+    "home": "Mexico",
+    "away": "England",
+    "commence": "2026-07-06T01:00Z",
+    "completed": true,
+    "hs": 2,
+    "as": 3
   }
 ]
