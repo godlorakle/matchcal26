@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T05:28:29.004Z",
+  "updated": "2026-07-07T06:01:13.956Z",
   "matches": [
     {
       "home": "Argentina",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.35,
+          "home": 1.33,
           "draw": 4.6,
-          "away": 9
+          "away": 10
         },
         {
           "name": "Betfair",
           "home": 1.38,
-          "draw": 5.1,
-          "away": 11.5
+          "draw": 5,
+          "away": 12
         },
         {
           "name": "Pinnacle",
           "home": 1.36,
           "draw": 5,
-          "away": 9.91
+          "away": 10.9
         }
       ]
     },
@@ -33,21 +33,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 3.4,
-          "draw": 2.9,
-          "away": 2.2
+          "home": 3.3,
+          "draw": 3,
+          "away": 2.25
         },
         {
           "name": "Betfair",
-          "home": 3.8,
+          "home": 3.75,
           "draw": 3.2,
-          "away": 2.32
+          "away": 2.34
         },
         {
           "name": "Pinnacle",
-          "home": 3.66,
-          "draw": 3.15,
-          "away": 2.25
+          "home": 3.67,
+          "draw": 3.17,
+          "away": 2.28
         }
       ]
     },
@@ -70,9 +70,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 1.6,
-          "draw": 3.88,
-          "away": 6.54
+          "home": 1.59,
+          "draw": 3.9,
+          "away": 6.55
         }
       ]
     },
@@ -96,8 +96,8 @@
         {
           "name": "Pinnacle",
           "home": 1.65,
-          "draw": 3.96,
-          "away": 5.63
+          "draw": 3.97,
+          "away": 5.65
         }
       ]
     },
@@ -129,13 +129,13 @@
   ],
   "winner": {
     "France": 2.75,
-    "Spain": 5,
+    "Spain": 4.5,
     "Argentina": 5.5,
-    "England": 6.5,
+    "England": 6,
     "Norway": 17,
     "Colombia": 26,
-    "Belgium": 29,
     "Morocco": 29,
+    "Belgium": 34,
     "Switzerland": 67,
     "Egypt": 201
   },
