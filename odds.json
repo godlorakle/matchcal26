@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T00:01:13.948Z",
+  "updated": "2026-07-07T01:14:07.461Z",
   "matches": [
     {
       "home": "United States",
@@ -7,22 +7,22 @@
       "commence": "2026-07-07T00:00:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 2.5,
-          "draw": 3.1,
-          "away": 2.8
-        },
-        {
           "name": "Betfair",
-          "home": 2.64,
-          "draw": 3.3,
-          "away": 3.05
+          "home": 8.6,
+          "draw": 4.3,
+          "away": 1.53
         },
         {
           "name": "Pinnacle",
-          "home": 2.64,
-          "draw": 3.3,
-          "away": 2.94
+          "home": 9.08,
+          "draw": 4.34,
+          "away": 1.41
+        },
+        {
+          "name": "LeoVegas (SE)",
+          "home": 6.5,
+          "draw": 3.8,
+          "away": 1.38
         }
       ]
     },
@@ -40,7 +40,7 @@
         {
           "name": "Betfair",
           "home": 1.4,
-          "draw": 5,
+          "draw": 4.9,
           "away": 11.5
         },
         {
@@ -66,13 +66,13 @@
           "name": "Betfair",
           "home": 3.75,
           "draw": 3.15,
-          "away": 2.36
+          "away": 2.34
         },
         {
           "name": "Pinnacle",
-          "home": 3.72,
+          "home": 3.68,
           "draw": 3.12,
-          "away": 2.25
+          "away": 2.27
         }
       ]
     },
@@ -89,7 +89,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.61,
+          "home": 1.62,
           "draw": 4.1,
           "away": 6.8
         },
@@ -115,8 +115,8 @@
         {
           "name": "Betfair",
           "home": 4.4,
-          "draw": 3.75,
-          "away": 1.94
+          "draw": 3.8,
+          "away": 1.93
         },
         {
           "name": "Pinnacle",
@@ -135,8 +135,8 @@
     "Norway": 17,
     "Colombia": 26,
     "Morocco": 29,
-    "United States": 34,
-    "Belgium": 41,
+    "Belgium": 34,
+    "United States": 41,
     "Switzerland": 67,
     "Egypt": 201
   },
