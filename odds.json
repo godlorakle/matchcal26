@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T12:01:12.540Z",
+  "updated": "2026-07-07T13:25:43.744Z",
   "matches": [
     {
       "home": "Argentina",
@@ -21,7 +21,7 @@
         {
           "name": "Pinnacle",
           "home": 1.36,
-          "draw": 4.9,
+          "draw": 5,
           "away": 12
         }
       ]
@@ -45,9 +45,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 3.75,
-          "draw": 3.11,
-          "away": 2.3
+          "home": 3.74,
+          "draw": 3.09,
+          "away": 2.32
         }
       ]
     },
@@ -71,8 +71,8 @@
         {
           "name": "Pinnacle",
           "home": 1.59,
-          "draw": 3.9,
-          "away": 6.56
+          "draw": 3.91,
+          "away": 6.58
         }
       ]
     },
@@ -89,14 +89,14 @@
         },
         {
           "name": "Betfair",
-          "home": 1.67,
+          "home": 1.66,
           "draw": 4.1,
           "away": 6.2
         },
         {
           "name": "Pinnacle",
           "home": 1.63,
-          "draw": 4.02,
+          "draw": 4.01,
           "away": 5.74
         }
       ]
@@ -116,12 +116,12 @@
           "name": "Betfair",
           "home": 4.4,
           "draw": 3.8,
-          "away": 1.93
+          "away": 1.94
         },
         {
           "name": "Pinnacle",
           "home": 4.26,
-          "draw": 3.74,
+          "draw": 3.72,
           "away": 1.88
         }
       ]
