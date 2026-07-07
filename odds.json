@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T01:14:07.461Z",
+  "updated": "2026-07-07T02:01:08.831Z",
   "matches": [
     {
       "home": "United States",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 8.6,
-          "draw": 4.3,
-          "away": 1.53
+          "home": 1000,
+          "draw": 80,
+          "away": 1.01
         },
         {
-          "name": "Pinnacle",
-          "home": 9.08,
-          "draw": 4.34,
-          "away": 1.41
+          "name": "Tipico",
+          "home": 70,
+          "draw": 12,
+          "away": 1.01
         },
         {
-          "name": "LeoVegas (SE)",
-          "home": 6.5,
-          "draw": 3.8,
-          "away": 1.38
+          "name": "Winamax (FR)",
+          "home": 1000,
+          "draw": 1000,
+          "away": 1
         }
       ]
     },
@@ -47,7 +47,7 @@
           "name": "Pinnacle",
           "home": 1.37,
           "draw": 4.85,
-          "away": 9.7
+          "away": 9.71
         }
       ]
     },
@@ -66,13 +66,13 @@
           "name": "Betfair",
           "home": 3.75,
           "draw": 3.15,
-          "away": 2.34
+          "away": 2.36
         },
         {
           "name": "Pinnacle",
-          "home": 3.68,
-          "draw": 3.12,
-          "away": 2.27
+          "home": 3.67,
+          "draw": 3.15,
+          "away": 2.25
         }
       ]
     },
@@ -89,7 +89,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.62,
+          "home": 1.61,
           "draw": 4.1,
           "away": 6.8
         },
@@ -114,8 +114,8 @@
         },
         {
           "name": "Betfair",
-          "home": 4.4,
-          "draw": 3.8,
+          "home": 4.5,
+          "draw": 3.75,
           "away": 1.93
         },
         {
@@ -134,9 +134,8 @@
     "England": 6.5,
     "Norway": 17,
     "Colombia": 26,
+    "Belgium": 29,
     "Morocco": 29,
-    "Belgium": 34,
-    "United States": 41,
     "Switzerland": 67,
     "Egypt": 201
   },
@@ -884,6 +883,14 @@
       "completed": true,
       "hs": 0,
       "as": 1
+    },
+    {
+      "home": "United States",
+      "away": "Belgium",
+      "commence": "2026-07-07T00:00Z",
+      "completed": true,
+      "hs": 1,
+      "as": 4
     }
   ]
 }
