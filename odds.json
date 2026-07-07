@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T17:25:10.913Z",
+  "updated": "2026-07-07T18:01:10.784Z",
   "matches": [
     {
       "home": "Argentina",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 10,
-          "draw": 4.1,
-          "away": 1.49
+          "home": 1.06,
+          "draw": 16.5,
+          "away": 650
         },
         {
           "name": "Pinnacle",
-          "home": 2.93,
-          "draw": 2.76,
-          "away": 2.86
+          "home": 3.04,
+          "draw": 1.53,
+          "away": 14.02
         },
         {
           "name": "Unibet (NL)",
-          "home": 3.3,
-          "draw": 2.65,
-          "away": 2.55
+          "home": 1.02,
+          "draw": 19,
+          "away": 226
         }
       ]
     },
@@ -45,9 +45,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 3.7,
+          "home": 3.69,
           "draw": 3.09,
-          "away": 2.33
+          "away": 2.34
         }
       ]
     },
@@ -64,7 +64,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.6,
+          "home": 1.61,
           "draw": 4.1,
           "away": 7
         },
@@ -72,7 +72,7 @@
           "name": "Pinnacle",
           "home": 1.57,
           "draw": 3.95,
-          "away": 6.75
+          "away": 6.73
         }
       ]
     },
@@ -116,7 +116,7 @@
           "name": "Betfair",
           "home": 4.4,
           "draw": 3.8,
-          "away": 1.93
+          "away": 1.94
         },
         {
           "name": "Pinnacle",
@@ -131,13 +131,13 @@
     "France": 2.75,
     "Spain": 4.5,
     "England": 5.5,
-    "Argentina": 7.5,
-    "Norway": 13,
+    "Argentina": 6.5,
+    "Norway": 12,
     "Colombia": 21,
     "Belgium": 34,
     "Morocco": 34,
-    "Switzerland": 67,
-    "Egypt": 101
+    "Egypt": 101,
+    "Switzerland": 101
   },
   "scores": [
     {
