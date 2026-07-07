@@ -1,28 +1,28 @@
 {
-  "updated": "2026-07-07T16:01:15.553Z",
+  "updated": "2026-07-07T17:25:10.913Z",
   "matches": [
     {
       "home": "Argentina",
       "away": "Egypt",
-      "commence": "2026-07-07T16:05:00Z",
+      "commence": "2026-07-07T16:01:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 1.33,
-          "draw": 4.5,
-          "away": 10
-        },
-        {
           "name": "Betfair",
-          "home": 1.36,
-          "draw": 5,
-          "away": 14
+          "home": 10,
+          "draw": 4.1,
+          "away": 1.49
         },
         {
           "name": "Pinnacle",
-          "home": 1.36,
-          "draw": 4.8,
-          "away": 11.75
+          "home": 2.93,
+          "draw": 2.76,
+          "away": 2.86
+        },
+        {
+          "name": "Unibet (NL)",
+          "home": 3.3,
+          "draw": 2.65,
+          "away": 2.55
         }
       ]
     },
@@ -41,13 +41,13 @@
           "name": "Betfair",
           "home": 3.75,
           "draw": 3.15,
-          "away": 2.36
+          "away": 2.38
         },
         {
           "name": "Pinnacle",
-          "home": 3.77,
-          "draw": 3.1,
-          "away": 2.3
+          "home": 3.7,
+          "draw": 3.09,
+          "away": 2.33
         }
       ]
     },
@@ -64,7 +64,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.61,
+          "home": 1.6,
           "draw": 4.1,
           "away": 7
         },
@@ -89,7 +89,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.65,
+          "home": 1.64,
           "draw": 4.1,
           "away": 6.4
         },
@@ -120,7 +120,7 @@
         },
         {
           "name": "Pinnacle",
-          "home": 4.26,
+          "home": 4.25,
           "draw": 3.72,
           "away": 1.88
         }
@@ -130,14 +130,14 @@
   "winner": {
     "France": 2.75,
     "Spain": 4.5,
-    "Argentina": 5.5,
-    "England": 6,
-    "Norway": 17,
-    "Colombia": 26,
-    "Morocco": 29,
+    "England": 5.5,
+    "Argentina": 7.5,
+    "Norway": 13,
+    "Colombia": 21,
     "Belgium": 34,
+    "Morocco": 34,
     "Switzerland": 67,
-    "Egypt": 201
+    "Egypt": 101
   },
   "scores": [
     {
