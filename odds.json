@@ -1,31 +1,6 @@
 {
-  "updated": "2026-07-07T18:01:10.784Z",
+  "updated": "2026-07-07T20:01:13.189Z",
   "matches": [
-    {
-      "home": "Argentina",
-      "away": "Egypt",
-      "commence": "2026-07-07T16:01:00Z",
-      "books": [
-        {
-          "name": "Betfair",
-          "home": 1.06,
-          "draw": 16.5,
-          "away": 650
-        },
-        {
-          "name": "Pinnacle",
-          "home": 3.04,
-          "draw": 1.53,
-          "away": 14.02
-        },
-        {
-          "name": "Unibet (NL)",
-          "home": 1.02,
-          "draw": 19,
-          "away": 226
-        }
-      ]
-    },
     {
       "home": "Switzerland",
       "away": "Colombia",
@@ -33,21 +8,21 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 3.5,
+          "home": 3.1,
           "draw": 2.9,
-          "away": 2.2
+          "away": 2.38
         },
         {
           "name": "Betfair",
           "home": 3.75,
-          "draw": 3.15,
-          "away": 2.38
+          "draw": 2.96,
+          "away": 2.5
         },
         {
           "name": "Pinnacle",
-          "home": 3.69,
-          "draw": 3.09,
-          "away": 2.34
+          "home": 3.7,
+          "draw": 2.9,
+          "away": 2.46
         }
       ]
     },
@@ -59,7 +34,7 @@
         {
           "name": "William Hill",
           "home": 1.55,
-          "draw": 3.75,
+          "draw": 3.8,
           "away": 6
         },
         {
@@ -71,8 +46,8 @@
         {
           "name": "Pinnacle",
           "home": 1.57,
-          "draw": 3.95,
-          "away": 6.73
+          "draw": 3.97,
+          "away": 6.62
         }
       ]
     },
@@ -96,7 +71,7 @@
         {
           "name": "Pinnacle",
           "home": 1.63,
-          "draw": 4.02,
+          "draw": 4.01,
           "away": 5.75
         }
       ]
@@ -114,30 +89,29 @@
         },
         {
           "name": "Betfair",
-          "home": 4.4,
+          "home": 4.5,
           "draw": 3.8,
-          "away": 1.94
+          "away": 1.92
         },
         {
           "name": "Pinnacle",
           "home": 4.25,
-          "draw": 3.72,
-          "away": 1.88
+          "draw": 3.77,
+          "away": 1.87
         }
       ]
     }
   ],
   "winner": {
-    "France": 2.75,
+    "France": 2.88,
     "Spain": 4.5,
-    "England": 5.5,
-    "Argentina": 6.5,
-    "Norway": 12,
-    "Colombia": 21,
+    "Argentina": 5,
+    "England": 6,
+    "Norway": 17,
+    "Colombia": 26,
     "Belgium": 34,
     "Morocco": 34,
-    "Egypt": 101,
-    "Switzerland": 101
+    "Switzerland": 67
   },
   "scores": [
     {
@@ -891,6 +865,14 @@
       "completed": true,
       "hs": 1,
       "as": 4
+    },
+    {
+      "home": "Argentina",
+      "away": "Egypt",
+      "commence": "2026-07-07T16:00Z",
+      "completed": true,
+      "hs": 3,
+      "as": 2
     }
   ]
 }

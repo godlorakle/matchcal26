@@ -750,5 +750,13 @@
     "completed": true,
     "hs": 1,
     "as": 4
+  },
+  {
+    "home": "Argentina",
+    "away": "Egypt",
+    "commence": "2026-07-07T16:00Z",
+    "completed": true,
+    "hs": 3,
+    "as": 2
   }
 ]
