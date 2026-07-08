@@ -1,19 +1,6 @@
 {
-  "updated": "2026-07-07T22:22:08.673Z",
+  "updated": "2026-07-08T00:01:19.653Z",
   "matches": [
-    {
-      "home": "Switzerland",
-      "away": "Colombia",
-      "commence": "2026-07-07T20:00:00Z",
-      "books": [
-        {
-          "name": "Tipico",
-          "home": 6,
-          "draw": 1.4,
-          "away": 5
-        }
-      ]
-    },
     {
       "home": "France",
       "away": "Morocco",
@@ -33,9 +20,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 1.62,
-          "draw": 3.87,
-          "away": 6.23
+          "home": 1.61,
+          "draw": 3.88,
+          "away": 6.28
         }
       ]
     },
@@ -46,9 +33,9 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.6,
+          "home": 1.62,
           "draw": 3.8,
-          "away": 5.5
+          "away": 5
         },
         {
           "name": "Betfair",
@@ -58,9 +45,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 1.65,
-          "draw": 3.97,
-          "away": 5.64
+          "home": 1.64,
+          "draw": 3.98,
+          "away": 5.65
         }
       ]
     },
@@ -78,14 +65,39 @@
         {
           "name": "Betfair",
           "home": 4.5,
-          "draw": 3.8,
+          "draw": 3.85,
           "away": 1.91
         },
         {
           "name": "Pinnacle",
           "home": 4.25,
-          "draw": 3.77,
-          "away": 1.87
+          "draw": 3.75,
+          "away": 1.88
+        }
+      ]
+    },
+    {
+      "home": "Argentina",
+      "away": "Switzerland",
+      "commence": "2026-07-12T01:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 1.73,
+          "draw": 3.3,
+          "away": 5
+        },
+        {
+          "name": "Betfair",
+          "home": 1.76,
+          "draw": 3.7,
+          "away": 5.9
+        },
+        {
+          "name": "Pinnacle",
+          "home": 1.74,
+          "draw": 3.53,
+          "away": 5.61
         }
       ]
     }
@@ -93,13 +105,12 @@
   "winner": {
     "France": 2.88,
     "Spain": 4.5,
-    "Argentina": 5,
+    "Argentina": 4.5,
     "England": 6,
     "Norway": 17,
-    "Colombia": 26,
     "Belgium": 34,
     "Morocco": 34,
-    "Switzerland": 67
+    "Switzerland": 34
   },
   "scores": [
     {
@@ -861,6 +872,14 @@
       "completed": true,
       "hs": 3,
       "as": 2
+    },
+    {
+      "home": "Switzerland",
+      "away": "Colombia",
+      "commence": "2026-07-07T20:00Z",
+      "completed": true,
+      "hs": 0,
+      "as": 0
     }
   ]
 }

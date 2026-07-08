@@ -758,5 +758,13 @@
     "completed": true,
     "hs": 3,
     "as": 2
+  },
+  {
+    "home": "Switzerland",
+    "away": "Colombia",
+    "commence": "2026-07-07T20:00Z",
+    "completed": true,
+    "hs": 0,
+    "as": 0
   }
 ]
