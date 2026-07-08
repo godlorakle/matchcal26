@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08T12:01:21.148Z",
+  "updated": "2026-07-08T12:50:30.063Z",
   "matches": [
     {
       "home": "France",
@@ -21,7 +21,7 @@
         {
           "name": "Pinnacle",
           "home": 1.58,
-          "draw": 3.9,
+          "draw": 3.91,
           "away": 6.73
         }
       ]
@@ -70,8 +70,8 @@
         },
         {
           "name": "Pinnacle",
-          "home": 4.36,
-          "draw": 3.78,
+          "home": 4.33,
+          "draw": 3.77,
           "away": 1.85
         }
       ]
@@ -91,7 +91,7 @@
           "name": "Betfair",
           "home": 1.74,
           "draw": 3.65,
-          "away": 6.4
+          "away": 6.2
         },
         {
           "name": "Pinnacle",
