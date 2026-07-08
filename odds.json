@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08T15:32:29.475Z",
+  "updated": "2026-07-08T16:01:16.153Z",
   "matches": [
     {
       "home": "France",
@@ -83,8 +83,8 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.73,
-          "draw": 3.3,
+          "home": 1.7,
+          "draw": 3.4,
           "away": 5
         },
         {
