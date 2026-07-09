@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-09T13:58:22.912Z",
+  "updated": "2026-07-09T14:01:20.464Z",
   "matches": [
     {
       "home": "France",
@@ -21,8 +21,8 @@
         {
           "name": "Marathon Bet",
           "home": 1.57,
-          "draw": 3.85,
-          "away": 6.6
+          "draw": 3.84,
+          "away": 6.65
         }
       ]
     },
