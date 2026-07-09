@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-09T20:55:30.728Z",
+  "updated": "2026-07-09T22:01:05.986Z",
   "matches": [
     {
       "home": "France",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 1.68,
-          "draw": 3.45,
-          "away": 8.4
-        },
-        {
-          "name": "Pinnacle",
-          "home": 1.62,
-          "draw": 3.25,
-          "away": 7.76
+          "home": 1.01,
+          "draw": 75,
+          "away": 780
         },
         {
           "name": "Winamax (FR)",
-          "home": 1.56,
-          "draw": 3,
-          "away": 7
+          "home": 1,
+          "draw": 450,
+          "away": 1000
+        },
+        {
+          "name": "Winamax (DE)",
+          "home": 1,
+          "draw": 450,
+          "away": 1000
         }
       ]
     },
@@ -40,14 +40,14 @@
         {
           "name": "Betfair",
           "home": 1.69,
-          "draw": 4.1,
+          "draw": 4,
           "away": 6
         },
         {
           "name": "Pinnacle",
           "home": 1.65,
           "draw": 3.99,
-          "away": 5.5
+          "away": 5.51
         }
       ]
     },
@@ -66,7 +66,7 @@
           "name": "Betfair",
           "home": 4.5,
           "draw": 3.8,
-          "away": 1.91
+          "away": 1.92
         },
         {
           "name": "Pinnacle",
@@ -89,9 +89,9 @@
         },
         {
           "name": "Betfair",
-          "home": 1.75,
+          "home": 1.74,
           "draw": 3.7,
-          "away": 6
+          "away": 6.2
         },
         {
           "name": "Pinnacle",
@@ -103,12 +103,11 @@
     }
   ],
   "winner": {
-    "France": 2.88,
+    "France": 2.5,
     "Spain": 5,
     "Argentina": 5,
     "England": 5.5,
     "Norway": 15,
-    "Morocco": 29,
     "Belgium": 34,
     "Switzerland": 34
   },
