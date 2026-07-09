@@ -766,5 +766,13 @@
     "completed": true,
     "hs": 0,
     "as": 0
+  },
+  {
+    "home": "France",
+    "away": "Morocco",
+    "commence": "2026-07-09T20:00Z",
+    "completed": true,
+    "hs": 2,
+    "as": 0
   }
 ]

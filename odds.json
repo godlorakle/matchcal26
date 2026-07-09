@@ -1,31 +1,6 @@
 {
-  "updated": "2026-07-09T22:01:05.986Z",
+  "updated": "2026-07-09T22:42:12.795Z",
   "matches": [
-    {
-      "home": "France",
-      "away": "Morocco",
-      "commence": "2026-07-09T20:00:00Z",
-      "books": [
-        {
-          "name": "Betfair",
-          "home": 1.01,
-          "draw": 75,
-          "away": 780
-        },
-        {
-          "name": "Winamax (FR)",
-          "home": 1,
-          "draw": 450,
-          "away": 1000
-        },
-        {
-          "name": "Winamax (DE)",
-          "home": 1,
-          "draw": 450,
-          "away": 1000
-        }
-      ]
-    },
     {
       "home": "Spain",
       "away": "Belgium",
@@ -47,7 +22,7 @@
           "name": "Pinnacle",
           "home": 1.65,
           "draw": 3.99,
-          "away": 5.51
+          "away": 5.53
         }
       ]
     },
@@ -97,15 +72,15 @@
           "name": "Pinnacle",
           "home": 1.71,
           "draw": 3.59,
-          "away": 5.77
+          "away": 5.79
         }
       ]
     }
   ],
   "winner": {
     "France": 2.5,
-    "Spain": 5,
-    "Argentina": 5,
+    "Spain": 5.5,
+    "Argentina": 5.5,
     "England": 5.5,
     "Norway": 15,
     "Belgium": 34,
@@ -878,6 +853,14 @@
       "commence": "2026-07-07T20:00Z",
       "completed": true,
       "hs": 0,
+      "as": 0
+    },
+    {
+      "home": "France",
+      "away": "Morocco",
+      "commence": "2026-07-09T20:00Z",
+      "completed": true,
+      "hs": 2,
       "as": 0
     }
   ]
