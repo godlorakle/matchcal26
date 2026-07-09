@@ -1,11 +1,17 @@
 {
-  "updated": "2026-07-09T14:01:20.464Z",
+  "updated": "2026-07-09T16:01:11.775Z",
   "matches": [
     {
       "home": "France",
       "away": "Morocco",
       "commence": "2026-07-09T20:00:00Z",
       "books": [
+        {
+          "name": "William Hill",
+          "home": 1.6,
+          "draw": 3.6,
+          "away": 6
+        },
         {
           "name": "Betfair",
           "home": 1.63,
@@ -16,13 +22,7 @@
           "name": "Pinnacle",
           "home": 1.62,
           "draw": 3.9,
-          "away": 6.8
-        },
-        {
-          "name": "Marathon Bet",
-          "home": 1.57,
-          "draw": 3.84,
-          "away": 6.65
+          "away": 6.75
         }
       ]
     },
@@ -32,22 +32,22 @@
       "commence": "2026-07-10T19:00:00Z",
       "books": [
         {
+          "name": "William Hill",
+          "home": 1.62,
+          "draw": 3.75,
+          "away": 5
+        },
+        {
           "name": "Betfair",
           "home": 1.69,
           "draw": 4.1,
-          "away": 6
+          "away": 5.9
         },
         {
           "name": "Pinnacle",
           "home": 1.66,
           "draw": 3.98,
           "away": 5.48
-        },
-        {
-          "name": "Marathon Bet",
-          "home": 1.63,
-          "draw": 3.96,
-          "away": 5.45
         }
       ]
     },
@@ -57,22 +57,22 @@
       "commence": "2026-07-11T21:00:00Z",
       "books": [
         {
+          "name": "William Hill",
+          "home": 4,
+          "draw": 3.5,
+          "away": 1.85
+        },
+        {
           "name": "Betfair",
           "home": 4.5,
           "draw": 3.8,
-          "away": 1.91
+          "away": 1.92
         },
         {
           "name": "Pinnacle",
           "home": 4.31,
           "draw": 3.73,
           "away": 1.87
-        },
-        {
-          "name": "Marathon Bet",
-          "home": 4.2,
-          "draw": 3.68,
-          "away": 1.85
         }
       ]
     },
@@ -83,15 +83,15 @@
       "books": [
         {
           "name": "William Hill",
-          "home": 1.7,
+          "home": 1.67,
           "draw": 3.4,
           "away": 5
         },
         {
           "name": "Betfair",
-          "home": 1.75,
+          "home": 1.74,
           "draw": 3.7,
-          "away": 6
+          "away": 6.2
         },
         {
           "name": "Pinnacle",
