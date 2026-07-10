@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-09T22:42:12.795Z",
+  "updated": "2026-07-10T00:01:09.099Z",
   "matches": [
     {
       "home": "Spain",
@@ -20,9 +20,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 1.65,
-          "draw": 3.99,
-          "away": 5.53
+          "home": 1.67,
+          "draw": 3.93,
+          "away": 5.42
         }
       ]
     },
@@ -71,8 +71,8 @@
         {
           "name": "Pinnacle",
           "home": 1.71,
-          "draw": 3.59,
-          "away": 5.79
+          "draw": 3.58,
+          "away": 5.8
         }
       ]
     }
