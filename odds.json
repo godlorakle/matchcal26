@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T20:01:18.016Z",
+  "updated": "2026-07-10T20:41:18.153Z",
   "matches": [
     {
       "home": "Spain",
@@ -8,21 +8,21 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 1.84,
-          "draw": 3.15,
-          "away": 6.8
+          "home": 2.38,
+          "draw": 2.1,
+          "away": 9.4
         },
         {
           "name": "Pinnacle",
-          "home": 1.84,
-          "draw": 3.06,
-          "away": 5.82
+          "home": 2.14,
+          "draw": 2.25,
+          "away": 7.72
         },
         {
           "name": "Tipico",
-          "home": 1.7,
-          "draw": 3,
-          "away": 6
+          "home": 2.3,
+          "draw": 1.85,
+          "away": 9
         }
       ]
     },
@@ -39,7 +39,7 @@
         },
         {
           "name": "Betfair",
-          "home": 4.4,
+          "home": 4.3,
           "draw": 3.85,
           "away": 1.93
         },
@@ -64,7 +64,7 @@
         },
         {
           "name": "Betfair",
-          "home": 1.74,
+          "home": 1.73,
           "draw": 3.7,
           "away": 6.2
         },
@@ -83,7 +83,7 @@
     "Argentina": 5.5,
     "England": 5.5,
     "Norway": 15,
-    "Belgium": 34,
+    "Belgium": 26,
     "Switzerland": 34
   },
   "scores": [
