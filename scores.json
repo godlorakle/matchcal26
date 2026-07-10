@@ -774,5 +774,13 @@
     "completed": true,
     "hs": 2,
     "as": 0
+  },
+  {
+    "home": "Spain",
+    "away": "Belgium",
+    "commence": "2026-07-10T19:00Z",
+    "completed": true,
+    "hs": 2,
+    "as": 1
   }
 ]
