@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T08:48:25.830Z",
+  "updated": "2026-07-10T10:01:16.776Z",
   "matches": [
     {
       "home": "Spain",
@@ -14,8 +14,8 @@
         },
         {
           "name": "Betfair",
-          "home": 1.68,
-          "draw": 4,
+          "home": 1.67,
+          "draw": 4.1,
           "away": 6.2
         },
         {
@@ -41,7 +41,7 @@
           "name": "Betfair",
           "home": 4.4,
           "draw": 3.8,
-          "away": 1.93
+          "away": 1.94
         },
         {
           "name": "Pinnacle",
