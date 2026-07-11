@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T16:08:59.568Z",
+  "updated": "2026-07-11T18:01:09.954Z",
   "matches": [
     {
       "home": "Norway",
@@ -15,14 +15,14 @@
         {
           "name": "Betfair",
           "home": 4,
-          "draw": 3.8,
-          "away": 2.02
+          "draw": 4,
+          "away": 1.99
         },
         {
           "name": "Pinnacle",
-          "home": 3.9,
-          "draw": 3.76,
-          "away": 2
+          "home": 4,
+          "draw": 3.8,
+          "away": 1.96
         }
       ]
     },
@@ -40,14 +40,14 @@
         {
           "name": "Betfair",
           "home": 1.75,
-          "draw": 3.7,
-          "away": 6.2
+          "draw": 3.6,
+          "away": 6.4
         },
         {
           "name": "Pinnacle",
-          "home": 1.72,
-          "draw": 3.6,
-          "away": 6.06
+          "home": 1.74,
+          "draw": 3.57,
+          "away": 5.91
         }
       ]
     },
