@@ -1,28 +1,28 @@
 {
-  "updated": "2026-07-11T20:10:05.186Z",
+  "updated": "2026-07-11T22:01:14.104Z",
   "matches": [
     {
       "home": "Norway",
       "away": "England",
-      "commence": "2026-07-11T21:00:00Z",
+      "commence": "2026-07-11T21:01:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 3.9,
-          "draw": 3.7,
-          "away": 1.83
-        },
-        {
           "name": "Betfair",
-          "home": 4.4,
-          "draw": 4,
-          "away": 1.89
+          "home": 5.6,
+          "draw": 2.98,
+          "away": 2.04
         },
         {
           "name": "Pinnacle",
-          "home": 4.28,
-          "draw": 3.94,
-          "away": 1.85
+          "home": 5.48,
+          "draw": 2.9,
+          "away": 1.98
+        },
+        {
+          "name": "Winamax (FR)",
+          "home": 4.7,
+          "draw": 2.55,
+          "away": 1.94
         }
       ]
     },
@@ -45,9 +45,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 1.74,
+          "home": 1.75,
           "draw": 3.57,
-          "away": 5.91
+          "away": 5.8
         }
       ]
     },
@@ -58,7 +58,7 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 2.44,
+          "home": 2.46,
           "draw": 3.3,
           "away": 3.35
         },
@@ -81,7 +81,7 @@
     "France": 2.5,
     "Spain": 4.33,
     "Argentina": 5.5,
-    "England": 5.5,
+    "England": 6,
     "Norway": 15,
     "Switzerland": 41
   },
