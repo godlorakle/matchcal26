@@ -1,11 +1,17 @@
 {
-  "updated": "2026-07-12T09:14:43.289Z",
+  "updated": "2026-07-12T10:01:11.752Z",
   "matches": [
     {
       "home": "France",
       "away": "Spain",
       "commence": "2026-07-14T19:00:00Z",
       "books": [
+        {
+          "name": "William Hill",
+          "home": 2.3,
+          "draw": 3.1,
+          "away": 3.1
+        },
         {
           "name": "Betfair",
           "home": 2.4,
@@ -16,12 +22,6 @@
           "name": "Pinnacle",
           "home": 2.34,
           "draw": 3.28,
-          "away": 3.32
-        },
-        {
-          "name": "Marathon Bet",
-          "home": 2.26,
-          "draw": 3.3,
           "away": 3.32
         }
       ]
@@ -39,14 +39,14 @@
         },
         {
           "name": "Betfair",
-          "home": 2.64,
+          "home": 2.7,
           "draw": 3.1,
-          "away": 3.25
+          "away": 3.2
         },
         {
           "name": "Pinnacle",
           "home": 2.57,
-          "draw": 3.06,
+          "draw": 3.05,
           "away": 3.16
         }
       ]
