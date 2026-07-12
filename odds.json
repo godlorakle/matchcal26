@@ -1,28 +1,28 @@
 {
-  "updated": "2026-07-12T00:59:49.289Z",
+  "updated": "2026-07-12T02:01:06.477Z",
   "matches": [
     {
       "home": "Argentina",
       "away": "Switzerland",
-      "commence": "2026-07-12T01:05:00Z",
+      "commence": "2026-07-12T01:00:00Z",
       "books": [
         {
-          "name": "William Hill",
-          "home": 1.75,
-          "draw": 3.3,
-          "away": 4.8
-        },
-        {
           "name": "Betfair",
-          "home": 1.78,
-          "draw": 3.4,
-          "away": 6.6
+          "home": 1.27,
+          "draw": 5.7,
+          "away": 21
         },
         {
           "name": "Pinnacle",
-          "home": 1.76,
-          "draw": 3.36,
-          "away": 6.14
+          "home": 1.25,
+          "draw": 5.17,
+          "away": 19.71
+        },
+        {
+          "name": "Unibet (NL)",
+          "home": 1.25,
+          "draw": 4.7,
+          "away": 16
         }
       ]
     },
@@ -35,7 +35,7 @@
           "name": "Betfair",
           "home": 2.42,
           "draw": 3.3,
-          "away": 3.4
+          "away": 3.45
         },
         {
           "name": "Pinnacle",
@@ -55,9 +55,9 @@
   "winner": {
     "France": 2.5,
     "Spain": 4,
-    "England": 4,
-    "Argentina": 5.5,
-    "Switzerland": 34
+    "England": 4.5,
+    "Argentina": 5,
+    "Switzerland": 67
   },
   "scores": [
     {
