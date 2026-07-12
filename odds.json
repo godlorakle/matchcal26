@@ -1,31 +1,6 @@
 {
-  "updated": "2026-07-12T02:01:06.477Z",
+  "updated": "2026-07-12T04:01:13.127Z",
   "matches": [
-    {
-      "home": "Argentina",
-      "away": "Switzerland",
-      "commence": "2026-07-12T01:00:00Z",
-      "books": [
-        {
-          "name": "Betfair",
-          "home": 1.27,
-          "draw": 5.7,
-          "away": 21
-        },
-        {
-          "name": "Pinnacle",
-          "home": 1.25,
-          "draw": 5.17,
-          "away": 19.71
-        },
-        {
-          "name": "Unibet (NL)",
-          "home": 1.25,
-          "draw": 4.7,
-          "away": 16
-        }
-      ]
-    },
     {
       "home": "France",
       "away": "Spain",
@@ -33,21 +8,46 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 2.42,
+          "home": 2.4,
           "draw": 3.3,
           "away": 3.45
         },
         {
           "name": "Pinnacle",
-          "home": 2.36,
+          "home": 2.35,
           "draw": 3.27,
-          "away": 3.29
+          "away": 3.3
         },
         {
           "name": "Marathon Bet",
-          "home": 2.33,
-          "draw": 3.22,
-          "away": 3.22
+          "home": 2.32,
+          "draw": 3.24,
+          "away": 3.25
+        }
+      ]
+    },
+    {
+      "home": "England",
+      "away": "Argentina",
+      "commence": "2026-07-15T19:00:00Z",
+      "books": [
+        {
+          "name": "William Hill",
+          "home": 2.5,
+          "draw": 3.2,
+          "away": 2.88
+        },
+        {
+          "name": "Pinnacle",
+          "home": 2.67,
+          "draw": 3.05,
+          "away": 2.98
+        },
+        {
+          "name": "Marathon Bet",
+          "home": 2.63,
+          "draw": 3.04,
+          "away": 2.94
         }
       ]
     }
@@ -55,9 +55,8 @@
   "winner": {
     "France": 2.5,
     "Spain": 4,
-    "England": 4.5,
-    "Argentina": 5,
-    "Switzerland": 67
+    "Argentina": 4.5,
+    "England": 4.5
   },
   "scores": [
     {
@@ -851,6 +850,14 @@
       "completed": true,
       "hs": 1,
       "as": 2
+    },
+    {
+      "home": "Argentina",
+      "away": "Switzerland",
+      "commence": "2026-07-12T01:00Z",
+      "completed": true,
+      "hs": 3,
+      "as": 1
     }
   ]
 }

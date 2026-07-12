@@ -790,5 +790,13 @@
     "completed": true,
     "hs": 1,
     "as": 2
+  },
+  {
+    "home": "Argentina",
+    "away": "Switzerland",
+    "commence": "2026-07-12T01:00Z",
+    "completed": true,
+    "hs": 3,
+    "as": 1
   }
 ]
