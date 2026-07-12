@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12T14:37:10.202Z",
+  "updated": "2026-07-12T16:01:11.077Z",
   "matches": [
     {
       "home": "France",
@@ -16,13 +16,13 @@
           "name": "Betfair",
           "home": 2.44,
           "draw": 3.35,
-          "away": 3.4
+          "away": 3.35
         },
         {
           "name": "Pinnacle",
-          "home": 2.36,
-          "draw": 3.28,
-          "away": 3.29
+          "home": 2.37,
+          "draw": 3.2,
+          "away": 3.35
         }
       ]
     },
@@ -34,20 +34,20 @@
         {
           "name": "William Hill",
           "home": 2.5,
-          "draw": 3,
+          "draw": 2.9,
           "away": 2.9
         },
         {
           "name": "Betfair",
-          "home": 2.66,
+          "home": 2.72,
           "draw": 3.05,
-          "away": 3.25
+          "away": 3.2
         },
         {
           "name": "Pinnacle",
-          "home": 2.59,
-          "draw": 3.05,
-          "away": 3.13
+          "home": 2.69,
+          "draw": 2.95,
+          "away": 3.11
         }
       ]
     }
