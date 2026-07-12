@@ -1,28 +1,28 @@
 {
-  "updated": "2026-07-12T00:01:13.035Z",
+  "updated": "2026-07-12T00:59:49.289Z",
   "matches": [
     {
       "home": "Argentina",
       "away": "Switzerland",
-      "commence": "2026-07-12T01:00:00Z",
+      "commence": "2026-07-12T01:05:00Z",
       "books": [
         {
           "name": "William Hill",
-          "home": 1.7,
+          "home": 1.75,
           "draw": 3.3,
-          "away": 5.5
+          "away": 4.8
         },
         {
           "name": "Betfair",
-          "home": 1.73,
-          "draw": 3.65,
-          "away": 6.4
+          "home": 1.78,
+          "draw": 3.4,
+          "away": 6.6
         },
         {
           "name": "Pinnacle",
-          "home": 1.74,
-          "draw": 3.56,
-          "away": 6
+          "home": 1.76,
+          "draw": 3.36,
+          "away": 6.14
         }
       ]
     },
@@ -39,14 +39,14 @@
         },
         {
           "name": "Pinnacle",
-          "home": 2.37,
-          "draw": 3.26,
-          "away": 3.28
+          "home": 2.36,
+          "draw": 3.27,
+          "away": 3.29
         },
         {
           "name": "Marathon Bet",
-          "home": 2.34,
-          "draw": 3.26,
+          "home": 2.33,
+          "draw": 3.22,
           "away": 3.22
         }
       ]
