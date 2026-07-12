@@ -782,5 +782,13 @@
     "completed": true,
     "hs": 2,
     "as": 1
+  },
+  {
+    "home": "Norway",
+    "away": "England",
+    "commence": "2026-07-11T21:00Z",
+    "completed": true,
+    "hs": 1,
+    "as": 2
   }
 ]

@@ -1,31 +1,6 @@
 {
-  "updated": "2026-07-11T22:05:47.786Z",
+  "updated": "2026-07-12T00:01:13.035Z",
   "matches": [
-    {
-      "home": "Norway",
-      "away": "England",
-      "commence": "2026-07-11T21:01:00Z",
-      "books": [
-        {
-          "name": "Betfair",
-          "home": 5.5,
-          "draw": 2.98,
-          "away": 2.04
-        },
-        {
-          "name": "Pinnacle",
-          "home": 5.48,
-          "draw": 2.9,
-          "away": 1.98
-        },
-        {
-          "name": "Winamax (FR)",
-          "home": 4.7,
-          "draw": 2.55,
-          "away": 1.94
-        }
-      ]
-    },
     {
       "home": "Argentina",
       "away": "Switzerland",
@@ -35,19 +10,19 @@
           "name": "William Hill",
           "home": 1.7,
           "draw": 3.3,
-          "away": 5
+          "away": 5.5
         },
         {
           "name": "Betfair",
-          "home": 1.75,
-          "draw": 3.6,
+          "home": 1.73,
+          "draw": 3.65,
           "away": 6.4
         },
         {
           "name": "Pinnacle",
-          "home": 1.75,
-          "draw": 3.57,
-          "away": 5.8
+          "home": 1.74,
+          "draw": 3.56,
+          "away": 6
         }
       ]
     },
@@ -58,32 +33,31 @@
       "books": [
         {
           "name": "Betfair",
-          "home": 2.46,
+          "home": 2.42,
           "draw": 3.3,
-          "away": 3.35
+          "away": 3.4
         },
         {
           "name": "Pinnacle",
-          "home": 2.4,
-          "draw": 3.25,
-          "away": 3.24
+          "home": 2.37,
+          "draw": 3.26,
+          "away": 3.28
         },
         {
           "name": "Marathon Bet",
-          "home": 2.36,
-          "draw": 3.22,
-          "away": 3.18
+          "home": 2.34,
+          "draw": 3.26,
+          "away": 3.22
         }
       ]
     }
   ],
   "winner": {
     "France": 2.5,
-    "Spain": 4.33,
+    "Spain": 4,
+    "England": 4,
     "Argentina": 5.5,
-    "England": 6,
-    "Norway": 15,
-    "Switzerland": 41
+    "Switzerland": 34
   },
   "scores": [
     {
@@ -869,6 +843,14 @@
       "completed": true,
       "hs": 2,
       "as": 1
+    },
+    {
+      "home": "Norway",
+      "away": "England",
+      "commence": "2026-07-11T21:00Z",
+      "completed": true,
+      "hs": 1,
+      "as": 2
     }
   ]
 }
