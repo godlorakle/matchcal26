@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-13T04:54:27.355Z",
+  "updated": "2026-07-13T06:01:12.873Z",
   "matches": [
     {
       "home": "France",
@@ -45,9 +45,9 @@
         },
         {
           "name": "Pinnacle",
-          "home": 2.7,
+          "home": 2.66,
           "draw": 2.97,
-          "away": 3.07
+          "away": 3.12
         }
       ]
     }
